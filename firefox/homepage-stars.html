@@ -1,0 +1,394 @@
+<!--
+
+    Author:        Twily                                   2012-2017
+    Website:       http://twily.info/
+    Compatibility: Mozilla Firefox, Internet Explorer, Google Chrome
+
+    Search Usage:  "artist!i" will find images for "artist"
+
+-->
+<html>
+<head>
+<title>Home</title>
+<style type="text/css">
+html,body       { width: 100%; height: 100%; margin: 0; padding: 0; background-color: #000; overflow: hidden; }
+*:focus         { outline: none; }
+
+#content {
+	position: fixed; top: 50%; left: 0;
+	width: 100%; height: 200px; line-height: 200px;
+	margin-top: -100px;
+	background: #000; color: #AAABAD;
+	font-size: 42pt; text-align: center;
+	z-index: 20;
+}
+
+#q {
+	height: 100%; width: 100%;
+	text-align: center;
+	background: #000; border: 0;
+	color: #AAABAD; font-size: 42pt;
+}
+
+#overlay {
+	position: fixed; top: 0; left: 0;
+	width: 100%; height: 100%;
+	background: transparent;
+	z-index: 10;
+}
+</style>
+<script type="text/javascript" language="javascript">
+var $=function(id) { return document.getElementById(id); };
+var dc=function(tag) { return document.createElement(tag); };
+
+var search=[ // Search engines
+    ["",    "https://www.google.no/#q="],                                       // Google (Default)
+    ["!g",  "https://www.google.no/#q="],                                       // Google
+    ["!i",  "https://www.google.no/search?tbm=isch&q="],                        // Google Images
+    ["!m",  "http://www.imdb.com/find?q="],                                     // IMDb
+    ["!t",  "http://www.tritrans.net/cgibin/translate.cgi?spraak=Norsk&Fra="],  // TriTrans
+    ["!u",  "http://www.urbandictionary.com/define.php?term="],                 // Urban Dictionary
+    ["!w",  "http://en.wikipedia.org/w/index.php?search="],                     // Wikipedia
+    ["!y",  "https://www.youtube.com/results?search_query="],                   // YouTube
+];
+
+var ss="";
+function init() {
+	for(i=0;i<search.length;i++) if(search[i][0]=="") ss=search[i][1];
+    if(ss=="") alert("Error: Missing default search engine!");
+	makesearch();
+
+	init_stars();
+}
+
+function makesearch() {
+	var engines="";
+	for(var s=1;s<search.length;s++) {
+		engines+=search[s][0]+", ";
+	}
+	engines=engines.substr(0,engines.length-2);
+	
+	var input="<input type=\"text\" value=\"\" placeholder=\"Search... ("+engines+")\" id=\"q\" onkeypress=\"handleQuery(event,this.value);\" autocomplete=\"off\" />";
+	$('content').innerHTML=input;
+}
+
+/*
+    Optional patch for using "!i" before the search query: http://pastebin.com/nXf6em3C
+*/
+function handleQuery(e,q) { // Handle search query
+    var key=e.keyCode || e.which;
+
+    if(key==13) { // Enter
+        var x=q.lastIndexOf("!");
+
+        if(x!=-1 && x>=q.length-2) {
+            for(i=0;i<search.length;i++) {
+                if(search[i][0]==q.substr(x)) { // Find "*!i"
+                    window.open(search[i][1]+q.substr(0,x).replace(/&/g,"%26"));
+
+                    $('q').value="";
+                    $('q').focus();
+                    return true;
+                }
+            }
+            // Invalid "!i", use default
+            window.open(ss+q.substr(0,x).replace(/&/g,"%26"));
+        } else {
+            // "!i" where not specified, use default
+            window.open(ss+q.replace(/&/g,"%26"));
+        }
+
+        $('q').value="";
+        $('q').focus();
+    }
+}
+
+/* v Star Engine Below v */
+
+var c_star;
+var c_width,c_height;
+var c_star_width,c_star_height;
+var c_num_stars;
+var c_star_position=new Array();
+var c_global_x,c_global_y,c_slow_x,c_slow_y,c_fast_x,c_fast_y;
+var c_t,c_fps;
+var c_vertical_slide,c_horizontal_slide;
+var c_global_speed,c_slow_speed,c_fast_speed;
+var c_star_color,c_sky_color;
+var c_enable_3d;
+var c_number_of_stars;
+var c_star_scale;var c_star_speed_diff;
+var c_star_percent_far,c_star_percent_middle,c_star_percent_close;
+var c_win_width,c_win_height,c_win_auto;
+
+function init_stars() {
+    c_star=$("star_canvas");
+    
+    c_global_x=0;
+    c_global_y=0;
+    c_slow_x=0;
+    c_slow_y=0;
+    c_fast_x=0;
+    c_fast_y=0;
+    
+    
+    // ---------------------- settings ----------------------
+    
+    c_win_auto=true;            // Auto Size Canvas to Fit Window Width/Height
+    c_win_width=600;
+    c_win_height=300;
+    
+    // c_vertical_slide & c_horizontal_slide are not effective when c_random_slide = true
+    var c_random_slide=true;
+    c_vertical_slide=-1;        // 1 = up   | 0 = none | -1 = down
+    c_horizontal_slide=0;       // 1 = left | 0 = none | -1 = right
+    
+    c_enable_3d=true;           // 3D or 2D         (true / false)
+    c_fps=60;                   // Default 60       (Frames Per Second)
+    
+    c_global_speed=2;           // Default 2
+    c_number_of_stars=5;        // Default 5        (10 = max | 1 = min)
+    
+    c_star_color="#FFF";        // Default "#FFF"   (White)
+    c_sky_color="#000";         // Default "#000"   (Black)
+    
+    c_star.style.position="fixed";
+    c_star.style.top="0px";
+    c_star.style.left="0px";
+    c_star.style.zIndex="0";
+    
+    c_star_width=1;             // Default 1
+    c_star_height=1;            // Default 1
+    c_star_scale=1.6;           // Default 1.6      (Star Scale)
+    c_star_speed_diff=1.3;      // Default 1.3      (Speed Difference)
+    
+    // !! (c_star_percent_close + c_star_percent_far) <= 99 !!
+    c_star_percent_close=10;    // default 10       (0 - 99)
+    c_star_percent_far=60;      // default 60       (0 - 99)
+    
+    // ---------------------- settings ----------------------
+    
+    
+    c_star_percent_middle=Math.round(100-(c_star_percent_close+c_star_percent_far));
+    
+    if(c_win_auto) {
+        c_star.style.width="100%";
+        c_star.style.height="100%";
+    } else {
+        c_star.style.width=c_win_width+"px";
+        c_star.style.height=c_win_height+"px";
+    }
+    
+    if(c_number_of_stars>10) { c_number_of_stars=10 } else if(c_number_of_stars<1) { c_number_of_stars=1; }
+
+    c_slow_speed=c_global_speed/c_star_speed_diff;
+    c_fast_speed=c_global_speed*c_star_speed_diff;
+    
+    if(c_random_slide) {
+        c_vertical_slide=Math.floor(rnd_number(-1,1));
+        c_horizontal_slide=Math.floor(rnd_number(-1,1));
+        if(c_vertical_slide==0&&c_horizontal_slide==0) {
+            c_vertical_slide=-1;
+        }
+    }
+    
+    resize_stars();
+}
+
+function rnd_number(a,b) {
+    return Math.random()*(b-a+1)+a;
+}
+
+function generate_starfield() {
+    c_star_position.length=0;
+    
+    for(i=0;i<c_num_stars;i++) {
+        var c_x=Math.floor(rnd_number(0,c_width));
+        var c_y=Math.floor(rnd_number(0,c_height));
+        
+        c_star_position[i] = c_x+","+c_y;
+    }
+}
+
+function loop_stars() {
+    clearTimeout(c_t);
+    
+    draw_stars();
+    
+    c_t=setTimeout("loop_stars();",1000/c_fps);
+}
+
+function draw_stars() {
+    var ctx=c_star.getContext("2d");
+    
+    if(ctx) {
+        ctx.clearRect(0,0,c_width,c_height);
+        
+        ctx.fillStyle=c_sky_color;
+        ctx.fillRect(0,0,c_width,c_height);
+        
+        var c_pos_x=0;
+        var c_pos_y=0;
+        
+        var i_less_than=c_star_position.length;
+        if(c_enable_3d) {
+            i_less_than=Math.floor((c_star_position.length*c_star_percent_middle)/100);
+        }
+        
+        for(i=0;i<i_less_than;i++) {
+            var c_coords=c_star_position[i].split(",");
+            
+            c_pos_x=parseInt(c_coords[0])+c_global_x;
+            c_pos_y=parseInt(c_coords[1])+c_global_y;
+            
+            ctx.fillStyle=c_star_color;
+            ctx.fillRect(c_pos_x,c_pos_y,c_star_width,c_star_height)
+            
+            c_pos_x=parseInt(c_coords[0])+c_global_x;
+            c_pos_y=parseInt(c_coords[1])+c_global_y-c_height;
+            
+            ctx.fillStyle=c_star_color;
+            ctx.fillRect(c_pos_x,c_pos_y,c_star_width,c_star_height)
+            
+            c_pos_x=parseInt(c_coords[0])+c_global_x-c_width;
+            c_pos_y=parseInt(c_coords[1])+c_global_y;
+            
+            ctx.fillStyle=c_star_color;
+            ctx.fillRect(c_pos_x,c_pos_y,c_star_width,c_star_height)
+            
+            c_pos_x=parseInt(c_coords[0])+c_global_x-c_width;
+            c_pos_y=parseInt(c_coords[1])+c_global_y-c_height;
+            
+            ctx.fillStyle=c_star_color;
+            ctx.fillRect(c_pos_x,c_pos_y,c_star_width,c_star_height)
+        }
+        
+        if(c_enable_3d) {
+            for(i=Math.floor((c_star_position.length*c_star_percent_middle)/100);i<Math.floor((c_star_position.length*(c_star_percent_far+c_star_percent_middle))/100);i++) {
+                var c_coords=c_star_position[i].split(",");
+                
+                c_pos_x=parseInt(c_coords[0])+c_slow_x;
+                c_pos_y=parseInt(c_coords[1])+c_slow_y;
+                
+                ctx.fillStyle=c_star_color;
+                ctx.fillRect(c_pos_x,c_pos_y,c_star_width/c_star_scale,c_star_height/c_star_scale)
+                
+                c_pos_x=parseInt(c_coords[0])+c_slow_x;
+                c_pos_y=parseInt(c_coords[1])+c_slow_y-c_height;
+                
+                ctx.fillStyle=c_star_color;
+                ctx.fillRect(c_pos_x,c_pos_y,c_star_width/c_star_scale,c_star_height/c_star_scale)
+                
+                c_pos_x=parseInt(c_coords[0])+c_slow_x-c_width;
+                c_pos_y=parseInt(c_coords[1])+c_slow_y;
+                
+                ctx.fillStyle=c_star_color;
+                ctx.fillRect(c_pos_x,c_pos_y,c_star_width/c_star_scale,c_star_height/c_star_scale)
+                
+                c_pos_x=parseInt(c_coords[0])+c_slow_x-c_width;
+                c_pos_y=parseInt(c_coords[1])+c_slow_y-c_height;
+                
+                ctx.fillStyle=c_star_color;
+                ctx.fillRect(c_pos_x,c_pos_y,c_star_width/c_star_scale,c_star_height/c_star_scale)
+            }
+            
+            for(i=Math.floor((c_star_position.length*(c_star_percent_far+c_star_percent_middle))/100);i<Math.floor((c_star_position.length*(c_star_percent_far+c_star_percent_middle+c_star_percent_close))/100);i++) {
+                var c_coords=c_star_position[i].split(",");
+                
+                c_pos_x=parseInt(c_coords[0])+c_fast_x;
+                c_pos_y=parseInt(c_coords[1])+c_fast_y;
+                
+                ctx.fillStyle=c_star_color;
+                ctx.fillRect(c_pos_x,c_pos_y,c_star_width*c_star_scale,c_star_height*c_star_scale)
+                
+                c_pos_x=parseInt(c_coords[0])+c_fast_x;
+                c_pos_y=parseInt(c_coords[1])+c_fast_y-c_height;
+                
+                ctx.fillStyle=c_star_color;
+                ctx.fillRect(c_pos_x,c_pos_y,c_star_width*c_star_scale,c_star_height*c_star_scale)
+                
+                c_pos_x=parseInt(c_coords[0])+c_fast_x-c_width;
+                c_pos_y=parseInt(c_coords[1])+c_fast_y;
+                
+                ctx.fillStyle=c_star_color;
+                ctx.fillRect(c_pos_x,c_pos_y,c_star_width*c_star_scale,c_star_height*c_star_scale)
+                
+                c_pos_x=parseInt(c_coords[0])+c_fast_x-c_width;
+                c_pos_y=parseInt(c_coords[1])+c_fast_y-c_height;
+                
+                ctx.fillStyle=c_star_color;
+                ctx.fillRect(c_pos_x,c_pos_y,c_star_width*c_star_scale,c_star_height*c_star_scale)
+            }
+        }
+        
+        if(c_horizontal_slide==1) {
+            if(c_global_x>0) { c_global_x-=c_global_speed } else { c_global_x=c_width; }
+            if(c_enable_3d) {
+                if(c_slow_x>0) { c_slow_x-=c_slow_speed } else { c_slow_x=c_width; }
+                if(c_fast_x>0) { c_fast_x-=c_fast_speed } else { c_fast_x=c_width; }
+            }
+        } else if(c_horizontal_slide==-1) {
+            if(c_global_x<c_width) { c_global_x+=c_global_speed } else { c_global_x=0; }
+            if(c_enable_3d) {
+                if(c_slow_x<c_width) { c_slow_x+=c_slow_speed } else { c_slow_x=0; }
+                if(c_fast_x<c_width) { c_fast_x+=c_fast_speed } else { c_fast_x=0; }
+            }
+        }
+        
+        if(c_vertical_slide==1) {
+            if(c_global_y>0) { c_global_y-=c_global_speed } else { c_global_y=c_height; }
+            if(c_enable_3d) {
+                if(c_slow_y>0) { c_slow_y-=c_slow_speed } else { c_slow_y=c_height; }
+                if(c_fast_y>0) { c_fast_y-=c_fast_speed } else { c_fast_y=c_height; }
+            }
+        } else if(c_vertical_slide==-1) {
+            if(c_global_y<c_height) { c_global_y+=c_global_speed } else { c_global_y=0; }
+            if(c_enable_3d) {
+                if(c_slow_y<c_height) { c_slow_y+=c_slow_speed } else { c_slow_y=0; }
+                if(c_fast_y<c_height) { c_fast_y+=c_fast_speed } else { c_fast_y=0; }
+            }
+        }
+    }
+}
+
+var r_t;
+
+window.onresize = function() {
+    clearTimeout(r_t);
+    r_t=setTimeout("resize_stars();",100);
+}
+
+function resize_stars() {
+    clearTimeout(r_t);
+    
+    if(c_win_auto) {
+        c_width=window.innerWidth;
+        c_height=window.innerHeight;
+    } else {
+        c_width=c_win_width;
+        c_height=c_win_height;
+    }
+    
+    c_star.width=c_width;
+    c_star.height=c_height;
+    
+    c_num_stars=Math.floor((c_width+c_height)/(6-(c_number_of_stars/2)));
+    
+    generate_starfield();
+    loop_stars();
+}
+
+/* ^ Star Engine Above ^ */
+</script>
+
+</head>
+<body onload="javascript:init();">
+
+<canvas id="star_canvas"></canvas>
+
+<div id="content"></div>
+
+<div id="overlay"></div>
+
+</body>
+<html>

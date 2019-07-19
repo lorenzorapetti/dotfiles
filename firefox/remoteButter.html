@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--
+
+    Author:        Twily                                     2016
+    Website:       http://twily.info/
+    Description:   Remote control for Butter / Popcorn Time 0.3.9
+
+    Sources:
+    https://github.com/popcorn-official/popcorn-desktop/blob/development/docs/json-rpc-api.md
+    https://www.reddit.com/r/PopCornTime/comments/2h9by8/330_remote_control_usage/
+    http://pastebin.com/ECXYN4ta
+
+
+-->
+<html>
+<head>
+<title>remoteButter</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+<style type="text/css">
+html,body {
+    margin: 0; padding: 0;
+    background: #111113; color: #CECFD1;
+}
+* {
+    box-sizing: border-box;
+    font-family: "Droid Sans", "Liberation Sans", "DejaVu Sans", "Segoe UI", Sans;
+}
+
+a:link, a:visited { color: #6f67e6; text-decoration: none; }
+a:hover, a:active { color: #ea75bc; }
+
+.tbl { display: table; }
+.tr { display: table-row; }
+.td { display: table-cell; vertical-align: top; }
+
+#header {
+    width: 100%;
+    background: #27282B;
+    cursor: default;
+}
+    #header #c_title { font-size: 2em; color: #84bd3f; }
+    #header > div > div { display: inline-block; }
+
+    #c_bar {
+        width: 100%; height: 4px;
+        background: #17181A;
+    }
+    #c_bar #c_seek {
+        width: 0%; height: 100%;
+        background: #84bd3f;
+    }
+
+#controls {
+    display: flex; flex-flow: row wrap;
+    justify-content: flex-start;
+    width: /*100%*/ 900px; padding: 4px;
+}
+    #controls .box {
+        display: flex; flex-flow: row wrap;
+        justify-content: flex-start;
+        width: 286px;
+        padding: 8px; margin: 4px;
+        background: #27282B;
+    }
+
+    .box input[type="button"] {
+        width: 90px; height: 75px;
+        margin: 0; padding: 4px;
+        white-space: normal;
+        background: #17181A; color: #CECFD1;
+        border: 0; border-radius: 1px;
+        transition: .2s ease;
+        cursor: pointer;
+    }
+    .box input[type="button"]:hover { background: #84bd3f; color: #111113; }
+
+    .box #log {
+        background: #17181A;
+        padding: 4px; border-radius: 1px;
+        width: 100%; height: 150px;
+        overflow: auto; cursor: text;
+    }
+    
+    .box #s_cover {
+        width: 256px; height: auto;
+        float: left; border-radius: 1px;
+        margin: 0 8px 8px 0;
+    }
+    .box #s_imdb, .box #s_rating { float: right; }
+    .box #s_title { display: block; font-size: 1.5em; }
+    .box #s_year, .box #s_runtime, .box #s_genre { display: inline; color: #AAABAD; }
+    .box #s_rating { color: #f4aa5c; }
+    .box #s_watched, .box #s_bookmarked { color: #606163; }
+    .box #s_trailer { float: right; }
+</style>
+<script type="text/javascript">
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=- v Server Setup v -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+var srv={
+    url: 'http://10.0.0.100',
+    port: 8008,
+    user: 'popcorn',
+    pass: 'popcorn'
+};
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=- ^ Server Setup ^ -=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+var $=function(id) { return document.getElementById(id); };
+var IsJsonString=function(str) { try { JSON.parse(str); } catch(e) { return false; } return true; };
+var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if(isNaN(r)){u=a=64}else if(isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if(u!=64){t=t+String.fromCharCode(r)}if(a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r)}else if(r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if(r<128){t+=String.fromCharCode(r);n++}else if(r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}}
+
+function butterCall(method,params,callback) { // Send Request to Butter
+    params=params.toString();
+    if(params!='') params=params.split(',');
+	if(typeof params==="undefined"||params=='') params=[];
+
+	var request = {};
+	request.params = params;
+	request.id = 10;
+	request.method = method;
+	request.jsonrpc = "2.0";
+
+    var data,xhr=new XMLHttpRequest();
+    xhr.onreadystatechange=function() {
+        var DONE=4;
+        var OK=200;
+        if(xhr.readyState===DONE) {
+            if(xhr.status===OK) {
+                callback(xhr.responseText);
+            } else {
+                callback("Error: "+xhr.status);
+            }
+        }
+    };
+    xhr.open('POST',srv.url+':'+srv.port,true);
+    xhr.setRequestHeader("Authorization","Basic "+Base64.encode(srv.user+':'+srv.pass));
+    xhr.send(JSON.stringify(request));
+}
+
+function bSend(method,rparam,ddefault) {
+    if(rparam=='') {
+        butterCall(method,'',function(data) {
+            printTime();
+            $('log').innerHTML+=data+"<br />";
+        });
+    } else {
+        var arr;
+        switch(rparam) {
+            case 'getgenres':
+            case 'getsorters':
+            case 'gettypes':
+            case 'getsubtitles':
+                var rp=rparam.substr(3,rparam.length-4);
+                butterCall(rparam,'',function(data) {
+                    if(IsJsonString(data)) arr=JSON.parse(data);
+
+                    var setd=prompt("Select a "+rp+": ",arr['result'][rp+'s']);
+                    if(setd) {
+                        butterCall(method,setd,function(data) {
+                            printTime();
+                            $('log').innerHTML+=data+"<br />";
+                        });
+                    }
+                });
+
+                break;
+            case 'Search':
+            case 'Start stream':
+            case 'Subtitle offset':
+            case 'Select episode':
+            case 'Set volume':
+                var setd=prompt(rparam+": ",ddefault);
+
+                if(setd) {
+                    if(rparam=='Set volume') setd=parseFloat(setd/100);
+
+                    butterCall(method,setd,function(data) {
+                        printTime();
+                        $('log').innerHTML+=data+"<br />";
+                    });
+                }
+
+                break;
+            case 'getstream':
+                butterCall(method,'',function(data) {
+                    if(IsJsonString(data)) arr=JSON.parse(data);
+                    var getstream=prompt("Current stream: ",arr['result']['streamUrl']);
+
+                    printTime();
+                    $('log').innerHTML+=data+"<br />";
+                });
+
+                break;
+            case 'getplaying':
+                butterCall(rparam,'',function(data) {
+                    if(IsJsonString(data)) arr=JSON.parse(data);
+
+                    if(arr['result']['title']!=undefined) {
+                        var pdur=parseInt(arr['result']['duration']/60);
+                        var pcur=parseInt(arr['result']['currentTime']/60);
+
+                        var seek=prompt("Seek (min): 0 - "+pdur,pcur);
+
+                        if(seek) {
+                            seek=parseInt(seek*60);
+                            butterCall(method,seek,function(data) {
+                                printTime();
+                                $('log').innerHTML+=data+"<br />";
+                            });
+                        }
+                    }
+                });
+
+                break;
+            case 'getplayers':
+                var rp=rparam.substr(3,rparam.length-4);
+                butterCall(rparam,'',function(data) {
+                    if(IsJsonString(data)) arr=JSON.parse(data);
+
+                    var pstr='',marr=new Array();
+                    for(var i=0;i<arr['result'][rp+'s'].length;i++) {
+                        var tarr=new Array();
+                        tarr[0]=arr['result'][rp+'s'][i]['name'];
+                        tarr[1]=arr['result'][rp+'s'][i]['id'];
+                        marr.push(tarr);
+                        pstr+=tarr[0]+" ("+tarr[1]+")";
+                        if(i<arr['result'][rp+'s'].length-1) pstr+=",";
+                    }
+                    var setd=prompt("Select a "+rp+": ",pstr);
+                    if(setd) {
+                        for(var i=0;i<marr.length;i++) {
+                            if(marr[i][0]+" ("+marr[i][1]+")"==setd) setd=marr[i][1];
+                        }
+                        butterCall(method,setd,function(data) {
+                            printTime();
+                            $('log').innerHTML+=data+"<br />";
+                        });
+                    }
+                });
+
+                break;
+            default:
+        }
+    }
+
+    clearTimeout(tS);
+    tS=setTimeout("selectData();",1000);
+}
+
+var tH,tS;
+function headerData() {
+    clearTimeout(tH);
+
+    var arr;
+    butterCall('getplaying','',function(data) {
+        if(IsJsonString(data)) arr=JSON.parse(data);
+
+        if(arr['result']['title']!=undefined) {
+            if(arr['result']['playing']) {
+                $('c_status').innerHTML="Playing";
+            } else {
+                $('c_status').innerHTML="Paused";
+            }
+
+            $('c_title').innerHTML="<b>"+arr['result']['title']+"</b>";
+            $('c_quality').innerHTML=arr['result']['quality'];
+            $('c_volume').innerHTML="Volume: <b>"+parseInt(arr['result']['volume']*100)+"%</b>";
+            $('c_subtitle').innerHTML="Subtitle: <b>"+arr['result']['selectedSubtitle']+"</b>";
+            $('c_fullscreen').innerHTML="Fullscreen: <b>"+arr['result']['isFullscreen']+"</b>";
+            $('c_imdb').innerHTML="ImDB: <b><a href=\"http://imdb.com/title/"+arr['result']['imdb_id']+"\" target=\"_blank\">"+arr['result']['imdb_id']+"</a></b>";
+
+            var cSeek=parseInt(arr['result']['currentTime']*100/arr['result']['duration']);
+            $('c_seek').style.width=cSeek+"%";
+        } else {
+            $('c_status').innerHTML="Not playing";
+            $('c_title').innerHTML="";
+            $('c_quality').innerHTML="";
+            $('c_volume').innerHTML="";
+            $('c_subtitle').innerHTML="";
+            $('c_fullscreen').innerHTML="";
+            $('c_imdb').innerHTML="";
+            $('c_seek').style.width=0;
+        }
+
+        tH=setTimeout("headerData();",3000);
+    });
+}
+
+function trailer() {
+    butterCall('getviewstack','',function(data) {
+        if(IsJsonString(data)) arr=JSON.parse(data);
+
+        if(arr['result']['viewstack'][1]!=undefined) {
+            if(arr['result']['viewstack'][1]=="movie-detail") {
+                butterCall('watchtrailer','',function() {
+                    printTime();
+                    $('log').innerHTML+=data+"<br />";
+                });
+            }
+        } else {
+            butterCall('enter','',function() {
+                printTime();
+                $('log').innerHTML+=data+"<br />";
+            });
+            butterCall('watchtrailer','',function() {
+                printTime();
+                $('log').innerHTML+=data+"<br />";
+            });
+        }
+    });
+}
+
+function selectData() {
+    clearTimeout(tS);
+
+    var arr;
+    butterCall('getselection','',function(data) {
+        if(IsJsonString(data)) arr=JSON.parse(data);
+
+        if(arr['result']['title']!=undefined) {
+            $('s_cover').src=arr['result']['cover'];
+            $('s_imdb').innerHTML="ImDB: <b><a href=\"http://imdb.com/title/"+arr['result']['imdb_id']+"\" target=\"_blank\">"+arr['result']['imdb_id']+"</a></b>";
+            $('s_title').innerHTML="<b>"+arr['result']['title']+"</b>";
+            $('s_year').innerHTML=arr['result']['year']+" - ";
+            $('s_runtime').innerHTML=arr['result']['runtime']+" min - ";
+            $('s_genre').innerHTML=arr['result']['genre'];
+            $('s_rating').innerHTML="<b>"+arr['result']['rating']+"</b>";
+            $('s_synopsis').innerHTML=arr['result']['synopsis'];
+            var sWatched="Not seen";
+            var sBookmarked="Not bookmarked";
+            if(arr['result']['watched']) sWatched="<span style=\"color: #AAABAD;\">Seen</span>";
+            if(arr['result']['bookmarked']) sBookmarked="<span style=\"color: #AAABAD;\">Bookmarked</span>";
+            $('s_watched').innerHTML=sWatched;
+            $('s_bookmarked').innerHTML=sBookmarked;
+            $('s_trailer').innerHTML="<b><a href=\"javascript:trailer();\" target=\"_self\">Watch Trailer</a></b>";
+        } else {
+            $('s_cover').src="";
+            $('s_imdb').innerHTML="";
+            $('s_title').innerHTML="";
+            $('s_year').innerHTML="No data";
+            $('s_runtime').innerHTML="";
+            $('s_genre').innerHTML="";
+            $('s_rating').innerHTML="";
+            $('s_synopsis').innerHTML="";
+            $('s_watched').innerHTML="";
+            $('s_bookmarked').innerHTML="";
+            $('s_trailer').innerHTML="";
+        }
+    });
+}
+
+function init() {
+    printTime();
+    $('log').innerHTML+="Connecting to Butter @ "+srv.url+":"+srv.port+"...<br />";
+    bSend('ping','');
+
+    headerData();
+}
+
+function printTime() {
+    var d=new Date();
+    var h=('0'+d.getHours()).slice(-2);
+    var m=('0'+d.getMinutes()).slice(-2);
+    var s=('0'+d.getSeconds()).slice(-2);
+    $('log').innerHTML+=h+":"+m+":"+s+"&gt; ";
+
+    $('log').scrollTop=$('log').scrollHeight;
+}
+</script>
+</head>
+<body onload="init();">
+
+<div id="controls">
+    <div class="box" style="width: 874px">
+        <div id="header" class="tbl">
+            <div class="td" style="vertical-align: bottom; padding: 8px;">
+                <div id="c_status"></div>
+                <div id="c_title"></div>
+                <div id="c_quality"></div>
+            </div>
+            <div class="td" style="text-align: right; padding: 8px;">
+                <div id="c_volume"></div><br />
+                <div id="c_subtitle"></div><br />
+                <div id="c_fullscreen"></div><br />
+                <div id="c_imdb"></div>
+            </div>
+        </div>
+        <div id="c_bar">
+            <div id="c_seek"></div>
+        </div>
+    </div>
+    <div class="box">
+        <input type="button" value="Toggle Playing" onclick="bSend('toggleplaying','');" />
+        <input type="button" value="Toggle Mute" onclick="bSend('togglemute','');" />
+        <input type="button" value="Toggle Fullscreen" onclick="bSend('togglefullscreen','');" />
+        <input type="button" value="Toggle Favourite" onclick="bSend('togglefavourite','');" />
+        <input type="button" value="Toggle Watched" onclick="bSend('togglewatched','');" />
+        <input type="button" value="Toggle Quality" onclick="bSend('togglequality','');" />
+    </div>
+    <div class="box">
+        <input type="button" value="Browse Movies" onclick="bSend('movieslist','');" />
+        <input type="button" value="Browse Shows" onclick="bSend('showslist','');" />
+        <input type="button" value="Browse Anime" onclick="bSend('animelist','');" />
+        <input type="button" value="Toggle Tab" onclick="bSend('toggletab','');" />
+        <input type="button" value="Open Watchlist" onclick="bSend('showwatchlist','');" />
+        <input type="button" value="Open Favourites" onclick="bSend('showfavourites','');" />
+    </div>
+    <div class="box">
+        <input type="button" value="Move Left" onclick="bSend('left','');" />
+        <input type="button" value="Move Up" onclick="bSend('up','');" />
+        <input type="button" value="Move Right" onclick="bSend('right','');" />
+        <input type="button" value="Back" onclick="bSend('back','');" />
+        <input type="button" value="Move Down" onclick="bSend('down','');" />
+        <input type="button" value="Enter" onclick="bSend('enter','');" />
+    </div>
+    <div class="box">
+        <input type="button" value="Previous Season" onclick="bSend('previousseason','');" />
+        <input type="button" value="Next Season" onclick="bSend('nextseason','');" />
+        <input type="button" value="Select Episode" onclick="bSend('selectepisode','Select episode','1,1');" />
+    </div>
+    <div class="box">
+        <input type="button" value="Filter Genre" onclick="bSend('filtergenre','getgenres');" />
+        <input type="button" value="Filter Sorter" onclick="bSend('filtersorter','getsorters');" />
+        <input type="button" value="Filter Type" onclick="bSend('filtertype','gettypes');" />
+    </div>
+    <div class="box">
+        <input type="button" value="Get Stream" onclick="bSend('getstreamurl','getstream');" />
+        <input type="button" value="Start Stream" onclick="bSend('startstream','Start stream');" />
+        <input type="button" value="Seek" onclick="bSend('seek','getplaying');" />
+    </div>
+    <div class="box">
+        <input type="button" value="Set Subtitles" onclick="bSend('setsubtitle','getsubtitles');" />
+        <input type="button" value="Subtitle Offset" onclick="bSend('subtitleoffset','Subtitle offset','0');" />
+        <input type="button" value="Set volume" onclick="bSend('volume','Set volume','100');" />
+    </div>
+    <div class="box">
+        <input type="button" value="Filter Search" onclick="bSend('filtersearch','Search');" />
+        <input type="button" value="Clear Search" onclick="bSend('clearsearch','');" />
+        <input type="button" value="Set Player" onclick="bSend('setplayer','getplayers');" />
+    </div>
+    <div class="box">
+        <input type="button" value="Ping" onclick="bSend('ping','');" />
+        <input type="button" value="About" onclick="bSend('showabout','');" />
+        <input type="button" value="Settings" onclick="bSend('showsettings','');" />
+    </div>
+    <div class="box" style="width: 874px; display: block;">
+        <img id="s_cover" src="" />
+        <div id="s_imdb"></div>
+        <div id="s_title"></div>
+        <div id="s_rating"></div>
+        <div id="s_year"></div>
+        <div id="s_runtime"></div>
+        <div id="s_genre"></div>
+        <br /><br />
+        <div id="s_synopsis"></div>
+        <br />
+        <div id="s_trailer"></div>
+        <div id="s_watched"></div>
+        <div id="s_bookmarked"></div>
+    </div>
+    <div class="box" style="width: 874px;">
+        <div id="log"></div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!--
+    Icon Download: https://www.dropbox.com/s/5wryulfiu5ig5i4/icons.tar?dl=0
+
+-->
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+
+	<menu id="accessories-menu" label="Accessories">
+        <item label="7-Zip FM" icon="/home/guest/.icons/menu/x24/7zip.png">
+			<action name="Execute">
+				<execute>7zFM</execute>
+			</action>
+		</item>
+        <item label="Application Finder" icon="/home/guest/.icons/menu/x24/find.png">
+			<action name="Execute">
+				<execute>xfce4-appfinder</execute>
+			</action>
+		</item>
+        <item label="Calculator" icon="/home/guest/.icons/menu/x24/calculator.png">
+			<action name="Execute">
+				<execute>galculator</execute>
+			</action>
+		</item>
+        <item label="File Manager" icon="/home/guest/.icons/menu/x24/file-manager.png">
+			<action name="Execute">
+				<execute>thunar</execute>
+			</action>
+		</item>
+        <item label="Leafpad" icon="/home/guest/.icons/menu/x24/leafpad.png">
+			<action name="Execute">
+				<execute>leafpad</execute>
+			</action>
+		</item>
+        <item label="Task Manager" icon="/home/guest/.icons/menu/x24/task-manager.png">
+			<action name="Execute">
+				<execute>xfce4-taskmanager</execute>
+			</action>
+		</item>
+        <item label="Terminal Emulator" icon="/home/guest/.icons/menu/x24/terminal.png">
+			<action name="Execute">
+				<execute>urxvt</execute>
+			</action>
+		</item>
+        <item label="Xfburn" icon="/home/guest/.icons/menu/x24/cd-burn.png">
+			<action name="Execute">
+				<execute>xfburn</execute>
+			</action>
+		</item>
+    </menu>
+
+	<menu id="games-menu" label="Games">
+        <item label="Armagetronad Advanced" icon="/home/guest/.icons/menu/armagetron.png">
+			<action name="Execute">
+				<execute>armagetronad</execute>
+			</action>
+		</item>
+        <item label="Dungeon Crawl Stone Soup" icon="/home/guest/.icons/menu/dungeoncrawl.png">
+			<action name="Execute">
+				<execute>crawl-tiles</execute>
+			</action>
+		</item>
+        <item label="Dwarf Fortress" icon="/home/guest/.icons/menu/df.png">
+			<action name="Execute">
+				<execute>dwarffortress</execute>
+			</action>
+		</item>
+        <item label="Flare" icon="/home/guest/.icons/menu/flare.png">
+			<action name="Execute">
+				<execute>flare</execute>
+			</action>
+		</item>
+        <item label="LBReakout2" icon="/home/guest/.icons/menu/lbreakout2.png">
+			<action name="Execute">
+                <execute>lbreakout2</execute>
+			</action>
+		</item>
+        <item label="Minecraft" icon="/home/guest/.icons/menu/x24/minecraft.png">
+			<action name="Execute">
+                <execute>sh /home/twily/games/minecraft</execute>
+			</action>
+		</item>
+        <item label="nethack" icon="/home/guest/.icons/menu/nethack.png">
+			<action name="Execute">
+				<execute>urxvt -e nethack</execute>
+			</action>
+		</item>
+        <item label="nSnake" icon="/home/guest/.icons/menu/nsnake.png">
+			<action name="Execute">
+				<execute>urxvt -g 80x24 -e nsnake</execute>
+			</action>
+		</item>
+        <item label="Steam" icon="/home/guest/.icons/menu/x24/steam.png">
+			<action name="Execute">
+                <execute>/usr/bin/steam %U</execute>
+			</action>
+		</item>
+        <item label="vitetris" icon="/home/guest/.icons/menu/x24/tetris.png">
+			<action name="Execute">
+                <execute>urxvt -g 48x25 -e vitetris</execute>
+			</action>
+		</item>
+    </menu>
+
+	<menu id="graphics-menu" label="Graphics">
+        <item label="Blender" icon="/home/guest/.icons/menu/x24/blender.png">
+			<action name="Execute">
+				<execute>blender</execute>
+			</action>
+		</item>
+        <item label="Feh" icon="/home/guest/.icons/menu/x24/feh.png">
+			<action name="Execute">
+				<execute>feh %F</execute>
+			</action>
+		</item>
+        <item label="Gcolor2" icon="/home/guest/.icons/menu/x24/gcolor2.png">
+			<action name="Execute">
+				<execute>gcolor2</execute>
+			</action>
+		</item>
+        <item label="GNU Image Manipulation Program" icon="/home/guest/.icons/menu/x24/gimp.png">
+			<action name="Execute">
+				<execute>gimp</execute>
+			</action>
+		</item>
+        <item label="Inkscape" icon="/home/guest/.icons/menu/x24/inkscape.png">
+			<action name="Execute">
+				<execute>inkscape</execute>
+			</action>
+		</item>
+        <item label="Sxiv" icon="/home/guest/.icons/menu/sxiv.png">
+			<action name="Execute">
+				<execute>sxiv</execute>
+			</action>
+		</item>
+    </menu>
+
+	<menu id="internet-menu" label="Internet">
+        <item label="Deluge" icon="/home/guest/.icons/menu/x24/deluge.png">
+			<action name="Execute">
+				<execute>deluge</execute>
+			</action>
+		</item>
+        <item label="FileZilla" icon="/home/guest/.icons/menu/x24/filezilla.png">
+			<action name="Execute">
+				<execute>filezilla</execute>
+			</action>
+		</item>
+        <item label="Firefox Nightly" icon="/home/guest/.icons/menu/x24/internet.png">
+			<action name="Execute">
+				<execute>firefox-nightly</execute>
+			</action>
+		</item>
+        <item label="Irssi" icon="/home/guest/.icons/menu/x24/irc.png">
+			<action name="Execute">
+				<execute>urxvt -e irssi</execute>
+			</action>
+		</item>
+        <item label="Skype" icon="/home/guest/.icons/menu/x24/skype.png">
+			<action name="Execute">
+				<execute>skype</execute>
+			</action>
+		</item>
+        <item label="Steam" icon="/home/guest/.icons/menu/x24/steam.png">
+			<action name="Execute">
+                <execute>/usr/bin/steam %U</execute>
+			</action>
+		</item>
+        <item label="TeamSpeak 3" icon="/home/guest/.icons/menu/x24/teamspeak3.png">
+			<action name="Execute">
+				<execute>teamspeak3</execute>
+			</action>
+		</item>
+        <item label="Thunderbird" icon="/home/guest/.icons/menu/x24/thunderbird.png">
+			<action name="Execute">
+				<execute>thunderbird</execute>
+			</action>
+		</item>
+		<item label="Wicd" icon="/home/guest/.icons/menu/wicd.png">
+			<action name="Execute">
+				<execute>wicd-gtk</execute>
+			</action>
+		</item>
+		<item label="Zenmap" icon="/home/guest/.icons/menu/zenmap.png">
+			<action name="Execute">
+				<execute>zenmap %F</execute>
+			</action>
+		</item>
+		<item label="Zenmap (as root)" icon="/home/guest/.icons/menu/zenmap.png">
+			<action name="Execute">
+                <execute>/usr/share/zenmap/su-to-zenmap.sh %F</execute>
+			</action>
+		</item>
+    </menu>
+
+	<menu id="multimedia-menu" label="Multimedia">
+		<item label="DeaDBeeF" icon="/home/guest/.icons/menu/x24/deadbeef.png">
+			<action name="Execute">
+				<execute>deadbeef</execute>
+			</action>
+		</item>
+		<item label="Guvcview" icon="/home/guest/.icons/menu/x24/webcam.png">
+			<action name="Execute">
+				<execute>guvcview</execute>
+			</action>
+		</item>
+		<item label="Ncmpcpp" icon="/home/guest/.icons/menu/x24/music.png">
+			<action name="Execute">
+				<execute>urxvt -e ncmpcpp</execute>
+			</action>
+		</item>
+		<item label="Popcorn Time" icon="/home/guest/.icons/menu/x24/popcorn.png">
+			<action name="Execute">
+				<execute>popcorntime</execute>
+			</action>
+		</item>
+		<item label="Spotify" icon="/home/guest/.icons/menu/x24/spotify.png">
+			<action name="Execute">
+				<execute>spotify</execute>
+			</action>
+		</item>
+		<item label="VLC Media Player" icon="/home/guest/.icons/menu/x24/vlc.png">
+			<action name="Execute">
+				<execute>vlc</execute>
+			</action>
+		</item>
+		<item label="Xfburn" icon="/home/guest/.icons/menu/x24/cd-burn.png">
+			<action name="Execute">
+				<execute>xfburn</execute>
+			</action>
+		</item>
+    </menu>
+
+	<menu id="office-menu" label="Office">
+        <item label="Foxit Reader" icon="/home/guest/.icons/menu/x24/foxit.png">
+			<action name="Execute">
+				<execute>foxitreader</execute>
+			</action>
+		</item>
+        <item label="LibreOffice Base" icon="/home/guest/.icons/menu/x24/libre-base.png">
+			<action name="Execute">
+				<execute>libreoffice --base</execute>
+			</action>
+		</item>
+        <item label="LibreOffice Calc" icon="/home/guest/.icons/menu/x24/libre-calc.png">
+			<action name="Execute">
+				<execute>libreoffice --calc</execute>
+			</action>
+		</item>
+        <item label="LibreOffice Draw" icon="/home/guest/.icons/menu/x24/libre-draw.png">
+			<action name="Execute">
+				<execute>libreoffice --draw</execute>
+			</action>
+		</item>
+        <item label="LibreOffice Impress" icon="/home/guest/.icons/menu/x24/libre-impress.png">
+			<action name="Execute">
+				<execute>libreoffice --impress</execute>
+			</action>
+		</item>
+        <item label="LibreOffice Math" icon="/home/guest/.icons/menu/x24/libre-math.png">
+			<action name="Execute">
+				<execute>libreoffice --math</execute>
+			</action>
+		</item>
+        <item label="LibreOffice Writer" icon="/home/guest/.icons/menu/x24/libre-writer.png">
+			<action name="Execute">
+				<execute>libreoffice --writer</execute>
+			</action>
+		</item>
+    </menu>
+
+	<menu id="system-menu" label="System">
+		<item label="Appearance">
+			<action name="Execute">
+				<execute>lxappearance</execute>
+			</action>
+		</item>
+        <item label="File Manager" icon="/home/guest/.icons/menu/.png">
+			<action name="Execute">
+				<execute>thunar</execute>
+			</action>
+		</item>
+        <item label="Htop" icon="/home/guest/.icons/menu/.png">
+			<action name="Execute">
+				<execute>urxvt -e htopr</execute>
+			</action>
+		</item>
+        <item label="LSHW" icon="/home/guest/.icons/menu/.png">
+			<action name="Execute">
+                <execute>/usr/sbin/gtk-lshw</execute>
+			</action>
+		</item>
+        <item label="Manage Printing" icon="/home/guest/.icons/menu/.png">
+			<action name="Execute">
+				<execute>gtklp</execute>
+			</action>
+		</item>
+        <item label="Task Manager" icon="/home/guest/.icons/menu/.png">
+			<action name="Execute">
+				<execute>xfce4-taskmanager</execute>
+			</action>
+		</item>
+        <item label="TrueCrypt" icon="/home/guest/.icons/menu/.png">
+			<action name="Execute">
+				<execute>truecrypt</execute>
+			</action>
+		</item>
+        <item label="Urxvt" icon="/home/guest/.icons/menu/.png">
+			<action name="Execute">
+				<execute>urxvt</execute>
+			</action>
+		</item>
+        <item label="Xterm" icon="/home/guest/.icons/menu/.png">
+			<action name="Execute">
+				<execute>xterm</execute>
+			</action>
+		</item>
+		<separator/>
+		<item label="Ob Configuration Manager">
+			<action name="Execute">
+				<command>obconf</command>
+				<startupnotify>
+					<enabled>yes</enabled>
+				</startupnotify>
+			</action>
+		</item>
+		<item label="Ob Menu Configuration Manager">
+			<action name="Execute">
+				<execute>obmenu</execute>
+			</action>
+		</item>
+		<separator/>
+		<item label="Reconfigure Openbox">
+			<action name="Reconfigure"/>
+		</item>
+    </menu>
+
+    <menu id="root-menu" label="Openbox 3">
+
+        <item label="Application Finder" icon="/home/guest/.icons/menu/x24/find.png">
+            <action name="Execute">
+                <execute>xfce4-appfinder</execute>
+            </action>
+        </item>
+        <item label="File Manager" icon="/home/guest/.icons/menu/x24/file-manager.png">
+            <action name="Execute">
+                <execute>thunar</execute>
+            </action>
+        </item>
+        <item label="Firefox Nightly" icon="/home/guest/.icons/menu/x24/internet.png">
+            <action name="Execute">
+                <execute>firefox-nightly</execute>
+            </action>
+        </item>
+        <item label="Terminal Emulator" icon="/home/guest/.icons/menu/x24/terminal.png">
+            <action name="Execute">
+                <execute>urxvt</execute>
+            </action>
+        </item>
+
+        <separator/>
+		<menu id="accessories-menu" icon="/home/guest/.icons/menu/x24/accessories.png"/>
+		<menu id="games-menu" icon="/home/guest/.icons/menu/x24/games.png"/>
+		<menu id="graphics-menu" icon="/home/guest/.icons/menu/x24/graphics.png"/>
+		<menu id="internet-menu" icon="/home/guest/.icons/menu/x24/internet.png"/>
+		<menu id="multimedia-menu" icon="/home/guest/.icons/menu/x24/multimedia.png"/>
+		<menu id="office-menu" icon="/home/guest/.icons/menu/x24/office.png"/>
+		<separator/>
+		<menu id="system-menu" icon="/home/guest/.icons/menu/x24/system.png"/>
+        <separator/>
+
+		<item label="Lock Screen">
+			<action name="Execute">
+                <execute>sh ~/scripts/slocker lock</execute>
+			</action>
+        </item>
+		<item label="Log Out">
+			<action name="Exit">
+				<prompt>yes</prompt>
+			</action>
+        </item>
+
+	</menu>
+</openbox_menu>

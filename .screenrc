@@ -1,0 +1,25 @@
+startup_message off
+vbell off
+
+escape ^Ww
+
+#term rxvt-unicode-256color
+#shell "/usr/bin/zsh"
+
+backtick 1 5 5 true
+termcapinfo rxvt* 'hs:ts=\E]2;:fs=\007:ds=\E]2;\007'
+
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W} %c %{g}]'
+#hardstatus alwayslastline '%{= G}[ %{G}%H %{g}][%= %{= w}%?%-Lw%?%{= R}%n*%f %t%?%{= R}(%u)%?%{= w}%+Lw%?%= %{= g}][ %{y}Load: %l %{g}][%{B}%Y-%m-%d %{W}%c:%s %{g}]'
+hardstatus string "screen (%n: %t)"
+hardstatus ignore
+
+#caption string "screen (%n: %t)"
+#caption string "%{= kw}%Y-%m-%d;%c %{= kw}%-Lw%{= kG}%{+b}[%n %t]%{-b}%{= kw}%+Lw%1`"
+#caption string "%{= kw}%-w%{= kG}%{+b}[%n %t]%{-b}%{= kw}%+w"
+caption string "%{= kw}%=%-w%{= kG}%{+b}[%n %t]%{-b}%{= kw}%+w"
+caption always
+#caption splitonly
+
+shelltitle "$ | zsh"
+rendition so "="

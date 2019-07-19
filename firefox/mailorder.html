@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<!--
+
+    Author:        Twily                                        2016
+    Website:       http://twily.info/
+    Description:   Keep track of your mail orders.
+    Compatibility: Mozilla Firefox, Internet Explorer, Google Chrome
+
+-->
+<html>
+<head>
+<title>Mail orders</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+<style type="text/css">
+html,body {
+    margin: 0; padding: 0; overflow: auto;
+    background: #17181A;
+}
+* {
+    box-sizing: border-box; font-size: 10pt; color: #CECFD1;
+    font-family: "Droid Sans", "Liberation Sans", "DejaVu Sans", "Segoe UI", Sans;
+}
+*:focus { outline: none !important; }
+
+a:link, a:visited { color: #606163; text-decoration: none; }
+a:hover, a:active { color: #EA75BC; }
+
+#content, #history { padding: 32px; }
+#control { padding: 0 32px; text-align: right; }
+#hist { display: none; }
+
+.tbl { display: table; width: 100%; table-layout: fixed; background: #27282B; }
+.ttr { display: table-row; background: transparent; transition: .2s ease; }
+.ttd { display: table-cell; white-space: nowrap; }
+
+/*.ttr:hover { background: #333438; }*/
+.ttr:nth-child(3n) { background: rgba(255,255,255,.03); }
+.ttr:hover > * > * { color: #84bd3f; }
+
+#tog { float: left; }
+#add, #tog { background: #27282B; }
+input[type="button"] {
+    background: transparent;
+    border: 0; padding: 1px 4px;
+    cursor: pointer; transition: .2s ease;
+}
+input[type="button"]:hover, #add:hover, #tog:hover { background: #84bd3f; color: #111113; }
+
+input[type="text"] {
+    background: transparent;
+    border: 0; padding: 2px 4px;
+    transition: .2s ease; width: 100%;
+}
+input[type="text"]:focus { background: #111113; }
+
+select {
+    background: transparent;
+    border: 0; padding: 1px 4px;
+}
+select > option { background: #27282B; border: 0; outline: 0; }
+select > option:hover { box-shadow: inset 0 0 10px 100px #111113; }
+
+.tago {color: #7C7D80; text-align: right; }
+</style>
+
+<script type="text/javascript">
+var $=function(id) { return document.getElementById(id); };
+var _=function(type) { return document.createElement(type); };
+function IsJsonString(str) { try { JSON.parse(str); } catch(e) { return false; } return true; }
+if(!Date.now) { Date.now=function() { return new Date().getTime(); } }
+
+function timeago(t) {
+    t=Math.floor(Date.now()/1000)-t;
+    var ts="";
+
+    if(t>=60*60*24*7*52)   { ts=Math.floor(t/52/7/24/60/60)+" year"; }
+    else if(t>=60*60*24*7) { ts=Math.floor(t/7/24/60/60)+" week"; }
+    else if(t>=60*60*24)   { ts=Math.floor(t/24/60/60)+" day"; }
+    else if(t>=60*60)      { ts=Math.floor(t/60/60)+" hour"; }
+    else if(t>=60)         { ts=Math.floor(t/60)+" minute"; }
+    else                   { ts=t+" second"; }
+
+    ts+=(ts.substr(0,ts.indexOf(" "))!=1)?"s ago":" ago";
+    return ts;
+}
+
+var DB=new Array();
+function loaddata() {
+    if(IsJsonString(localStorage['db-mo-twily'])) {
+        DB=JSON.parse(localStorage['db-mo-twily']);
+    } else {
+        localStorage['db-mo-twily']="";
+    }
+}
+function savedata() {
+    localStorage['db-mo-twily']=JSON.stringify(DB);
+}
+
+function init() {
+    // Reset-All
+    //localStorage['db-mo-twily']="";
+    //
+    // Export-Data
+    //prompt("Mail-orders EXPORT:",localStorage['db-mo-twily']);
+    //
+    // Import-Data
+    //var imp=prompt("Mail-orders IMPORT:","(Paste DB)");
+    //if(IsJsonString(imp)) localStorage['db-mo-twily']=imp;
+
+    loaddata();
+    loopdb();
+}
+
+function updateinp(id) {
+    var x=id.substr(2);
+    var t=id.substr(0,2);
+    var v=$(id).value;
+
+    for(var i=0;i<DB.length;i++) {
+        if(DB[i][0]==x) {
+            switch(t) {
+                case "iW": // website
+                    DB[i][2]=v;
+                    break;
+                case "iD": // description
+                    DB[i][3]=v;
+                    break;
+                case "iT": // tracking
+                    DB[i][4]=v;
+                    break;
+                case "iS": // status
+                    DB[i][5]=v;
+                    break;
+                default:
+            }
+
+            savedata();
+            break;
+        }
+    }
+}
+
+function moveup(x) {
+    var h=1;
+    for(var i=0;i<DB.length;i++) if(DB[i][0]==x) h=DB[i][1];
+
+    var cDB=new Array(),p1=-1,p2=-1;
+    for(var i=0;i<DB.length;i++) {
+        if(DB[i][1]==h) {
+            cDB.push(new Array(DB[i][0],i));
+
+            if(DB[i][0]==x) p2=i;
+            if(p2==-1) p1=i;
+        }
+    }
+
+    if(cDB[0][0]!=x) {
+        var nDB=new Array();
+        for(var i=0;i<p1;i++) nDB.push(DB[i]);
+        nDB.push(DB[p2]);
+        for(var i=p1;i<DB.length;i++) if(i!=p2) nDB.push(DB[i]);
+
+        DB=nDB;
+        savedata();
+        loopdb();
+    }
+}
+
+function movedown(x) {
+    var h=1;
+    for(var i=0;i<DB.length;i++) if(DB[i][0]==x) h=DB[i][1];
+
+    var cDB=new Array(),p1=-1,p2=-1;
+    for(var i=0;i<DB.length;i++) {
+        if(DB[i][1]==h) {
+            cDB.push(new Array(DB[i][0],i));
+
+            if(p1!=-1 && p2==-1) p2=i;
+            if(DB[i][0]==x) p1=i;
+        }
+    }
+    
+    if(cDB[cDB.length-1][0]!=x) {
+        var nDB=new Array();
+        for(var i=0;i<=p2;i++) if(i!=p1) nDB.push(DB[i]);
+        nDB.push(DB[p1]);
+        for(var i=p2+1;i<DB.length;i++) nDB.push(DB[i]);
+
+        DB=nDB;
+        savedata();
+        loopdb();
+    }
+}
+
+function removeitem(x) {
+    for(var i=0;i<DB.length;i++) {
+        if(DB[i][0]==x) {
+            if(DB[i][1]==0) {
+                // Remove history
+                var nDB=new Array();
+                for(var i=0;i<DB.length;i++) {
+                    if(DB[i][0]!=x) nDB.push(DB[i]);
+                }
+
+                DB=nDB;
+                savedata();
+                loopdb();
+            } else {
+                DB[i][1]=0;
+                savedata();
+                loopdb();
+            }
+        }
+    }
+}
+
+function restoreitem(x) {
+    for(var i=0;i<DB.length;i++) {
+        if(DB[i][0]==x) {
+            DB[i][1]=1;
+            savedata();
+            loopdb();
+        }
+    }
+}
+
+function trackit(x) {
+    var url=$('iT'+x).value;
+    if(url.length>0) {
+        if(url.indexOf("http://")==-1 && url.indexOf("https://")==-1) url="http://"+url;
+
+        window.open(url);
+    }
+}
+
+function openstore(x) {
+    var url=$('iW'+x).value;
+    if(url.length>0) {
+        if(url.indexOf("http://")==-1 && url.indexOf("https://")==-1) url="http://"+url;
+
+        window.open(url);
+    }
+}
+
+function addnew() {
+    var T=Math.floor(Date.now()/1000);
+    // IDX,Active||History,Website,Description,Tracking,Status,Timestamp
+    DB.push(new Array(IDX,1,"","","","New",T));
+    savedata();
+
+    createrow(IDX,DB.length-1,1);
+    IDX++;
+}
+
+var IDX=0;
+function loopdb() {
+    $('list').innerHTML="";
+    $('hist').innerHTML="";
+
+    for(var i=0;i<DB.length;i++) {
+        if(DB[i][0]>=IDX) IDX=DB[i][0]+1;
+
+        if(DB[i][1]==1) { // Active vs History
+            createrow(DB[i][0],i,1);
+        } else {
+            if(hist) {
+                createrow(DB[i][0],i,0);
+            }
+        }
+    }
+}
+
+function createrow(x,y,h) {
+    var ttr=_('div');
+    ttr.className="ttr";
+    ttr.id="item"+x;
+
+    var iL=["bM","iW","bO","iD","bU","bD","iT","bT","iS","iA"];
+    var hL="list";
+    if(h==0) {
+        iL=["bS","iW","bO","iD","bU","bD","iT","bT","iS","iA","bM"];
+        hL="hist";
+    }
+    for(var i=0;i<iL.length;i++) {
+        var ttd=_('span');
+        ttd.className="ttd";
+        var inp=null;
+
+        switch(iL[i]) {
+            case "bS": // restore
+                inp=_('input');
+                inp.type="button";
+                inp.title="Restore";
+                inp.value="R";
+                inp.addEventListener('click',function() { restoreitem(this.id.substr(2)); });
+                break;
+            case "bM": // remove
+                inp=_('input');
+                inp.type="button";
+                inp.title="Remove";
+                inp.value="X";
+                inp.addEventListener('click',function() { removeitem(this.id.substr(2)); });
+                break;
+            case "iW": // website
+                ttd.style.width="25%";
+
+                inp=_('input');
+                inp.type="text"
+                inp.placeholder="Website";
+                inp.value=DB[y][2];
+                inp.addEventListener('change',function() { updateinp(this.id); });
+                break;
+            case "bO": // open
+                inp=_('input');
+                inp.type="button";
+                inp.title="Open";
+                inp.value="O";
+                inp.addEventListener('click',function() { openstore(this.id.substr(2)); });
+                break;
+            case "iD": // description
+                ttd.style.width="25%";
+
+                inp=_('input');
+                inp.type="text";
+                inp.placeholder="Description";
+                inp.value=DB[y][3];
+                inp.addEventListener('change',function() { updateinp(this.id); });
+                break;
+            case "iT": // tracking
+                ttd.style.width="25%";
+
+                inp=_('input');
+                inp.type="text";
+                inp.placeholder="Tracking";
+                inp.value=DB[y][4];
+                inp.addEventListener('change',function() { updateinp(this.id); });
+                break;
+            case "bT": // track
+                inp=_('input');
+                inp.type="button";
+                inp.title="Track";
+                inp.value="T";
+                inp.addEventListener('click',function() { trackit(this.id.substr(2)); });
+                break;
+            case "iS": // status
+                inp=_('select');
+                inp.addEventListener('change',function() { updateinp(this.id); });
+
+                var optlist=["New","Transit","Delivered","Customs","Return","Destruct","Lost","Resend","Refund"];
+                for(var j=0;j<optlist.length;j++) {
+                    var opt=_('option');
+                    opt.value=optlist[j];
+                    opt.text=optlist[j];
+                    if(optlist[j]==DB[y][5]) { opt.selected=true; }
+
+                    inp.appendChild(opt);
+                }
+                break;
+            case "bU": // moveup
+                inp=_('input');
+                inp.type="button";
+                inp.title="Move up";
+                inp.value="^";
+                inp.addEventListener('click',function() { moveup(this.id.substr(2)); });
+                break;
+            case "bD": // movedown
+                inp=_('input');
+                inp.type="button";
+                inp.title="Move down";
+                inp.value="v";
+                inp.addEventListener('click',function() { movedown(this.id.substr(2)); });
+                break;
+            case "iA": // ago
+                ttd.style.width="25%";
+
+                inp=_('input');
+                inp.type="text";
+                inp.className="tago";
+                inp.value=timeago(DB[y][6]);
+                inp.readOnly=true;
+                break;
+            default:
+        }
+
+        inp.id=iL[i]+x;
+
+        ttd.appendChild(inp);
+        ttr.appendChild(ttd);
+    }
+
+    $(hL).appendChild(ttr);
+}
+
+var hist=false;
+function togglehist() {
+    hist=!hist;
+
+    if(hist) {
+        $('tog').style.background="#84bd3f";
+        $('tog').style.color="#111113";
+        $('hist').style.display="block";
+
+        loopdb();
+    } else {
+        $('tog').style.background="";
+        $('tog').style.color="";
+        $('hist').style.display="none";
+    }
+}
+</script>
+</head>
+<body onload="init();">
+
+
+<div id="content">
+    <div id="list" class="tbl">
+    </div>
+</div>
+<div id="control">
+    <input type="button" id="tog" value="History" onclick="togglehist();" title="Manage history" />
+    <input type="button" id="add" value="Add order" onclick="addnew();" title="Add new" />
+</div>
+<div id="history">
+    <div id="hist" class="tbl">
+    </div>
+</div>
+
+
+</body>
+</html>
