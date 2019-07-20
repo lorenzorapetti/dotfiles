@@ -124,7 +124,7 @@ putgitrepo() { \
 	# Downlods a gitrepo $1 and places the files in $2 only overwriting conflicts
 	dialog --infobox "Downloading and installing config files..." 4 60
 	[ -z "$2" ] && branch="master" || branch="$repobranch"
-	sudo -u "$name" git clone -b "$branch" "$1" "/home/$name/dotfiles" >/dev/null 2>&1 &&
+	sudo -u "$name" git clone -b "$branch" "$1" "/home/$name/dotfiles" >/dev/null 2>&1
 	}
 
 serviceinit() { for service in "$@"; do
