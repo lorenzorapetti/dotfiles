@@ -25,3 +25,4 @@ $ sh larbs.sh
 
 - LARBS script: https://github.com/LukeSmithxyz/LARBS/
 - Most of the config files: https://twily.info/
+- Archlinux Ultimate Install: https://github.com/helmuthdu/aui
