@@ -12,9 +12,11 @@ $ git clone git://github.com/helmuthdu/aui
 $ ./aui/fifo
 ```
 
-- Install all programs:
+- Install all programs (you need to be logged in as root):
 
 ```bash
+$ pacman -S wget
 $ wget https://raw.githubusercontent.com/loryman/dotfiles-linux/master/larbs.sh
+$ chmod +x larbs.sh
 $ sh larbs.sh
 ```
