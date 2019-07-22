@@ -20,3 +20,8 @@ $ wget https://raw.githubusercontent.com/loryman/dotfiles-linux/master/larbs.sh
 $ chmod +x larbs.sh
 $ sh larbs.sh
 ```
+
+# Credits
+
+- LARBS script: https://github.com/LukeSmithxyz/LARBS/
+- Most of the config files: https://twily.info/
