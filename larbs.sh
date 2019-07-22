@@ -166,15 +166,16 @@ finalize() {
 	source="/home/$name/dotfiles"
 	target="/home/$name"
 
-	for file in "$source/.config/*"; do
+	files="$source/.config/*"
+	for file in $files; do
 		[ -e "$file" ] || continue
-		name=$(basename $file)
-		ln -s "$source/.config/$name" "$target/.config/$name"
+		base=$(basename $file)
+		ln -sf $file "$target/.config/$base"
 	done
 
-	ln -s "$source/.local" "$target/.local"
-	ln -s "$source/.Xresources" "$target/.Xresources"
-	ln -s "$source/.xinitrc" "$target/.xinitrc"
+	ln -sf "$source/.local" "$target/.local"
+	ln -sf "$source/.Xresources" "$target/.Xresources"
+	ln -sf "$source/.xinitrc" "$target/.xinitrc"
 	dialog --title "All done!" --msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\\n\\nTo run the new graphical environment, log out and log back in as your new user.\\n\\n Luke" 12 80
 }
 
