@@ -4,11 +4,12 @@ My configuration for linux (Currently Arch Linux)
 
 # Installation
 
-- Install Arch (maybe with [archfi](https://github.com/MatMoul/archfi)):
+- Install Arch (maybe with [aui](https://github.com/helmuthdu/aui)):
 
 ```bash
-$ wget archfi.sf.net/archfi
-$ sh archfi
+$ pacman -Sy git
+$ git clone git://github.com/helmuthdu/aui
+$ ./aui/fifo
 ```
 
 - Install all programs:
