@@ -163,11 +163,19 @@ resetpulse() {
 
 finalize() {
 	dialog --infobox "Linking your dotfiles..." 4 50
-	ln -sf "/home/$name/dotfiles/.config/*/" "/home/$name/.config"
-	ln -sf "/home/$name/dotfiles/.local/*/" "/home/$name/.local"
-	ln -sf "/home/$name/dotfiles/.Xresources" "/home/$name/.Xresources"
-	ln -sf "/home/$name/dotfiles/.xinitrc" "/home/$name/.xinitrc"
-	dialog --title "All done!" --msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\\n\\nTo run the new graphical environment, log out and log back in as your new user.\\n\\n.t Luke" 12 80
+	source="/home/$name/dotfiles"
+	target="/home/$name"
+
+	for file in "$source/.config/*"; do
+		[ -e "$file" ] || continue
+		name=$(basename $file)
+		ln -s "$source/.config/$name" "$target/.config/$name"
+	done
+
+	ln -s "$source/.local" "$target/.local"
+	ln -s "$source/.Xresources" "$target/.Xresources"
+	ln -s "$source/.xinitrc" "$target/.xinitrc"
+	dialog --title "All done!" --msgbox "Congrats! Provided there were no hidden errors, the script completed successfully and all the programs and configuration files should be in place.\\n\\nTo run the new graphical environment, log out and log back in as your new user.\\n\\n Luke" 12 80
 }
 
 ### THE ACTUAL SCRIPT ###
@@ -224,6 +232,9 @@ putgitrepo "$dotfilesrepo" "$repobranch"
 
 # Pulseaudio, if/when initially installed, often needs a restart to work immediately.
 [ -f /usr/bin/pulseaudio ] && resetpulse
+
+# Enable LightDM if it exists
+[ -f /usr/bin/lightdm ] && systemctl enable lightdm
 
 # Enable services here.
 serviceinit NetworkManager cronie
