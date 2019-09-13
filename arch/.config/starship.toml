@@ -1,0 +1,24 @@
+[character]
+symbol = "λ"
+error_symbol = "✗"
+use_symbol_for_status = true
+
+[battery]
+disabled = true
+
+[git_branch]
+truncation_length = "10"
+truncation_symbol = "…"
+
+[golang]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[python]
+disabled = true
+
+[username]
+disabled = true
+
