@@ -37,9 +37,9 @@ Additionally, it links:
 
 # Distro support
 
-| Distro                         | $DISTRO env variable |
-|--------------------------------|----------------------|
-| Arch (Including Manjaro, etc.) | arch (default)       |
+| Distro                         | $DISTRO env variable   |
+|--------------------------------|------------------------|
+| Arch (Including Manjaro, etc.) | `arch` (default)       |
 
 # Usage
 
