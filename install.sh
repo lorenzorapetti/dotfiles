@@ -1,15 +1,27 @@
 DISTRO=${DISTRO:-arch}
+dotfiles_path="$HOME/dotfiles"
 
-# Check if the directory is present
-if ! [ -d "./$DISTRO" ]; then
-  echo "$DISTRO is not supported" 1>&2
+function err_and_exit() {
+  echo $1 1>&2
   exit 1
+}
+
+# Check if the dotfiles repo exists
+if [ -d "$dotfiles_path" ]; then
+  err_and_exit "The dotfiles repo already exists"
 fi
 
-# Check if the directory contains install.sh
-if ! [ -e "./$DISTRO/install.sh" ]; then
-  echo "$DISTRO does not contain install.sh" 1>&2
-  exit 1
-fi
+# Install git
+case "$DISTRO" in
+  arch)
+    sudo pacman -S --noconfirm git
+    ;;
+  *)
+    err_and_exit "$DISTRO is not supported"
+    ;;
+esac
 
-./$DISTRO/install.sh
+git clone https://github.com/loryman/dotfiles-linux.git $dotfiles_path
+$dotfiles_path/$DISTRO/install.sh
+
+unset DISTRO dotfiles_path

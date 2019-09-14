@@ -1,28 +1,21 @@
 # dotfiles-linux
 
-My configuration for linux (Currently Arch Linux)
+My configuration for the various linux distributions
+
+# Distro supported
+
+* Arch / Manjaro
 
 # Installation
 
-- Install Arch (maybe with [aui](https://github.com/helmuthdu/aui)):
+For a basic installation (Arch based):
 
 ```bash
-$ pacman -Sy git
-$ git clone git://github.com/helmuthdu/aui
-$ ./aui/fifo
+$ curl -s https://raw.githubusercontent.com/loryman/dotfiles-linux/master/install.sh | bash
 ```
 
-- Install all programs (you need to be logged in as root):
+For any other distro:
 
 ```bash
-$ pacman -S wget
-$ wget https://raw.githubusercontent.com/loryman/dotfiles-linux/master/larbs.sh
-$ chmod +x larbs.sh
-$ sh larbs.sh
+$ DISTRO=<distro-keyword> curl -s https://raw.githubusercontent.com/loryman/dotfiles-linux/master/install.sh | bash
 ```
-
-# Credits
-
-- LARBS script: https://github.com/LukeSmithxyz/LARBS/
-- Most of the config files: https://twily.info/
-- Archlinux Ultimate Install: https://github.com/helmuthdu/aui
