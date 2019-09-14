@@ -4,7 +4,10 @@ fi
 
 function check_and_link() {
   if [ -e $1 ]; then
-    mv $1 $1.old
+    mv $1 "$1.old"
+  fi
+  if [ -h $1 ]; then
+    rm -rf $1
   fi
   ln -s $1 $2
 }
@@ -14,6 +17,7 @@ DOTFILES_PATH=${DOTFILES_PATH:-"$HOME/dotfiles"}
 
 # Install basic packages
 sudo pacman -S --noconfirm \
+  base-devel \
   ripgrep \
   fd \
   powerline-fonts \
@@ -46,6 +50,9 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 
 # Install Rust
 curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+# Load cargo
+source $HOME/.cargo/env
 
 # Install Rust packages
 cargo install \
