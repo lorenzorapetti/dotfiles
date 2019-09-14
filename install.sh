@@ -22,6 +22,6 @@ case "$DISTRO" in
 esac
 
 git clone https://github.com/loryman/dotfiles-linux.git $dotfiles_path
-$dotfiles_path/$DISTRO/install.sh
+DOTFILES_PATH=$dotfiles_path $dotfiles_path/$DISTRO/install.sh
 
 unset DISTRO dotfiles_path

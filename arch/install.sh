@@ -10,6 +10,7 @@ function check_and_link() {
 }
 
 current_dir=$(pwd)
+DOTFILES_PATH=${DOTFILES_PATH:-"$HOME/dotfiles"}
 
 # Install basic packages
 sudo pacman -S --noconfirm \
@@ -68,12 +69,12 @@ npm i -g npm
 sudo pacman -S --noconfirm yarn
 
 # Link stuff
-check_and_link $(pwd)/.zshrc $HOME/.zshrc
-check_and_link $(pwd)/.config/starship.toml $HOME/.config/starship.toml
+check_and_link $DOTFILES_PATH/.zshrc $HOME/.zshrc
+check_and_link $DOTFILES_PATH/.config/starship.toml $HOME/.config/starship.toml
 
 # Set default shell to zsh
 chsh -s $(which zsh)
 
 echo -e "\\n\\n\033[1m\033[1mFinished\!\\nNow all you have to do is logout and login again \033[0m✨"
 
-unset current_dir
+unset current_dir DOTFILES_PATH
