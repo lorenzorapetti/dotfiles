@@ -2,6 +2,13 @@ if [[ $DEBUG == 1 ]]; then
   set -x
 fi
 
+function check_and_link() {
+  if [ -e $1 ]; then
+    mv $1 $1.old
+  fi
+  ln -s $1 $2
+}
+
 current_dir=$(pwd)
 
 # Install basic packages
@@ -31,7 +38,8 @@ rm -rf $HOME/yay
 # Install AUR packages
 yay -S --noconfirm \
   spotify \
-  google-chrome
+  google-chrome \
+  visual-studio-code-bin
 
 # Install Oh My Zsh
 git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
@@ -40,7 +48,13 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 # Install Rust packages
-cargo install starship
+cargo install \
+  starship \
+  cargo-edit
+
+# Install cargon subcommands
+rustup component add clippy
+rustup component add rustfmt
 
 # Install NVM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
@@ -55,10 +69,12 @@ npm i -g npm
 sudo pacman -S --noconfirm yarn
 
 # Link stuff
-ln -s $(pwd)/.zshrc $HOME/.zshrc
-ln -s $(pwd)/.config/starship.toml $HOME/.config/starship.toml
+check_and_link $(pwd)/.zshrc $HOME/.zshrc
+check_and_link $(pwd)/.config/starship.toml $HOME/.config/starship.toml
 
 # Set default shell to zsh
 chsh -s $(which zsh)
 
 echo -e "\\n\\n\033[1m\033[1mFinished\!\\nNow all you have to do is logout and login again \033[0m✨"
+
+unset current_dir
