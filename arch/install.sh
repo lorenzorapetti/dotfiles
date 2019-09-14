@@ -20,6 +20,7 @@ sudo pacman -S --noconfirm --needed \
   base-devel \
   ripgrep \
   fd \
+  noto-fonts-emoji \
   powerline-fonts \
   zsh \
   zsh-completions \
@@ -31,6 +32,7 @@ sudo pacman -S --noconfirm --needed \
 
 git config --global user.email "lorenzo.rapetti.94@gmail.com"
 git config --global user.name "Lorenzo Rapetti"
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # Install YAY
 git clone https://aur.archlinux.org/yay.git $HOME/yay
@@ -76,8 +78,8 @@ npm i -g npm
 sudo pacman -S --noconfirm --needed yarn
 
 # Link stuff
-check_and_link $DOTFILES_PATH/.zshrc $HOME/.zshrc
-check_and_link $DOTFILES_PATH/.config/starship.toml $HOME/.config/starship.toml
+check_and_link "$DOTFILES_PATH/arch/.zshrc" "$HOME/.zshrc"
+check_and_link "$DOTFILES_PATH/arch/.config/starship.toml" "$HOME/.config/starship.toml"
 
 # Set default shell to zsh
 chsh -s $(which zsh)
