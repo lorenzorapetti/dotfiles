@@ -13,7 +13,6 @@ current_dir=$(pwd)
 
 # Install basic packages
 sudo pacman -S --noconfirm \
-  git \
   ripgrep \
   fd \
   powerline-fonts \
