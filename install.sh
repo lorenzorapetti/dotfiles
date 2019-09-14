@@ -13,12 +13,12 @@ fi
 
 # Install git
 case "$DISTRO" in
-  arch)
-    sudo pacman -S --noconfirm git
-    ;;
-  *)
-    err_and_exit "$DISTRO is not supported"
-    ;;
+arch)
+  sudo pacman -S --noconfirm --needed git
+  ;;
+*)
+  err_and_exit "$DISTRO is not supported"
+  ;;
 esac
 
 git clone https://github.com/loryman/dotfiles-linux.git $dotfiles_path

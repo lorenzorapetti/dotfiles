@@ -3,11 +3,11 @@ if [[ $DEBUG == 1 ]]; then
 fi
 
 function check_and_link() {
-  if [ -e $1 ]; then
-    mv $1 "$1.old"
+  if [ -f "$2" ]; then
+    mv $2 $2.old
   fi
-  if [ -h $1 ]; then
-    rm -rf $1
+  if [ -L "$2" ]; then
+    rm -rf $2
   fi
   ln -s $1 $2
 }
@@ -16,7 +16,7 @@ current_dir=$(pwd)
 DOTFILES_PATH=${DOTFILES_PATH:-"$HOME/dotfiles"}
 
 # Install basic packages
-sudo pacman -S --noconfirm \
+sudo pacman -S --noconfirm --needed \
   base-devel \
   ripgrep \
   fd \
@@ -40,7 +40,7 @@ cd $HOME
 rm -rf $HOME/yay
 
 # Install AUR packages
-yay -S --noconfirm \
+yay -S --noconfirm --needed \
   spotify \
   google-chrome \
   visual-studio-code-bin
@@ -73,7 +73,7 @@ nvm install stable
 npm i -g npm
 
 # Install Yarn
-sudo pacman -S --noconfirm yarn
+sudo pacman -S --noconfirm --needed yarn
 
 # Link stuff
 check_and_link $DOTFILES_PATH/.zshrc $HOME/.zshrc
@@ -82,6 +82,6 @@ check_and_link $DOTFILES_PATH/.config/starship.toml $HOME/.config/starship.toml
 # Set default shell to zsh
 chsh -s $(which zsh)
 
-echo -e "\\n\\n\033[1m\033[1mFinished\!\\nNow all you have to do is logout and login again \033[0m✨"
+echo -e "\\n\\n\033[1m\033[1mFinished!\\nNow all you have to do is logout and login again \033[0m✨"
 
 unset current_dir DOTFILES_PATH
