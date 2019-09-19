@@ -1,0 +1,59 @@
+tap "homebrew/cask"
+
+brew "git"
+brew "hub"
+brew "zsh"
+brew "zsh-completions"
+brew "zsh-syntax-highlighting"
+brew "ripgrep"
+brew "fd"
+brew "bat"
+brew "watchman"
+brew "tree"
+brew "lsd"
+brew "fzf"
+
+cask "iterm2"
+cask "alfred"
+cask "google-chrome"
+cask "firefox"
+cask "brave-browser"
+cask "bartender"
+cask "cleanmymac"
+cask "visual-studio-code"
+cask "dash"
+cask "skype"
+cask "transmit"
+cask "vlc"
+cask "discord"
+cask "docker"
+cask "gitkraken"
+cask "grammarly"
+cask "insomnia"
+cask "istat-menus"
+cask "notion"
+cask "qlcolorcode"
+cask "qlmarkdown"
+cask "qlstephen"
+cask "quicklook-json"
+cask "webpquicklook"
+cask "suspicious-package"
+cask "qlvideo"
+cask "phpstorm"
+cask "pocket-casts"
+cask "spectrum"
+cask "tableplus"
+cask "numi"
+cask "virtualbox"
+cask "barrier"
+
+mas "Xcode", id: 497799835
+mas "The Unarchiver", id: 425424353
+mas "NordVPN IKE", id: 1116599239
+mas "Magnet", id: 441258766
+mas "TweetDeck", id: 485812721
+mas "Slack", id: 803453959
+mas "Todoist", id: 585829637
+mas "WhatsApp", id: 1147396723
+mas "Telegram", id: 747648890
+mas "1Password 7", id: 1333542190

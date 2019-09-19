@@ -1,3 +1,12 @@
+sudo -v
+
+# Keep-alive: update existing sudo time stamp if set, otherwise do nothing.
+while true; do
+  sudo -n true
+  sleep 60
+  kill -0 "$$" || exit
+done 2>/dev/null &
+
 if [[ $DEBUG == 1 ]]; then
   set -x
 fi
@@ -20,6 +29,7 @@ sudo pacman -S --noconfirm --needed \
   base-devel \
   ripgrep \
   fd \
+  bat \
   noto-fonts-emoji \
   powerline-fonts \
   zsh \
@@ -78,8 +88,8 @@ npm i -g npm
 sudo pacman -S --noconfirm --needed yarn
 
 # Link stuff
-check_and_link "$DOTFILES_PATH/arch/.zshrc" "$HOME/.zshrc"
-check_and_link "$DOTFILES_PATH/arch/.config/starship.toml" "$HOME/.config/starship.toml"
+check_and_link "$DOTFILES_PATH/common/.zshrc" "$HOME/.zshrc"
+check_and_link "$DOTFILES_PATH/common/.config/starship.toml" "$HOME/.config/starship.toml"
 
 # Set default shell to zsh
 chsh -s $(which zsh)
