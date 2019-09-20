@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ZSH_PLUGINS=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins
 

@@ -1,3 +1,5 @@
+#!/bin/sh
+
 git config --global user.email "lorenzo.rapetti.94@gmail.com"
 git config --global user.name "Lorenzo Rapetti"
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"

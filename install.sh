@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 DISTRO=${DISTRO:-arch}
 DOTFILES_PATH=${DOTFILES_PATH:-"$HOME/dotfiles"}

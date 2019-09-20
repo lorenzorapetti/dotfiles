@@ -47,11 +47,11 @@ Additionally, it links:
 For a basic installation (Arch based):
 
 ```bash
-$ curl -s https://raw.githubusercontent.com/loryman/dotfiles-linux/master/install.sh | bash
+$ curl -s https://raw.githubusercontent.com/loryman/dotfiles-linux/master/install.sh | sh
 ```
 
 For any other distro:
 
 ```bash
-$ curl -s https://raw.githubusercontent.com/loryman/dotfiles-linux/master/install.sh | DISTRO=<distro-keyword> bash
+$ curl -s https://raw.githubusercontent.com/loryman/dotfiles-linux/master/install.sh | DISTRO=<distro-keyword> sh
 ```
