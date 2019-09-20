@@ -40,7 +40,7 @@ brew install mas openssl
 # Check if the user is logged in to the App Store
 mas account
 if [ $? -ne 0 ]; then
-  read -p "You need to be logged in to the App Store for some scripts to work. Press enter when you are ready."
+  read -p "You need to be logged in to the App Store for some scripts to work. Press enter when you are ready." 0</dev/tty
 fi
 
 # Install all the things
