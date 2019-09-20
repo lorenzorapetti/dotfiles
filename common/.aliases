@@ -1,0 +1,6 @@
+alias ls="lsd"
+alias cat="bat"
+alias find="fd"
+alias grep="ripgrep"
+alias rm="trash"
+eval "$(hub alias -s)"

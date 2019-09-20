@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
@@ -32,14 +34,17 @@ mkdir -p "$HOME/code"
 # Install Homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+# Install packages for the brew bundle to work
+brew install mas openssl
+
+# Check if the user is logged in to the App Store
+mas account 1>/dev/null || read -n 1 -s -r -p "You need to be logged in to the App Store for some scripts to work. Press any key when you are ready."
+
 # Install all the things
-brew install mas
 brew bundle --file="$DOTFILES_PATH/mac/Brewfile"
 
 # Git global config
-git config --global user.email "lorenzo.rapetti.94@gmail.com"
-git config --global user.name "Lorenzo Rapetti"
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+. $DOTFILES_PATH/common/load-git-config.sh
 
 # Install Nodejs with NVM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
@@ -71,6 +76,9 @@ rustup component add rustfmt
 # Install Oh My Zsh
 git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
 
+# Install Oh My Zsh plugins
+. $DOTFILES_PATH/common/install-zsh-plugins.sh
+
 # Install powerline fonts
 POWERLINE_FONTS_PATH=$HOME/powerline-fonts
 git clone https://github.com/powerline/fonts.git $POWERLINE_FONTS_PATH --depth=1
@@ -79,6 +87,7 @@ rm -rf $POWERLINE_FONTS_PATH
 
 # Link stuff
 check_and_link "$DOTFILES_PATH/common/.zshrc" "$HOME/.zshrc"
+check_and_link "$DOTFILES_PATH/common/.aliases" "$HOME/.aliases"
 check_and_link "$DOTFILES_PATH/common/.config/starship.toml" "$HOME/.config/starship.toml"
 
 # Make Chrome Two finger swipe for back and forward
@@ -294,31 +303,6 @@ defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 # Expand the print dialog by default
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
-
-for app in "Activity Monitor" \
-  "Address Book" \
-  "Calendar" \
-  "cfprefsd" \
-  "Contacts" \
-  "Dock" \
-  "Finder" \
-  "Google Chrome Canary" \
-  "Google Chrome" \
-  "Mail" \
-  "Messages" \
-  "Opera" \
-  "Photos" \
-  "Safari" \
-  "SizeUp" \
-  "Spectacle" \
-  "SystemUIServer" \
-  "Terminal" \
-  "Transmission" \
-  "Tweetbot" \
-  "Twitter" \
-  "iCal"; do
-  killall "${app}" &>/dev/null
-done
 
 unset DOTFILES_PATH POWERLINE_FONTS_PATH
 

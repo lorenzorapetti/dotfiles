@@ -88,6 +88,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  you-should-use
   git
   archlinux
   # bundler
@@ -105,7 +106,16 @@ plugins=(
   # rvm
   sudo
   yarn
+  appup
+  wd
+  rustup
+  yarn-autocompletions
+  zsh-autosuggestions
+  zsh-better-npm-completion
 )
+
+# Load aliases
+source $HOME/.aliases
 
 source $ZSH/oh-my-zsh.sh
 

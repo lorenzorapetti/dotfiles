@@ -1,3 +1,5 @@
+#!/bin/bash
+
 DISTRO=${DISTRO:-arch}
 DOTFILES_PATH="$HOME/dotfiles"
 
@@ -16,9 +18,7 @@ case "$DISTRO" in
 arch)
   sudo pacman -S --noconfirm --needed git
   ;;
-mac)
-  break
-  ;;
+mac) ;;
 *)
   err_and_exit "$DISTRO is not supported"
   ;;
