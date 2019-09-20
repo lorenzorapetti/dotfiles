@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DISTRO=${DISTRO:-arch}
-DOTFILES_PATH="$HOME/dotfiles"
+DOTFILES_PATH=${DOTFILES_PATH:-"$HOME/dotfiles"}
 
 function err_and_exit() {
   echo $1 1>&2

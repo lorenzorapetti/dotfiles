@@ -39,8 +39,6 @@ sudo pacman -S --noconfirm --needed \
   noto-fonts-emoji \
   powerline-fonts \
   zsh \
-  zsh-completions \
-  zsh-syntax-highlighting \
   fzf \
   lsd \
   ntfs-3g \
