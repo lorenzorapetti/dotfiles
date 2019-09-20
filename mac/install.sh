@@ -38,7 +38,7 @@ mkdir -p "$HOME/code"
 brew install mas openssl
 
 # Check if the user is logged in to the App Store
-mas account | grep "Not signed in" 1>/dev/null && read -n 1 -s -r -p "You need to be logged in to the App Store for some scripts to work. Press any key when you are ready."
+mas account 1>/dev/null 2>/dev/null || read -n 1 -s -r -p "You need to be logged in to the App Store for some scripts to work. Press any key when you are ready."
 
 # Install all the things
 brew bundle --file="$DOTFILES_PATH/mac/Brewfile"
