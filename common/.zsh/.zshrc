@@ -1,6 +1,6 @@
 # For profiling zsh
 # Use the command `zprof` to see the dump
-zmodload zsh/zprof
+# zmodload zsh/zprof
 
 autoload -Uz compinit
 
