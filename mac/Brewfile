@@ -1,8 +1,10 @@
 tap "homebrew/cask"
+tap "getantibody/tap"
 
 brew "git"
 brew "hub"
 brew "zsh"
+brew "antibody"
 brew "ripgrep"
 brew "fd"
 brew "bat"

@@ -1,0 +1,8 @@
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+MichaelAquilina/zsh-you-should-use
+lukechilds/zsh-nvm
+lukechilds/zsh-better-npm-completion
+
+zdharma/fast-syntax-highlighting
+zsh-users/zsh-history-substring-search

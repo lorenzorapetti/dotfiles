@@ -57,6 +57,7 @@ rm -rf $HOME/yay
 
 # Install AUR packages
 yay -S --noconfirm --needed \
+  antibody \
   spotify \
   google-chrome \
   visual-studio-code-bin
@@ -97,9 +98,14 @@ npm i -g trash-cli
 # Install Yarn
 sudo pacman -S --noconfirm --needed yarn
 
+# Make zsh folder
+mkdir $HOME/.zsh
+
 # Link stuff
-check_and_link "$DOTFILES_PATH/common/.zshrc" "$HOME/.zshrc"
-check_and_link "$DOTFILES_PATH/common/.aliases" "$HOME/.aliases"
+check_and_link "$DOTFILES_PATH/common/.zshenv" "$HOME/.zshenv"
+for filename in $DOTFILES_PATH/common/.zsh/*; do
+  check_and_link "$filename" "$HOME/.zsh/$(basename $filename)"
+done
 check_and_link "$DOTFILES_PATH/common/.config/starship.toml" "$HOME/.config/starship.toml"
 
 # Load NVidia settings at login

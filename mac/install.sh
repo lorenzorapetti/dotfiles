@@ -38,7 +38,7 @@ mkdir -p "$HOME/code"
 brew install mas openssl
 
 # Check if the user is logged in to the App Store
-mas account
+mas account 1>/dev/null 2>/dev/null
 if [ $? -ne 0 ]; then
   read -p "You need to be logged in to the App Store for some scripts to work. Press enter when you are ready." 0</dev/tty
 fi
@@ -58,6 +58,9 @@ nvm install stable
 # Update npm
 npm i -g npm
 
+# Install global packages
+npm i -g trash-cli
+
 # Install yarn
 brew install yarn
 
@@ -76,21 +79,20 @@ cargo install \
 rustup component add clippy
 rustup component add rustfmt
 
-# Install Oh My Zsh
-git clone https://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
-
-# Install Oh My Zsh plugins
-. $DOTFILES_PATH/common/install-zsh-plugins.sh
-
 # Install powerline fonts
 POWERLINE_FONTS_PATH=$HOME/powerline-fonts
 git clone https://github.com/powerline/fonts.git $POWERLINE_FONTS_PATH --depth=1
 $POWERLINE_FONTS_PATH/install.sh
 rm -rf $POWERLINE_FONTS_PATH
 
+# Make zsh folder
+mkdir $HOME/.zsh
+
 # Link stuff
-check_and_link "$DOTFILES_PATH/common/.zshrc" "$HOME/.zshrc"
-check_and_link "$DOTFILES_PATH/common/.aliases" "$HOME/.aliases"
+check_and_link "$DOTFILES_PATH/common/.zshenv" "$HOME/.zshenv"
+for filename in $DOTFILES_PATH/common/.zsh/*; do
+  check_and_link "$filename" "$HOME/.zsh/$(basename $filename)"
+done
 check_and_link "$DOTFILES_PATH/common/.config/starship.toml" "$HOME/.config/starship.toml"
 
 # Make Chrome Two finger swipe for back and forward
