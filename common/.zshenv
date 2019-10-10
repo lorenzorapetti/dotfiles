@@ -4,5 +4,6 @@ skip_global_compinit=1
 # http://disq.us/p/f55b78
 setopt noglobalrcs
 
-export ZDOTDIR=$HOME/.zsh
+export ZDOTDIR=$HOME/dotfiles/common/.zsh
+export ZSHCONFIG=$ZDOTDIR
 export SYSTEM=$(uname -s)

@@ -1,9 +1,10 @@
-zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
 MichaelAquilina/zsh-you-should-use
-lukechilds/zsh-nvm
 lukechilds/zsh-better-npm-completion
 buonomo/yarn-completion
+mafredri/zsh-async
+sindresorhus/pure
 
 zdharma/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search

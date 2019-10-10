@@ -49,20 +49,11 @@ brew bundle --file="$DOTFILES_PATH/mac/Brewfile"
 # Git global config
 . $DOTFILES_PATH/common/load-git-config.sh
 
-# Install Nodejs with NVM
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-nvm install stable
-
 # Update npm
 npm i -g npm
 
 # Install global packages
 npm i -g trash-cli
-
-# Install yarn
-brew install yarn
 
 # Install Rust
 curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -85,15 +76,8 @@ git clone https://github.com/powerline/fonts.git $POWERLINE_FONTS_PATH --depth=1
 $POWERLINE_FONTS_PATH/install.sh
 rm -rf $POWERLINE_FONTS_PATH
 
-# Make zsh folder
-mkdir $HOME/.zsh
-
 # Link stuff
 check_and_link "$DOTFILES_PATH/common/.zshenv" "$HOME/.zshenv"
-for filename in $DOTFILES_PATH/common/.zsh/*; do
-  check_and_link "$filename" "$HOME/.zsh/$(basename $filename)"
-done
-check_and_link "$DOTFILES_PATH/common/.config/starship.toml" "$HOME/.config/starship.toml"
 
 # Make Chrome Two finger swipe for back and forward
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true
@@ -310,5 +294,8 @@ defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
 unset DOTFILES_PATH POWERLINE_FONTS_PATH
+
+sudo echo "/usr/local/bin/zsh" >/etc/shells
+chsh -s /usr/local/bin/zsh
 
 echo -e "\\n\\n\033[1m\033[1mFinished!\\nNow all you have to do is restart for the changes to take effect \033[0m✨"
