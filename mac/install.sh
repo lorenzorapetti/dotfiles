@@ -46,6 +46,8 @@ fi
 # Install all the things
 brew bundle --file="$DOTFILES_PATH/mac/Brewfile"
 
+sudo xcodebuild -license
+
 # Git global config
 . $DOTFILES_PATH/common/load-git-config.sh
 
@@ -62,9 +64,7 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y
 source $HOME/.cargo/env
 
 # Install Rust packages
-cargo install \
-  starship \
-  cargo-edit
+cargo install cargo-edit
 
 # Install cargon subcommands
 rustup component add clippy
