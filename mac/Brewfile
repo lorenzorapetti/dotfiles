@@ -1,5 +1,6 @@
 tap "homebrew/cask"
 tap "getantibody/tap"
+tap "homebrew/cask-fonts"
 
 brew "git"
 brew "node"
@@ -16,6 +17,9 @@ brew "lsd"
 brew "fzf"
 brew "z"
 
+mas "1Password 7", id: 1333542190
+
+cask "font-sourcecodepro-nerd-font"
 cask "iterm2"
 cask "kitty"
 cask "alfred"
@@ -49,7 +53,7 @@ cask "spectrum"
 cask "tableplus"
 cask "numi"
 cask "barrier"
-brew "parallels"
+cask "parallels"
 
 mas "Xcode", id: 497799835
 mas "The Unarchiver", id: 425424353
@@ -60,6 +64,6 @@ mas "Slack", id: 803453959
 mas "Todoist", id: 585829637
 mas "WhatsApp", id: 1147396723
 mas "Telegram", id: 747648890
-mas "1Password 7", id: 1333542190
 mas "Microsoft OneNote", id: 784801555
 mas "Termius", id: 1176074088
+mas "Twitter", id: 1482454543
