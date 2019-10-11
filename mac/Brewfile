@@ -54,6 +54,7 @@ cask "tableplus"
 cask "numi"
 cask "barrier"
 cask "parallels"
+cask "spotify"
 
 mas "Xcode", id: 497799835
 mas "The Unarchiver", id: 425424353
