@@ -49,6 +49,7 @@ cask "spectrum"
 cask "tableplus"
 cask "numi"
 cask "barrier"
+brew "parallels"
 
 mas "Xcode", id: 497799835
 mas "The Unarchiver", id: 425424353
