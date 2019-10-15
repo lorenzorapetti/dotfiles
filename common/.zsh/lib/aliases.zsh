@@ -2,6 +2,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias /="cd /"
 alias ~="cd ~"
+alias reload-zsh="source $ZDOTDIR/.zshrc"
 
 alias ls="lsd"
 alias lla="ls -la"
@@ -42,3 +43,9 @@ alias y="yarn"
 alias ys="yarn start"
 alias yd="yarn dev"
 alias yt="yarn test"
+
+# Brew
+alias b="brew"
+alias bu="brew update"
+alias bup="brew upgrade"
+alias bo="brew outdated"
