@@ -55,3 +55,6 @@ alias bs="brew search"
 alias bu="brew update"
 alias bup="brew upgrade"
 alias bo="brew outdated"
+
+# fnm
+alias n="fnm"

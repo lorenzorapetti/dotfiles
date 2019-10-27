@@ -26,8 +26,10 @@ unset my_zsh_fpath
 #
 my_zsh_lib=${ZSHCONFIG}/lib
 if [[ -d "$my_zsh_lib" ]]; then
-   for file in $my_zsh_lib/*.zsh; do
-      source $file
-   done
+    for file in $my_zsh_lib/*.zsh; do
+        source $file
+    done
 fi
 unset my_zsh_lib
+
+eval "$(fnm env --multi)"

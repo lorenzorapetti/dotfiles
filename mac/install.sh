@@ -48,6 +48,8 @@ brew bundle --file="$DOTFILES_PATH/mac/Brewfile"
 
 sudo xcodebuild -license
 
+$(brew --prefix)/opt/fzf/install --no-update-rc --bin --key-bindings --completion
+
 # Git global config
 . $DOTFILES_PATH/common/load-git-config.sh
 
@@ -79,9 +81,6 @@ rm -rf $POWERLINE_FONTS_PATH
 # Link stuff
 check_and_link "$DOTFILES_PATH/common/.zshenv" "$HOME/.zshenv"
 
-# Make Chrome Two finger swipe for back and forward
-defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool true
-
 # Disable Photos.app to open automatically
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
@@ -94,10 +93,6 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-
-# Expand print panel by default
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
-defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
 # Save to disk (not to iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false

@@ -2,6 +2,7 @@ export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PURE_PROMPT_SYMBOL='λ'
 export ZSHCONFIG=$ZDOTDIR
 export ZCOMPDUMP_FOLDER=$ZDOTDIR/compdump
+export QMK_HOME="$HOME/code/qmk_firmware"
 
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
