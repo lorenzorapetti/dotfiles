@@ -57,7 +57,7 @@ $(brew --prefix)/opt/fzf/install --no-update-rc --bin --key-bindings --completio
 npm i -g npm
 
 # Install global packages
-npm i -g trash-cli
+npm i -g trash-cli npm-check-updates
 
 # Install Rust
 curl https://sh.rustup.rs -sSf | sh -s -- -y
