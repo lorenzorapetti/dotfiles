@@ -1,39 +1,10 @@
-# dotfiles-linux
+# dotfiles
 
-My configuration for the various linux distributions
+My configuration for the various OSes i use.
 
 # What does this script do?
 
-It clones the repo into `$HOME/dotfiles` and installs the following things:
-
-Programs:
-
-- git
-- ripgrep
-- fd
-- zsh (with Oh My Zsh and starship prompt)
-- zsh-completions
-- zsh-syntax-highlighting
-- fzf
-- ntfs-3g
-
-Programming languages:
-
-- Rust (with cargo, cargo-edit, rustfmt and clippy)
-- Nodejs (with nvm, npm and yarn)
-
-Applications:
-
-- Brave browser
-- Spotify
-- Telegram Desktop
-- Google Chrome
-- Visual Studio Code
-
-Additionally, it links:
-
-- `<dotfiles-path>/<distro>/.zshrc` to `$HOME/.zshrc`
-- `<dotfiles-path>/<distro>/.config/starship.toml` to `$HOME/.config/starship.toml`
+TODO
 
 # Distro support
 
