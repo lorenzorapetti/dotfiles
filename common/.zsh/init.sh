@@ -33,3 +33,8 @@ fi
 unset my_zsh_lib
 
 eval "$(fnm env --multi)"
+
+iterm2_print_user_vars() {
+    iterm2_set_user_var rubyVersion $(ruby -v | awk '{ print $2 }')
+    iterm2_set_user_var nodeVersion $(node -v)
+}
