@@ -5,7 +5,7 @@ tap "homebrew/cask-fonts"
 brew "git"
 brew "node"
 brew "yarn"
-brew "hub"
+brew "gh"
 brew "zsh"
 brew "antibody"
 brew "ripgrep"
@@ -17,17 +17,13 @@ brew "lsd"
 brew "fzf"
 brew "z"
 
-mas "1Password 7", id: 1333542190
-
-cask "font-sourcecodepro-nerd-font"
+cask "font-sauce-code-pro-nerd-font"
 cask "iterm2"
-cask "kitty"
 cask "alfred"
 cask "google-chrome"
 cask "firefox"
 cask "brave-browser"
-cask "bartender"
-cask "cleanmymac"
+cask "setapp"
 cask "visual-studio-code"
 cask "dash"
 cask "skype"
@@ -38,34 +34,32 @@ cask "docker"
 cask "gitkraken"
 cask "grammarly"
 cask "insomnia"
-cask "istat-menus"
 cask "notion"
 cask "qlcolorcode"
 cask "qlmarkdown"
 cask "qlstephen"
 cask "quicklook-json"
-cask "webpquicklook"
-cask "suspicious-package"
+cask "qlimagesize"
 cask "qlvideo"
 cask "phpstorm"
+cask "pycharm"
 cask "pocket-casts"
-cask "spectrum"
 cask "tableplus"
 cask "numi"
-cask "barrier"
 cask "parallels"
 cask "spotify"
 cask "airtable"
+cask "bettertouchtool"
+cask "mamp"
+cask "monitorcontrol"
+cask "qbittorrent"
+cask "ticktick"
 
+mas "Magnet", id: 441258766
 mas "Xcode", id: 497799835
 mas "The Unarchiver", id: 425424353
 mas "NordVPN IKE", id: 1116599239
-mas "Magnet", id: 441258766
-mas "TweetDeck", id: 485812721
 mas "Slack", id: 803453959
-mas "Todoist", id: 585829637
 mas "WhatsApp", id: 1147396723
 mas "Telegram", id: 747648890
-mas "Microsoft OneNote", id: 784801555
 mas "Termius", id: 1176074088
-mas "Twitter", id: 1482454543
