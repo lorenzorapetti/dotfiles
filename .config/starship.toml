@@ -1,0 +1,111 @@
+add_newline = true
+
+[aws]
+symbol = "  "
+disabled = true
+
+[battery]
+disabled = true
+
+[character]
+success_symbol = "[λ](bold green)"
+error_symbol = "[λ](bold red)"
+
+[cmake]
+disabled = true
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = " "
+
+[directory.substitutions]
+"~/code/github" = "github.com"
+
+[docker_context]
+symbol = " "
+disabled = true
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[gcloud]
+disabled = true
+
+[golang]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+disabled = true
+
+[hostname]
+disabled = true
+
+[java]
+symbol = " "
+disabled = true
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+disabled = true
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+format = "[$symbol$version]($style) "
+
+[openstack]
+disabled = true
+
+[package]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+disabled = true
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+format = "[$symbol$version]($style) "
+
+[rust]
+symbol = " "
+format = "[$symbol$version]($style) "
+
+[scala]
+symbol = " "
+
+[shlvl]
+symbol = " "
+
+[status]
+disabled = false
+
+[swift]
+symbol = "ﯣ "
+format = "[$symbol$version]($style) "
+disabled = true
