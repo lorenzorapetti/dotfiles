@@ -22,4 +22,5 @@ check_program "make"
 
 git clone git@github.com:lorenzorapetti/dotfiles.git $HOME/.dotfiles
 
+cd $HOME/.dotfiles
 make $platform
