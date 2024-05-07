@@ -20,7 +20,14 @@ check_program "git"
 check_program "stow"
 check_program "make"
 
-git clone git@github.com:lorenzorapetti/dotfiles.git $HOME/.dotfiles
+git clone --recurse-submodule sgit@github.com:lorenzorapetti/dotfiles.git $HOME/.dotfiles
 
 cd $HOME/.dotfiles
 make $platform
+
+# Download fisher and install fisher plugins
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
+
+# Install tpm (tmux package manager) and immediately install all plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/scripts/install_plugins.sh
