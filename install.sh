@@ -20,7 +20,7 @@ check_program "git"
 check_program "stow"
 check_program "make"
 
-git clone --recurse-submodule sgit@github.com:lorenzorapetti/dotfiles.git $HOME/.dotfiles
+git clone --recurse-submodule git@github.com:lorenzorapetti/dotfiles.git $HOME/.dotfiles
 
 # Stow
 cd $HOME/.dotfiles
