@@ -22,6 +22,7 @@ check_program "make"
 
 git clone --recurse-submodule sgit@github.com:lorenzorapetti/dotfiles.git $HOME/.dotfiles
 
+# Stow
 cd $HOME/.dotfiles
 make $platform
 
