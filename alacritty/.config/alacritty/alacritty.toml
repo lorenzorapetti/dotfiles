@@ -28,4 +28,5 @@ save_to_clipboard = true
 bindings = [
   { key = "+", mods = "Control", action = "IncreaseFontSize" },
   { key = "-", mods = "Control", action = "DecreaseFontSize" },
+  { key = "/", mods = "Control", chars = "\u001F" },
 ]

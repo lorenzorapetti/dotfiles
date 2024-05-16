@@ -17,6 +17,7 @@ end
 
 fish_add_path $PNPM_HOME $HOME/.yarn/bin $fish_user_paths
 fish_add_path /opt/homebrew/opt/openjdk@17/bin $fish_user_paths
+fish_add_path /usr/local/go/bin $fish_user_path
 
 source "$HOME/.cargo/env.fish"
 
