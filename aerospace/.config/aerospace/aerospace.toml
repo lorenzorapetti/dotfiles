@@ -1,8 +1,8 @@
 start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = false
-enable-normalization-opposite-orientation-for-nested-containers = false
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
@@ -58,8 +58,10 @@ alt-down = 'focus down'
 alt-up = 'focus up'
 alt-right = 'focus right'
 
-alt-h = 'split horizontal'
-alt-v = 'split vertical'
+alt-m = 'join-with left'
+alt-n = 'join-with down'
+alt-e = 'join-with up'
+alt-i = 'join-with right'
 
 alt-shift-left = 'move left'
 alt-shift-down = 'move down'
@@ -70,7 +72,7 @@ alt-f = 'fullscreen'
 
 alt-s = 'layout v_accordion' # 'layout stacking' in i3
 alt-w = 'layout h_accordion' # 'layout tabbed' in i3
-alt-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
+alt-t = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 
 alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
 
@@ -96,7 +98,18 @@ alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 10'
 
+alt-tab = 'workspace-back-and-forth'
+
+# Like <> but one row below
+alt-period = 'focus-monitor right'
+alt-comma = 'focus-monitor left'
+
+alt-shift-period = 'move-node-to-monitor right'
+alt-shift-comma = 'move-node-to-monitor left'
+
 alt-shift-c = 'reload-config'
+
+alt-shift-q = 'close-all-windows-but-current --quit-if-last-window'
 
 alt-r = 'mode resize'
 
