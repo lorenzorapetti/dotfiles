@@ -1,17 +1,14 @@
 import = [
-  "~/.config/alacritty/catppuccin-mocha.toml"
+  "~/.config/alacritty/catppuccin-mocha.toml",
+  "~/.config/alacritty/alacritty-extra.toml"
 ]
 
 [env]
 term = "xterm-256color"
 
-[shell]
-program = "/opt/homebrew/bin/fish"
-args = ["-l", "-c", "tmux attach || tmux"]
-
 [window]
 padding = { x = 10, y = 10 }
-# decorations = "Buttonless"
+decorations = "Buttonless"
 startup_mode = "Maximized"
 dynamic_title = false
 option_as_alt = "Both"

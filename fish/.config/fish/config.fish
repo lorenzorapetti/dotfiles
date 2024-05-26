@@ -6,7 +6,7 @@ set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 # First line removes the path; second line sets it.  Without the first line,
 # your path gets massive and fish becomes very slow.
-fish_add_path -m /Users/lorenzo/.local/share/bob/nvim-bin $HOME/.bin $HOME/.local/bin /opt/homebrew/bin /opt/homebrew/opt /usr/local/bin $fish_user_paths
+fish_add_path -m $HOME/.local/share/bob/nvim-bin $HOME/.bin $HOME/.local/bin /usr/local/bin $fish_user_paths
 
 set PNPM_HOME $HOME/Library/pnpm
 set ANDROID_HOME $HOME/Library/Android/sdk
@@ -15,8 +15,14 @@ if test -f ./secrets.fish
 	./secrets.fish
 end
 
+set os $(uname | tr '[:upper:]' '[:lower:]')
+
+if [ "$os" = "darwin" ]
+	fish_add_path /opt/homebrew/bin /opt/homebrew/opt
+	fish_add_path /opt/homebrew/opt/openjdk@17/bin $fish_user_paths
+end
+
 fish_add_path $PNPM_HOME $HOME/.yarn/bin $fish_user_paths
-fish_add_path /opt/homebrew/opt/openjdk@17/bin $fish_user_paths
 fish_add_path /usr/local/go/bin $fish_user_path
 
 source "$HOME/.cargo/env.fish"
@@ -28,16 +34,14 @@ alias la='ls -la'
 
 alias cat='bat'
 
-alias ch='chezmoi'
-alias chc='cd (chezmoi source-path)'
-alias che='$EDITOR (chezmoi source-path)'
-
-alias b='brew'
-alias bi='brew install'
-alias bic='brew install --cask'
-alias bu='brew update'
-alias bup='brew upgrade'
-alias bo='brew outdated'
+if [ "$os" = "darwin" ]
+	alias b='brew'
+	alias bi='brew install'
+	alias bic='brew install --cask'
+	alias bu='brew update'
+	alias bup='brew upgrade'
+	alias bo='brew outdated'
+end
 
 alias g='git'
 alias gs='git status'
