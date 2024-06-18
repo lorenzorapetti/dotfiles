@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+swww-daemon
+
+file=$(find ~/.config/hypr/wallpapers/ -type f | shuf -n 1)
+swww img $file

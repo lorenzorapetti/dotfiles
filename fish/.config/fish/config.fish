@@ -24,6 +24,7 @@ end
 
 fish_add_path $PNPM_HOME $HOME/.yarn/bin $fish_user_paths
 fish_add_path /usr/local/go/bin $fish_user_path
+fish_add_path $fish_user_path $HOME/.config/rofi/scripts
 
 if test -f $HOME/.cargo/env.fish
 	source "$HOME/.cargo/env.fish"
