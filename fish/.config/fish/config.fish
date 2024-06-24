@@ -10,6 +10,7 @@ fish_add_path -m $HOME/.local/share/bob/nvim-bin $HOME/.bin $HOME/.local/bin /us
 
 set PNPM_HOME $HOME/Library/pnpm
 set ANDROID_HOME $HOME/Library/Android/sdk
+set XCURSOR_PATH $HOME/.icons
 
 if test -f ./secrets.fish
 	./secrets.fish

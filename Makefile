@@ -1,5 +1,5 @@
 MAC_PACKAGES = aerospace alacritty fish git nvim tmux starship
-LINUX_PACKAGES = alacritty fish nvim tmux starship scripts-linux hyprland waybar rofi swaync kitty mpv
+LINUX_PACKAGES = alacritty fish nvim tmux starship scripts-linux hyprland waybar rofi swaync kitty mpv linux
 
 darwin:
 	stow --verbose --target=$$HOME --restow $(MAC_PACKAGES)
