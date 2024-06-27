@@ -80,7 +80,7 @@ element {
     cursor:                      pointer;
 }
 element-text {
-    font:                        "feather 48";
+    font:                        "GeistMono Nerd Font 48";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;

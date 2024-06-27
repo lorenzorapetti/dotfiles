@@ -133,11 +133,11 @@
         "tooltip-format-disconnected": "{icon} Disconnected",
         "on-click-right": "nm-connection-editor",
         "format-icons": {
-            "ethernet": "",
+            "ethernet": "",
             "disconnected": "⚠",
             "wifi": [
-                "睊",
-                "直"
+                "󰤟",
+                "󰤨"
             ]
         },
         "interval": 2
@@ -211,6 +211,7 @@
             " ",
             " "
         ],
+        "tooltip-format": "{timeTo}\n{power} Watts",
         "interval": 2
     },
     "custom/notifications": {
