@@ -77,6 +77,7 @@ alias lvim="NVIM_APPNAME=nvim-lazy $HOME/.local/share/bob/nightly/nvim-macos-arm
 
 alias cfg="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias cfl="lazygit $HOME --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+alias redis-start="/opt/homebrew/opt/redis/bin/redis-server /opt/homebrew/etc/redis.conf"
 
 mise activate fish | source
 
