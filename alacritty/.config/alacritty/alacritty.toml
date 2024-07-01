@@ -14,7 +14,7 @@ dynamic_title = false
 option_as_alt = "Both"
 
 [font]
-size = 12
+size = 13
 normal = { family = "GeistMono Nerd Font Mono" }
 builtin_box_drawing = false
 
