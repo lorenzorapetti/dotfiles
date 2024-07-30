@@ -10,14 +10,14 @@ import EnergyMenu from "./energy/index.js";
 import DashboardMenu from "./dashboard/index.js";
 
 export default [
-  PowerMenu(),
-  Verification(),
-  AudioMenu(),
-  NetworkMenu(),
-  BluetoothMenu(),
-  MediaMenu(),
-  NotificationsMenu(),
-  CalendarMenu(),
-  EnergyMenu(),
-  DashboardMenu(),
+	PowerMenu(),
+	Verification(),
+	AudioMenu(),
+	NetworkMenu(),
+	BluetoothMenu(),
+	MediaMenu(),
+	NotificationsMenu(),
+	CalendarMenu(),
+	EnergyMenu(),
+	DashboardMenu(),
 ];

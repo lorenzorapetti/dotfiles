@@ -6,32 +6,32 @@ import { Stats } from "./stats/index.js";
 import { Directories } from "./directories/index.js";
 
 export default () => {
-  return DropdownMenu({
-    name: "dashboardmenu",
-    transition: "crossfade",
-    child: Widget.Box({
-      class_name: "dashboard-menu-content",
-      css: "padding: 1px; margin: -1px;",
-      vexpand: false,
-      children: [
-        Widget.Box({
-          class_name: "dashboard-content-container",
-          vertical: true,
-          children: [
-            Widget.Box({
-              class_name: "dashboard-content-items",
-              vertical: true,
-              children: [
-                Profile(),
-                Shortcuts(),
-                Controls(),
-                Directories(),
-                Stats(),
-              ],
-            }),
-          ],
-        }),
-      ],
-    }),
-  });
+	return DropdownMenu({
+		name: "dashboardmenu",
+		transition: "crossfade",
+		child: Widget.Box({
+			class_name: "dashboard-menu-content",
+			css: "padding: 1px; margin: -1px;",
+			vexpand: false,
+			children: [
+				Widget.Box({
+					class_name: "dashboard-content-container",
+					vertical: true,
+					children: [
+						Widget.Box({
+							class_name: "dashboard-content-items",
+							vertical: true,
+							children: [
+								Profile(),
+								Shortcuts(),
+								Controls(),
+								Directories(),
+								Stats(),
+							],
+						}),
+					],
+				}),
+			],
+		}),
+	});
 };
