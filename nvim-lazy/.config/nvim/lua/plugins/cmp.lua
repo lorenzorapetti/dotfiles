@@ -22,4 +22,9 @@ return {
       mode = { "i", "s" },
     },
   },
+  opts = {
+    mapping = {
+      ["<CR>"] = vim.NIL,
+    },
+  },
 }
