@@ -60,30 +60,30 @@ const Stats = () => {
 		},
 	);
 
-	const gpu = Variable(0, {
-		poll: [
-			2000,
-			"gpustat --json",
-			(out) => {
-				if (typeof out !== "string") {
-					return 0;
-				}
-				try {
-					const data = JSON.parse(out);
-
-					const totalGpu = 100;
-					const usedGpu =
-						data.gpus.reduce((acc, gpu) => acc + gpu["utilization.gpu"], 0) /
-						data.gpus.length;
-
-					return divide([totalGpu, usedGpu]);
-				} catch (e) {
-					console.error("Error getting GPU stats:", e);
-					return 0;
-				}
-			},
-		],
-	});
+	// const gpu = Variable(0, {
+	// 	poll: [
+	// 		2000,
+	// 		"gpustat --json",
+	// 		(out) => {
+	// 			if (typeof out !== "string") {
+	// 				return 0;
+	// 			}
+	// 			try {
+	// 				const data = JSON.parse(out);
+	//
+	// 				const totalGpu = 100;
+	// 				const usedGpu =
+	// 					data.gpus.reduce((acc, gpu) => acc + gpu["utilization.gpu"], 0) /
+	// 					data.gpus.length;
+	//
+	// 				return divide([totalGpu, usedGpu]);
+	// 			} catch (e) {
+	// 				console.error("Error getting GPU stats:", e);
+	// 				return 0;
+	// 			}
+	// 		},
+	// 	],
+	// });
 
 	const storage = Variable(
 		{ total: 0, used: 0, percentage: 0 },
@@ -216,50 +216,50 @@ const Stats = () => {
 					}),
 				],
 			}),
-			Widget.Box({
-				vertical: true,
-				children: [
-					Widget.Box({
-						class_name: "stat gpu",
-						hexpand: true,
-						vpack: "center",
-						children: [
-							Widget.Button({
-								on_primary_click: terminal.bind("value").as((term) => {
-									return () => {
-										App.closeWindow("dashboardmenu");
-										Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-											(err) => `Failed to open btop: ${err}`,
-										);
-									};
-								}),
-								label: "󰢮",
-							}),
-							Widget.Button({
-								on_primary_click: terminal.bind("value").as((term) => {
-									return () => {
-										App.closeWindow("dashboardmenu");
-										Utils.execAsync(`bash -c "${term} -e btop"`).catch(
-											(err) => `Failed to open btop: ${err}`,
-										);
-									};
-								}),
-								child: Widget.LevelBar({
-									class_name: "stats-bar",
-									hexpand: true,
-									vpack: "center",
-									value: gpu.bind("value"),
-								}),
-							}),
-						],
-					}),
-					Widget.Label({
-						hpack: "end",
-						class_name: "stat-value gpu",
-						label: gpu.bind("value").as((v) => `${Math.floor(v * 100)}%`),
-					}),
-				],
-			}),
+			// Widget.Box({
+			// 	vertical: true,
+			// 	children: [
+			// 		Widget.Box({
+			// 			class_name: "stat gpu",
+			// 			hexpand: true,
+			// 			vpack: "center",
+			// 			children: [
+			// 				Widget.Button({
+			// 					on_primary_click: terminal.bind("value").as((term) => {
+			// 						return () => {
+			// 							App.closeWindow("dashboardmenu");
+			// 							Utils.execAsync(`bash -c "${term} -e btop"`).catch(
+			// 								(err) => `Failed to open btop: ${err}`,
+			// 							);
+			// 						};
+			// 					}),
+			// 					label: "󰢮",
+			// 				}),
+			// 				Widget.Button({
+			// 					on_primary_click: terminal.bind("value").as((term) => {
+			// 						return () => {
+			// 							App.closeWindow("dashboardmenu");
+			// 							Utils.execAsync(`bash -c "${term} -e btop"`).catch(
+			// 								(err) => `Failed to open btop: ${err}`,
+			// 							);
+			// 						};
+			// 					}),
+			// 					child: Widget.LevelBar({
+			// 						class_name: "stats-bar",
+			// 						hexpand: true,
+			// 						vpack: "center",
+			// 						value: gpu.bind("value"),
+			// 					}),
+			// 				}),
+			// 			],
+			// 		}),
+			// 		Widget.Label({
+			// 			hpack: "end",
+			// 			class_name: "stat-value gpu",
+			// 			label: gpu.bind("value").as((v) => `${Math.floor(v * 100)}%`),
+			// 		}),
+			// 	],
+			// }),
 			Widget.Box({
 				vertical: true,
 				children: [
