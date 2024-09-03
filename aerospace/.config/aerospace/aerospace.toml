@@ -24,11 +24,11 @@ key-mapping.preset = 'qwerty'
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 [gaps]
 inner.horizontal = 8
-inner.vertical =   8
-outer.left =       8
-outer.bottom =     8
-outer.top =        8
-outer.right =      8
+inner.vertical = 8
+outer.left = 8
+outer.bottom = 8
+outer.top = 8
+outer.right = 8
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -70,8 +70,8 @@ alt-shift-right = 'move right'
 
 alt-f = 'fullscreen'
 
-alt-s = 'layout v_accordion' # 'layout stacking' in i3
-alt-w = 'layout h_accordion' # 'layout tabbed' in i3
+alt-s = 'layout v_accordion'               # 'layout stacking' in i3
+alt-w = 'layout h_accordion'               # 'layout tabbed' in i3
 alt-t = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
 
 alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
@@ -112,6 +112,12 @@ alt-shift-c = 'reload-config'
 alt-shift-q = 'close-all-windows-but-current --quit-if-last-window'
 
 alt-r = 'mode resize'
+cmd-semicolon = 'mode X'
+
+[mode.X.binding]
+# A mode to just pass keys through!
+cmd-semicolon = 'mode main'
+esc = 'mode main'
 
 [mode.resize.binding]
 left = 'resize width -50'
@@ -120,18 +126,6 @@ up = 'resize height -50'
 right = 'resize width +50'
 enter = 'mode main'
 esc = 'mode main'
-
-[[on-window-detected]]
-if.app-id = 'org.alacritty'
-run = 'move-node-to-workspace 3'
-
-[[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
-if.app-id = 'com.brave.Browser'
-run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
@@ -144,6 +138,28 @@ run = 'move-node-to-workspace 6'
 [[on-window-detected]]
 if.app-id = 'com.readdle.SparkDesktop-setapp'
 run = 'move-node-to-workspace 8'
+
+[[on-window-detected]]
+if.app-id = 'com.setapp.DesktopClient'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.electron.dockerdesktop'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+if.window-title-regex-substring = 'Picture-in-Picture'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = 'Picture in Picture'
+run = 'layout floating'
 
 [workspace-to-monitor-force-assignment]
 6 = 1

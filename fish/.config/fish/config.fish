@@ -77,7 +77,11 @@ alias cfg="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias cfl="lazygit $HOME --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
 alias redis-start="/opt/homebrew/opt/redis/bin/redis-server /opt/homebrew/etc/redis.conf"
 
+fzf --fish | source
+
 mise activate fish | source
+
+zoxide init --cmd cd fish | source
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
