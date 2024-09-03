@@ -51,7 +51,7 @@ cmd-h = []
 
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
-alt-enter = 'exec-and-forget open -n /Applications/Alacritty.app'
+alt-enter = 'exec-and-forget open -n /Applications/Kitty.app'
 
 alt-left = 'focus left'
 alt-down = 'focus down'
@@ -68,7 +68,7 @@ alt-shift-down = 'move down'
 alt-shift-up = 'move up'
 alt-shift-right = 'move right'
 
-alt-f = 'fullscreen'
+alt-u = 'fullscreen'
 
 alt-s = 'layout v_accordion'               # 'layout stacking' in i3
 alt-w = 'layout h_accordion'               # 'layout tabbed' in i3
@@ -112,7 +112,7 @@ alt-shift-c = 'reload-config'
 alt-shift-q = 'close-all-windows-but-current --quit-if-last-window'
 
 alt-r = 'mode resize'
-cmd-semicolon = 'mode X'
+alt-semicolon = 'mode X'
 
 [mode.X.binding]
 # A mode to just pass keys through!
