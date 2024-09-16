@@ -1,0 +1,70 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "theme": "Rosé Pine Moon",
+  "ui_font_size": 13,
+  "buffer_font_size": 13,
+  // "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "preferred_line_length": 120,
+  "project_online_by_default": false,
+  "show_inline_completions": false,
+  "tab_size": 2,
+  "tab_bar": {
+    "show_nav_history_buttons": false
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true
+  },
+  "indent_guides": {
+    "enabled": false,
+    "coloring": "indent_aware"
+  },
+
+  "terminal": {
+    "font_size": 12,
+    "font_family": "JetBrainsMono Nerd Font Mono",
+    "env": {
+      "ZED": "1"
+    }
+  },
+
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+
+  "vim_mode": true,
+
+  "languages": {
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      }
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      }
+    }
+  },
+  "inlay_hints": {
+    "enabled": false
+  },
+
+  "file_types": {
+    "Dockerfile": ["Dockerfile*"]
+  },
+
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  }
+}

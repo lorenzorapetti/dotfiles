@@ -1,0 +1,30 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work in normal & visual mode
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore" // remap jk in insert mode to escape.
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      "f": "file_finder::Toggle"
+      // put key-bindings here (in addition to above) if you want them to
+      // work when no editor exists
+      // "space f": "file_finder::Toggle"
+    }
+  }
+]
