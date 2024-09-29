@@ -4,6 +4,7 @@ return {
     selector = true,
     source_selector = {
       winbar = true,
+      statusline = false,
     },
   },
 }

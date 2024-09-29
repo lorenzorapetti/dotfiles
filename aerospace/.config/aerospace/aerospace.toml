@@ -152,6 +152,10 @@ if.app-id = 'com.electron.dockerdesktop'
 run = 'layout floating'
 
 [[on-window-detected]]
+if.app-id = 'com.apple.AppStore'
+run = 'layout floating'
+
+[[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
 if.window-title-regex-substring = 'Picture-in-Picture'
 run = 'layout floating'
@@ -162,6 +166,6 @@ if.window-title-regex-substring = 'Picture in Picture'
 run = 'layout floating'
 
 [workspace-to-monitor-force-assignment]
-6 = 1
-9 = 1
+6 = 'LG ULTRAFINE'
+5 = 'LG ULTRAFINE'
 10 = 1

@@ -5,3 +5,9 @@ fish/.config/fish/*
 .git
 
 node_modules
+
+zed/.config/zed/*
+!zed/.config/zed/settings.json
+!zed/.config/zed/keymap.json
+!zed/.config/zed/external-snippets.toml
+!zed/.config/snippets/*

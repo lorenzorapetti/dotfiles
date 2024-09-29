@@ -22,6 +22,7 @@ set os $(uname | tr '[:upper:]' '[:lower:]')
 if [ "$os" = darwin ]
     fish_add_path /opt/homebrew/bin /opt/homebrew/opt
     fish_add_path /opt/homebrew/opt/openjdk@17/bin $fish_user_paths
+    fish_add_path /opt/homebrew/opt/openssl@1.1/bin
 end
 
 fish_add_path $PNPM_HOME $HOME/.yarn/bin $fish_user_paths
@@ -59,6 +60,11 @@ alias gcb='git checkout -b'
 alias gcl='git clone'
 alias gp='git push'
 alias lg='lazygit'
+alias gl='git log --oneline --graph --decorate --all'
+alias gld='git log --pretty=format:\'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s\''
+
+alias get_idf='. $HOME/code/esp/esp-idf/export.fish'
+alias get_esprs='. $HOME/export-esp.sh'
 
 alias c='cargo'
 
@@ -87,10 +93,4 @@ zoxide init --cmd cd fish | source
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
-function starship_transient_prompt_func
-    starship module character
-end
-
 starship init fish | source
-
-enable_transience
