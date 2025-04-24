@@ -30,6 +30,10 @@
       "ctrl-w ctrl-d": "editor::GoToTypeDefinitionSplit",
       "space w m": "workspace::ToggleZoom",
 
+      // Navigation
+      "s": ["vim::PushOperator", { "Sneak": {} }],
+      "S": ["vim::PushOperator", { "SneakBackward": {} }],
+
       // Text manipulation
       "alt-k": "editor::MoveLineUp",
       "alt-up": "editor::MoveLineUp",

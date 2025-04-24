@@ -13,8 +13,8 @@ set ANDROID_HOME $HOME/Library/Android/sdk
 set XCURSOR_PATH $HOME/.icons
 set -x OBJC_DISABLE_INITIALIZE_FORK_SAFETY YES
 
-if test -f ./secrets.fish
-    ./secrets.fish
+if test -f $HOME/.config/fish/secrets.fish
+    source $HOME/.config/fish/secrets.fish
 end
 
 set os $(uname | tr '[:upper:]' '[:lower:]')
@@ -30,6 +30,10 @@ fish_add_path /usr/local/go/bin $fish_user_path
 fish_add_path $fish_user_path $HOME/.config/rofi/scripts
 fish_add_path /opt/homebrew/opt/libpq/bin
 fish_add_path $HOME/.cargo/bin
+
+function k --wraps kubectl
+    command kubecolor $argv
+end
 
 alias reload='source $HOME/.config/fish/config.fish'
 
@@ -87,10 +91,19 @@ fzf --fish | source
 
 mise activate fish | source
 
-zoxide init --cmd cd fish | source
+zoxide init fish | source
+
+direnv hook fish | source
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
 starship init fish | source
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/lorenzo/.lmstudio/bin
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+set --export --prepend PATH "/Users/lorenzo/.rd/bin"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

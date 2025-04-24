@@ -52,29 +52,29 @@ local filetypes_with_dynamic_formatter = {
 }
 
 return {
-  "stevearc/conform.nvim",
-  opts = {
-    formatters_by_ft = (function()
-      local result = {}
-      for _, ft in ipairs(filetypes_with_dynamic_formatter) do
-        result[ft] = biome_or_prettier
-      end
-
-      result["ruby"] = { "standardrb", "rubocop", stop_after_first = true }
-
-      return result
-    end)(),
-    formatters = {
-      standardrb = {
-        condition = function()
-          return vim.g.lazyvim_ruby_formatter == "standardrb"
-        end,
-      },
-      rubocop = {
-        condition = function()
-          return vim.g.lazyvim_ruby_formatter == "rubocop"
-        end,
-      },
-    },
-  },
+  -- "stevearc/conform.nvim",
+  -- opts = {
+  --   formatters_by_ft = (function()
+  --     local result = {}
+  --     for _, ft in ipairs(filetypes_with_dynamic_formatter) do
+  --       result[ft] = biome_or_prettier
+  --     end
+  --
+  --     result["ruby"] = { "standardrb", "rubocop", stop_after_first = true }
+  --
+  --     return result
+  --   end)(),
+  --   formatters = {
+  --     standardrb = {
+  --       condition = function()
+  --         return vim.g.lazyvim_ruby_formatter == "standardrb"
+  --       end,
+  --     },
+  --     rubocop = {
+  --       condition = function()
+  --         return vim.g.lazyvim_ruby_formatter == "rubocop"
+  --       end,
+  --     },
+  --   },
+  -- },
 }

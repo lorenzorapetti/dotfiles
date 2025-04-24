@@ -1,15 +1,23 @@
-local lsp = vim.g.lazyvim_ruby_lsp or "ruby_lsp"
-
 return {
   "neovim/nvim-lspconfig",
   opts = {
+    inlay_hints = {
+      enabled = false,
+    },
     servers = {
-      rubocop = {
-        enabled = lsp == "rubocop",
+      tailwindcss = {
+        settings = {
+          tailwindCSS = {
+            classFunctions = { "cn", "cva" },
+          },
+        },
       },
-      standardrb = {
-        enabled = lsp == "standardrb",
-      },
+      -- rubocop = {
+      --   enabled = lsp == "rubocop",
+      -- },
+      -- standardrb = {
+      --   enabled = lsp == "standardrb",
+      -- },
     },
   },
 }
