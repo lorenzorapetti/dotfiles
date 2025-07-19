@@ -7,6 +7,15 @@
 // from the command palette.
 [
   {
+    "context": "Picker > Editor",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-v": "pane::SplitRight",
+      "ctrl-h": "pane::SplitDown"
+    }
+  },
+  {
     "context": "VimControl && !menu",
     "bindings": {
       // put key-bindings here if you want them to work in normal & visual mode
@@ -14,25 +23,25 @@
       // so i can remember them
 
       // Windows and splits
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
-      "ctrl-shift-h": ["workspace::SwapPaneInDirection", "Left"],
-      "ctrl-shift-l": ["workspace::SwapPaneInDirection", "Right"],
-      "ctrl-shift-k": ["workspace::SwapPaneInDirection", "Up"],
-      "ctrl-shift-j": ["workspace::SwapPaneInDirection", "Down"],
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-shift-h": "workspace::SwapPaneLeft",
+      "ctrl-shift-l": "workspace::SwapPaneRight",
+      "ctrl-shift-k": "workspace::SwapPaneUp",
+      "ctrl-shift-j": "workspace::SwapPaneDown",
       "space |": "pane::SplitRight",
       "space -": "pane::SplitDown",
       "shift-l": "pane::ActivateNextItem",
-      "shift-h": "pane::ActivatePrevItem",
+      "shift-h": "pane::ActivatePreviousItem",
       "ctrl-w ctrl-n": "workspace::NewFileSplitHorizontal",
       "ctrl-w ctrl-d": "editor::GoToTypeDefinitionSplit",
       "space w m": "workspace::ToggleZoom",
 
       // Navigation
-      "s": ["vim::PushOperator", { "Sneak": {} }],
-      "S": ["vim::PushOperator", { "SneakBackward": {} }],
+      "s": ["vim::PushSneak", {}],
+      "shift-s": ["vim::PushSneakBackward", {}],
 
       // Text manipulation
       "alt-k": "editor::MoveLineUp",
@@ -52,11 +61,10 @@
 
       // Search
       "space space": "file_finder::Toggle", // Open file picker
-      "space f p": "command_palette::Toggle", // Open command palette
+      "space p": "command_palette::Toggle", // Open command palette
       "space f o": "outline::Toggle",
-      "space f s": "project_symbols::Toggle",
+      "space s s": "project_symbols::Toggle",
       "space s r": ["pane::DeploySearch", { "replace_enabled": true }], // Open search and replace for workspace
-      "space s w": ["pane::DeploySearch", { "selection_search_enabled": true }], // Open search for workspace with word under cursor
       "space s a": "search::SelectAllMatches", // Activate multi cursor on all matches
       "g s": "outline::Toggle",
       "g shift-s": "project_symbols::Toggle",
@@ -79,18 +87,18 @@
       "ctrl-y": "editor::ConfirmCompletion",
 
       // Git
-      "space g g": ["workspace::SendKeystrokes", "cmd-shift-` l a z y g i t enter"], // Toggle lazygit
-      "space g b": "editor::ToggleGitBlame",
-      "space g s": "branches::OpenRecent", // [g]it [s]witch
-      "space g h": "editor::ToggleHunkDiff",
-      "space g r": "editor::RevertSelectedHunks", // [g]it [r]evert
+      "space g g": "git_panel::ToggleFocus",
+      "space g b": "git::Blame",
+      "space g s": "git::Branch", // [g]it [s]witch
+      "space g h": "editor::ToggleSelectedDiffHunks",
+      "space g r": "git::Restore", // [g]it [r]evert
       "] h": "editor::GoToHunk",
-      "[ h": "editor::GoToPrevHunk",
+      "[ h": "editor::GoToPreviousHunk",
 
       // Diagnostics
       "space x x": "diagnostics::Deploy", // Go to diagnostics panel
       "[ d": "editor::GoToDiagnostic",
-      "] d": "editor::GoToPrevDiagnostic",
+      "] d": "editor::GoToPreviousDiagnostic",
 
       // Panels
       "space e": "project_panel::ToggleFocus",
@@ -111,7 +119,7 @@
 
       // Assistant
       "space a i": "assistant::InlineAssist",
-      "space a /": "assistant::ToggleFocus"
+      "space a /": "agent::ToggleFocus"
     }
   },
   {
@@ -142,9 +150,9 @@
     }
   },
   {
-    "context": "ProjectPanel && not_editing",
+    "context": "VimControl && ProjectPanel && not_editing",
     "bindings": {
-      "k": "menu::SelectPrev",
+      "k": "menu::SelectPrevious",
       "j": "menu::SelectNext",
       "h": "project_panel::CollapseSelectedEntry",
       "l": "project_panel::ExpandSelectedEntry",
@@ -152,7 +160,31 @@
       "shift-o": "project_panel::OpenWithSystem",
       "a": "project_panel::NewFile",
       "shift-a": "project_panel::NewDirectory",
-      "z": "workspace::ToggleLeftDock"
+      "z": "workspace::ToggleLeftDock",
+      "space e": "workspace::ToggleLeftDock",
+      "ctrl-l": "workspace::MoveFocusedPanelToNextPosition"
+    }
+  },
+  {
+    "context": "menu",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious"
+    }
+  },
+  {
+    "context": "(Dock || KeyContextView || Editor) && !menu",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "ctrl-space": ["vim::PushAddSurrounds", {}]
     }
   }
 ]

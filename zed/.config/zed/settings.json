@@ -7,32 +7,70 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "assistant": {
+  "icon_theme": "Catppuccin Mocha",
+  "auto_install_extensions": {
+    "html": true,
+    "dockerfile": true,
+    "docker-compose": true,
+    "catppuccin": true,
+    "toml": true,
+    "ruby": true,
+    "terraform": true,
+    "env": true,
+    "fish": true,
+    "tmux": true
+  },
+  "agent": {
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-20240620"
+      "model": "claude-3-7-sonnet"
     },
     "version": "2"
   },
-  "theme": "Rosé Pine",
+  "always_treat_brackets_as_autoclosed": true,
+  "close_on_file_delete": true,
+  "ensure_final_newline_on_save": true,
+  "edit_predictions": {
+    "disabled_globs": ["**/.env*", "**/*.pem", "**/*.key", "**/*.cert", "**/*.crt", "**/.dev.vars", "**/secrets.yml"]
+  },
+  "theme": "Catppuccin Mocha",
   "ui_font_size": 13,
   "buffer_font_size": 13,
-  // "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "soft_wrap": "preferred_line_length",
   "preferred_line_length": 120,
   "project_online_by_default": false,
-  "show_inline_completions": true,
+  "show_edit_predictions": true,
   "relative_line_numbers": true,
   "tab_size": 2,
+  "file_finder": {
+    "modal_max_width": "large"
+  },
   "tab_bar": {
-    "show_nav_history_buttons": false
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false
   },
   "tabs": {
     "file_icons": true,
-    "git_status": true
+    "git_status": true,
+    "show_diagnostics": "errors"
+  },
+  "preview_tabs": {
+    "enabled": true,
+    "enable_preview_from_file_finder": true,
+    "enable_preview_from_code_navigation": true
   },
   "indent_guides": {
     "enabled": false,
     "coloring": "indent_aware"
+  },
+
+  "file_scan_exclusions": ["**/node_modules/**/*"],
+
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "padding": 4
+    }
   },
 
   "terminal": {
@@ -41,9 +79,13 @@
     // This is to render graphics correctly, see https://github.com/zed-industries/zed/issues/15542
     "line_height": "standard",
     "button": false,
+    "option_as_meta": true,
     "working_directory": "current_project_directory",
     "env": {
       "ZED": "1"
+    },
+    "toolbar": {
+      "breadcrumbs": false
     }
   },
 
@@ -56,7 +98,7 @@
 
   "languages": {
     "Rust": {
-      "show_inline_completions": false
+      "show_edit_predictions": false
     },
     "TypeScript": {
       "code_actions_on_format": {
@@ -84,6 +126,6 @@
   },
 
   "features": {
-    "inline_completion_provider": "copilot"
+    "edit_prediction_provider": "copilot"
   }
 }
