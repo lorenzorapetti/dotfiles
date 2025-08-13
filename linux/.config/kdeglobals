@@ -1,0 +1,12 @@
+[Colors:View]
+BackgroundNormal=#2E2E2E
+
+[Icons]
+Theme=Tela-circle-dracula
+
+[KDE]
+widgetStyle=qt6ct-style
+
+[PreviewSettings]
+EnableRemoteFolderThumbnail=true
+MaximumRemoteSize=0

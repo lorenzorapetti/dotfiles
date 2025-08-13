@@ -1,0 +1,26 @@
+theme = catppuccin-mocha
+
+font-family = GeistMono Nerd Font Mono
+font-size = 14
+keybind = shift+enter=text:\n
+
+window-padding-x = 10
+window-padding-y = 0
+window-padding-balance = true
+window-padding-color = extend
+
+clipboard-read = allow
+clipboard-write = allow
+
+macos-option-as-alt = true
+
+maximize = true
+
+keybind = super+ctrl+l=goto_split:right
+keybind = super+ctrl+h=goto_split:left
+keybind = super+ctrl+j=goto_split:down
+keybind = super+ctrl+k=goto_split:up
+keybind = super+ctrl+v=new_split:right
+keybind = super+ctrl+s=new_split:down
+
+keybind = super+ctrl+enter=toggle_quick_terminal

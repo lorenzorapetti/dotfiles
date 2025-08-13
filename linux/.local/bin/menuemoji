@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+emojis=$(cat <"$HOME/.local/share/emoji.txt")
+count=$(echo "$emojis" | wc -l)
+
+cache_dir=${XDG_CACHE_HOME-:"$HOME/.local/cache"}
+cache=$(echo "$cache_dir/menuemoji")
+
+if [ ! -f "$cache" ]; then
+  mkdir -p "$cache_dir"
+  touch "$cache"
+fi
+
+emoji=$(echo "$emojis" | fuzzel --cache "${XDG_CACHE_HOME-:"$HOME/.local/cache"}/menuemoji" -d -w 20) || exit 0
+normalized_emoji=$(echo "$emoji" | cut -f1 | tr -d '\n')
+
+echo "$normalized_emoji" | wl-copy && notify-send "$normalized_emoji copied to clipboard"

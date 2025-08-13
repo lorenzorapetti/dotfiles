@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+hyprlock --no-fade-in && brightnessctl -sd rgb:kbd_backlight set 0 && niri msg action power-off-monitors

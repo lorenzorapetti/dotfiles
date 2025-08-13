@@ -1,0 +1,3 @@
+[submodule ".local/share/noir-wallpapers"]
+	path = .local/share/backgrounds
+	url = https://github.com/somanoir/noir-wallpapers
