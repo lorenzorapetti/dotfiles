@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Color Picker
+Categories=Utility;
+Keywords=color;picker;hypr;hyprpicker;
+Exec=hyprpicker -q -a -f rgb
+Terminal=false
+Icon=hyprland
+OnlyShowIn=wlroots;Hyprland

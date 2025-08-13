@@ -1,40 +1,40 @@
 {
   "layer": "bottom",
   "position": "top",
-  "margin-top": 4,
+  "margin-top": 8,
   "margin-bottom": 0,
   "margin-left": 10,
   "margin-right": 10,
   "spacing": 8, // Gaps between modules (8px)
-
   "modules-left": [
     "clock#date",
-    "hyprland/language",
+    // "hyprland/language",
     "wireplumber",
-    "tray"
+    "custom/ddcutil",
+    "tray",
+    "hyprland/window"
   ],
   "modules-center": [
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "hyprland/submap"
   ],
   "modules-right": [
     "cpu",
     "memory",
-    "custom/gpu",
-    "custom/storage",
-    // "temperature",
-    "backlight",
-    "custom/power"
+    // "custom/gpu",
+    // "custom/storage",
+    "temperature"
+    // "backlight",
+    // "custom/power"
     // "battery"
   ],
-
-
   "clock#date": {
-    "format": "🕙 {:%H:%M  📅 %d-%m %a}", // Icon: calendar-alt
+    "on-click": "gnome-calendar",
+    "format": "  {:%a %d %b %H:%M}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "year",
       "mode-mon-col": 3,
-      "weeks-pos": "right",
       "on-scroll": 1,
       "format": {
         "months": "<span color='#eebebe'><b>{}</b></span>",
@@ -50,7 +50,7 @@
     "format": "{short}",
   },
   "wireplumber": {
-    "on-click": "pavucontrol",
+    "on-click": "pavucontrol-qt",
     "on-click-right": "amixer sset Master toggle 1>/dev/null",
     "on-scroll-down": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.05-",
     "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.05+",
@@ -65,19 +65,36 @@
       "phone": " ",
       "portable": " ",
       "car": " ",
-      "default": "🔊"
-      // "default": [" ", " ", " "]
+      "default": [
+        " ",
+        " ",
+        " "
+      ]
     },
     "justify": "center"
+  },
+  "custom/ddcutil": {
+    "format": "{icon} {percentage}%",
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ],
+    "exec": "ddc_brightness",
+    "exec-if": "sleep 1",
+    "return-type": "json",
+    "on-scroll-up": "echo '+' > /tmp/waybar-ddc-module-rx",
+    "on-scroll-down": "echo '-' > /tmp/waybar-ddc-module-rx",
+    "on-click": "echo 'max' > /tmp/waybar-ddc-module-rx",
+    "on-click-right": "echo 'min' > /tmp/waybar-ddc-module-rx",
+    "tooltip": false
   },
   "tray": {
     "icon-size": 15,
     "spacing": 10
   },
-
   "hyprland/workspaces": {
-    "all-outputs": true,
-    "format": "{}",
+    "format": "{icon}",
     "format-icons": {
       "1": "一",
       "2": "二",
@@ -89,16 +106,26 @@
       "8": "八",
       "9": "九",
       "10": "十",
+      "special": "特別"
+    },
+    "persistent-workspaces": {
+      "*": 10
     },
     //"on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
     //"on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
     "sort-by-number": true,
-    "active-only": false,
     "justify": "center",
+    "show-special": true,
   },
-
+  "hyprland/window": {
+    "format": "{title}",
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "  $1",
+      "(.*) - fish": "> [$1]"
+    },
+  },
   "cpu": {
-    "format": "💻 {usage}% {max_frequency:0.1f}GHz",
+    "format": "󰌢  {usage}% {max_frequency:0.1f}GHz",
     "on-click": "ghostty -e btop",
     "interval": 3,
     //"max-length": 14,
@@ -107,22 +134,14 @@
     "tooltip": false
   },
   "memory": {
-    "format": "🐏 {used:0.1f}G {swapUsed:0.1f}G",
+    "format": "  {percentage}% ({used:0.1f}G)",
     "interval": 3,
     "justify": "center",
-    "tooltip": false
-  },
-  "custom/gpu": {
-    "exec": "~/.config/waybar/modules/gpu-niri.sh",
-    "format": "<span color=\"#ffe6ff\">{}</span>",
-    "return-type": "json",
-    "interval": 3,
-    "justify": "center",
-    "tooltip": false
+    "tooltip-format": "Used {used:0.1f}G of {total:0.1f}G available ({percentage}%)"
   },
   "custom/storage": {
-    "format": "💾 {}G",
-    "format-alt": "💾 {percentage}%",
+    "format": "  {}G",
+    "format-alt": "  {percentage}%",
     "format-alt-click": "click",
     "return-type": "json",
     "interval": 60,
@@ -133,13 +152,14 @@
   "temperature": {
     "thermal-zone": 1,
     "interval": 3,
-    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
     "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon/hwmon6",
-		"input-filename": "temp1_input",
+    "input-filename": "temp1_input",
     "critical-threshold": 80,
     "format-critical": " {temperatureC}°C",
     "format": "{icon} {temperatureC}°C",
-    "format-icons": [""],
+    "format-icons": [
+      ""
+    ],
     //"max-length": 20,
     //"min-length": 7,
     "tooltip": false
@@ -147,7 +167,11 @@
   "backlight": {
     "device": "intel_backlight",
     "format": "{icon}{percent}%",
-    "format-icons": ["󰃞 ","󰃟 ","󰃠 "],
+    "format-icons": [
+      "󰃞 ",
+      "󰃟 ",
+      "󰃠 "
+    ],
     "on-scroll-down": "brightnessctl s 5%-",
     "on-scroll-up": "brightnessctl s +5%",
     "justify": "center",
@@ -172,10 +196,10 @@
     ],
     "justify": "center"
   },
-  // "custom/power": {
-  //   "format": "",
-  //   "tooltip": false,
-  //   "on-click": "wlogout",
-  //   "justify": "center"
-  // }
+  "custom/power": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "wleave -k",
+    "justify": "center"
+  }
 }

@@ -1,9 +1,9 @@
-@import url("themes/colors.css");
+@import url("themes/catppuccin-mocha.css");
 
 * {
-  font-family: "Maple Mono";
+  font-family: "GeistMono Nerd Font";
   font-size: 10pt;
-  font-weight: 700;
+  font-weight: 500;
   margin: 0;
   padding: 0;
   transition-property: background-color;
@@ -40,18 +40,59 @@
 #custom-gpu,
 #custom-storage,
 #custom-storage2,
+#custom-ddcutil,
 #temperature,
 #backlight,
 #battery,
-#custom-power-menu {
+#custom-power-menu,
+#power-profiles-daemon,
+#window,
+#submap {
   margin: 0;
-  padding: 0 10px;
-  color: @foreground;
-  background-color: @background;
+  padding: 5px 10px;
+  color: @text;
+  background-color: @crust;
   border: 2px;
   border-style: solid;
-  border-color: @color2;
+  border-color: @lavender;
   border-radius: 7px;
+}
+
+#clock {
+  border-color: @green;
+}
+
+#wireplumber {
+  border-color: @teal;
+}
+
+#workspaces {
+  border-color: @green;
+}
+
+#cpu {
+  border-color: @blue;
+}
+
+#memory {
+  border-color: @teal;
+}
+
+#temperature {
+  border-color: @green;
+}
+
+#power-profiles-daemon.balanced {
+  padding: 0 17px 0 10px;
+}
+
+#power-profiles-daemon.power-saver {
+  padding: 0 15px 0 10px;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+  border: 0px;
 }
 
 #tray {
@@ -64,7 +105,7 @@
 
 #tray > .needs-attention {
   -gtk-icon-effect: highlight;
-  background-color: @color5;
+  background-color: @red;
   border-radius: 100px;
 }
 
@@ -86,8 +127,12 @@
 
 #workspaces button.active,
 #workspaces button.focused {
-  color: @color3;
+  color: @green;
   background-color: transparent;
+}
+
+#workspaces button.special {
+  color: @peach;
 }
 
 /* Fix predefined gtk background effect on hover  */
@@ -103,7 +148,7 @@
 }
 
 #battery {
-  color: @foreground;
+  color: @lavender;
 }
 
 #battery.charging,

@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+receive_pipe="/tmp/waybar-ddc-module-rx"
+step=5
+
+ddcutil_fast() {
+  # adjust the bus number and the multiplier for your display
+  # multiplier should be chosen so that it both works reliably and fast enough
+  ddcutil --noverify --bus 7 --sleep-multiplier .03 "$@" 2>/dev/null
+}
+
+ddcutil_slow() {
+  ddcutil --maxtries 15,15,15 "$@" 2>/dev/null
+}
+
+# takes ddcutil commandline as arguments
+print_brightness() {
+  if brightness=$("$@" -t getvcp 10); then
+    brightness=$(echo "$brightness" | cut -d ' ' -f 4)
+  else
+    brightness=-1
+  fi
+  echo '{ "percentage":' "$brightness" '}'
+}
+
+current_brightness() {
+  if brightness=$("$@" -t getvcp 10); then
+    brightness=$(echo "$brightness" | cut -d ' ' -f 4)
+  else
+    brightness=-1
+  fi
+  echo "$brightness"
+}
+
+save_previous_brightness() {
+  brightness=$(current_brightness "$@")
+  echo "$brightness" >/tmp/ddc_previous_brightness
+}
+
+rm -rf $receive_pipe
+mkfifo $receive_pipe
+
+# in case waybar restarted the script after restarting/replugging a monitor
+print_brightness ddcutil_slow
+
+while true; do
+  read -r command <$receive_pipe
+  case $command in
+  + | -)
+    save_previous_brightness ddcutil_fast
+    ddcutil_fast setvcp 10 $command $step
+    ;;
+  max)
+    save_previous_brightness ddcutil_fast
+    ddcutil_fast setvcp 10 100
+    ;;
+  half)
+    save_previous_brightness ddcutil_fast
+    ddcutil_fast setvcp 10 50
+    ;;
+  min)
+    save_previous_brightness ddcutil_fast
+    ddcutil_fast setvcp 10 0
+    ;;
+  restore)
+    if [ -f /tmp/ddc_previous_brightness ]; then
+      current_brightness=$(current_brightness ddcutil_fast)
+      previous_brightness=$(cat /tmp/ddc_previous_brightness)
+      ddcutil_fast setvcp 10 "$previous_brightness"
+      echo "$current_brightness" >/tmp/ddc_previous_brightness
+    fi
+    ;;
+  esac
+  print_brightness ddcutil_fast
+done
