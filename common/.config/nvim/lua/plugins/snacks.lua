@@ -18,6 +18,11 @@ return {
           },
         },
       },
+      zen = {
+        toggles = {
+          dim = false,
+        },
+      },
     },
     keys = {
       {
