@@ -31,13 +31,14 @@ Snacks.toggle({
 vim.keymap.set("n", "<C-;>", function()
   Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
-vim.keymap.set("n", "<leader>qb", function()
-  Snacks.bufdelete()
-end, { desc = "Delete Buffer" })
 
+vim.keymap.del("n", "<leader>qq")
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
 vim.keymap.del("n", "<c-/>")
+
+vim.keymap.set("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit All" })
+
 vim.keymap.set("n", "<c-/>", function()
   Snacks.terminal(nil, {
     cwd = LazyVim.root(),
