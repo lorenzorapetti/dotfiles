@@ -7,6 +7,7 @@ return {
       explorer = {
         replace_netrw = true,
       },
+      indent = { enabled = false },
       picker = {
         sources = {
           explorer = {
