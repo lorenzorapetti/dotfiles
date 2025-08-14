@@ -33,6 +33,10 @@ return {
         end,
         desc = "Toggle Zoom",
       },
+      {
+        "<leader><space>",
+        false,
+      },
     },
   },
 }
