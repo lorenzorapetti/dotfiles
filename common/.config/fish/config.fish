@@ -38,6 +38,11 @@ function k --wraps kubectl
     command kubecolor $argv
 end
 
+function mkcd
+    mkdir -p $argv
+    and cd $argv
+end
+
 alias reload='source $HOME/.config/fish/config.fish'
 
 alias la='ls -la'
