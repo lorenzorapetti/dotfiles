@@ -29,7 +29,7 @@ return {
       end
 
       if package.loaded["catppuccin"] then
-        local palette = require("catppuccin.palettes").get_palette("mocha")
+        local palette = require("catppuccin.palettes").get_palette()
         local theme = require("lualine.themes.catppuccin-mocha")
         theme.normal.c.bg = palette.mantle
         opts.options.theme = theme

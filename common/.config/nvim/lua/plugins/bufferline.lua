@@ -6,14 +6,14 @@ return {
     },
     opts = function(_, opts)
       if package.loaded["catppuccin"] then
-        local theme = require("catppuccin.palettes").get_palette("mocha")
+        local theme = require("catppuccin.palettes").get_palette()
         local active_bg = theme.base
         local inactive_bg = theme.mantle
 
         opts.highlights = require("catppuccin.groups.integrations.bufferline").get({
           styles = { "italic", "bold" },
           custom = {
-            mocha = {
+            all = {
               fill = { bg = inactive_bg },
               background = { bg = inactive_bg },
               buffer_visible = { bg = inactive_bg },
