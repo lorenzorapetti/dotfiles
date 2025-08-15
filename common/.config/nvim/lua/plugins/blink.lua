@@ -84,6 +84,9 @@ return {
           scrollbar = false,
         },
       },
+      ghost_text = {
+        enabled = false,
+      },
     },
     fuzzy = { implementation = "prefer_rust_with_warning" },
     signature = { enabled = true },
