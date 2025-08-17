@@ -13,9 +13,16 @@ clipboard-write = allow
 
 maximize = true
 
+keybind = alt+ctrl+v=new_split:right
+keybind = alt+ctrl+s=new_split:down
 keybind = alt+ctrl+l=goto_split:right
 keybind = alt+ctrl+h=goto_split:left
 keybind = alt+ctrl+j=goto_split:down
 keybind = alt+ctrl+k=goto_split:up
-keybind = alt+ctrl+v=new_split:right
-keybind = alt+ctrl+s=new_split:down
+keybind = alt+shift+ctrl+l=resize_split:right,10
+keybind = alt+shift+ctrl+h=resize_split:left,10
+keybind = alt+shift+ctrl+j=resize_split:down,10
+keybind = alt+shift+ctrl+k=resize_split:up,10
+
+keybind = alt+ctrl+f=reset_font_size
+keybind = alt+ctrl+r=reload_config
