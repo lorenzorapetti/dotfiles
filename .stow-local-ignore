@@ -4,6 +4,7 @@ README.md
 common/.config/fish
 !common/.config/fish/config.fish
 !common/.config/fish/fish_plugins
+!common/.gitignore
 
 common/.config/nushell
 !common/.config/nushell/config.nu
