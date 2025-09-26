@@ -17,7 +17,7 @@ return {
       "saghen/blink.cmp",
       "stevearc/dressing.nvim",
       "folke/snacks.nvim",
-      "echasnovski/mini.icons",
+      "nvim-mini/mini.icons",
       "zbirenbaum/copilot.lua",
       {
         "HakonHarnes/img-clip.nvim",
