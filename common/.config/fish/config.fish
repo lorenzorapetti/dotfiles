@@ -129,3 +129,5 @@ set -gx PATH $PATH /Users/lorenzo/.lmstudio/bin
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 set --export --prepend PATH "/Users/lorenzo/.rd/bin"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+source $HOME/.config/fish/utils.fish

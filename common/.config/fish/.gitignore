@@ -2,3 +2,4 @@
 !config.fish
 !.gitignore
 !fish_plugins
+!utils.fish
