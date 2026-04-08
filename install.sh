@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
 trap 'echo "Aborted."; exit 1' INT
-set -euo pipefail
 
 sudo pacman -Sq --needed --noconfirm \
-	# Terminal stuff
 	base-devel \
 	wget \
 	curl \
@@ -20,6 +18,7 @@ sudo pacman -Sq --needed --noconfirm \
 	fzf \
 	zoxide \
 	eza \
+	direnv \
 	resvg \
 	imagemagick \
 	wl-clipboard \
@@ -33,16 +32,25 @@ sudo pacman -Sq --needed --noconfirm \
 	starship \
 	atuin \
 	stow \
-
-	# GUI stuff
+	ttf-jetbrains-mono-nerd \
+	otf-geist-mono-nerd \
+	ttf-liberation \
+	otf-fira-sans \
+	otf-montserrat \
+	noto-fonts \
+	noto-fonts-cjk \
+	noto-fonts-emoji \
+	noto-fonts-extra \
+	ttf-opensans \
+	ttf-roboto \
+	ttf-roboto-mono \
+	adobe-source-sans-fonts \
 	qt6-svg \
 	qt6-declarative \
 	qt5-quickcontrols2 \
 	sddm \
-
-	# Applications
-	firefox
-	2>&1 | grep -v "is up to date -- skipping"
+	firefox \
+	ghostty
 
 # Install Rustup
 if ! command -v rustup &> /dev/null; then
@@ -72,8 +80,11 @@ else
 fi
 
 paru -S --needed --noconfirm \
+	ttf-mac-fonts \
+	otf-openmoji \
+	ttf-twemoji \
 	1password \
 	1password-cli
 
 # Install SDDM Theme
-. ./sddm.sh
+# . ./sddm.sh
