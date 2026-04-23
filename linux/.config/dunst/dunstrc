@@ -1,0 +1,38 @@
+[global]
+frame_color = "#89b4fa"
+frame_width = 2
+gap_size = 8
+separator_color = frame
+highlight = "#89b4fa"
+notification_limit = 5
+offset = (12, 12)
+enable_recursive_icon_lookup = true
+font = "GeistMono Nerd Font Mono 10"
+format = "<b>%s</b> - <i>%a</i>\n\n%b"
+min_icon_size = 24
+max_icon_size = 24
+corner_radius = 8
+history_length = 50
+dmenu = "/usr/bin/fuzzel -d --config=$HOME/.config/fuzzel/fuzzel-notifications.ini"
+
+[urgency_low]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+[urgency_normal]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+
+[urgency_critical]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+frame_color = "#fab387"
+
+[experimental]
+pause_on_mouse_hover = true
+
+[wp-volume]
+appname = "wp-volume"
+format = "%s"
+timeout = 1
+set_transient = yes
