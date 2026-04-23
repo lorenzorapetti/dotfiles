@@ -117,7 +117,7 @@
   },
   "cpu": {
     "format": "󰌢  {usage}%",
-    "on-click": "ghostty --class=quick-terminal -e btop",
+    "on-click": "quick_terminal btop",
     "interval": 3,
     //"max-length": 14,
     //"min-length": 14,

@@ -3,7 +3,7 @@ background: "#1e1e2e"
 color: "#ffffff"
 border: "#b4befe"
 padding: 12
-border_width: 2
+border_width: 1
 corner_r: 8
 
 anchor: center
@@ -44,16 +44,16 @@ menu:
         cmd: vicinae vicinae://extensions/vicinae/core/search-emojis
       - key: "e"
         desc: File Manager
-        cmd: ghostty --class=com.ghostty.quick_terminal -e yazi
+        cmd: quick_terminal yazi
       - key: "p"
         desc: Task Manager
-        cmd: ghostty --class=com.ghostty.quick_terminal -e btop
+        cmd: quick_terminal btop
       - key: "b"
         desc: Bluetooth
-        cmd: ghostty --class=com.ghostty.quick_terminal -e bluetuith
+        cmd: quick_terminal bluetuith
       - key: "v"
         desc: Volume
-        cmd: ghostty --class=com.ghostty.quick_terminal -e wiremix
+        cmd: quick_terminal wiremix
   - key: "s"
     desc: Screenshot
     submenu:
@@ -69,3 +69,15 @@ menu:
       - key: "s"
         desc: Smart
         cmd: screenshot smart
+  - key: "r"
+    desc: Record Screen
+    submenu:
+      - key: "r"
+        desc: Normal Recording
+        cmd: screenrecord
+      - key: "a"
+        desc: With Desktop Audio
+        cmd: screenrecord --with-desktop-audio
+      - key: "f"
+        desc: With Full Audio (Dekstop and Mic)
+        cmd: screenrecord --with-desktop-audio --with-microphone-audio

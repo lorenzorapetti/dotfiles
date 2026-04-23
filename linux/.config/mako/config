@@ -1,0 +1,19 @@
+max-history=20
+
+on-button-left=invoke-default-action
+on-button-right=dismiss
+on-button-middle=exec makoctl menu -n "$id" -- fuzzel -d --config=$HOME/.config/fuzzel/fuzzel-notifications.ini
+
+font=GeistMono Nerd Font Mono 10
+background-color=#1e1e2e
+text-color=#cdd6f4
+border-size=1
+border-color=#b4befe
+border-radius=8
+progress-color=over #313244
+
+format=<b>%s</b> - <i>%a</i>\n\n%b
+default-timeout=5000
+
+[urgency=high]
+border-color=#fab387

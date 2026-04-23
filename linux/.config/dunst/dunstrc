@@ -12,8 +12,12 @@ format = "<b>%s</b> - <i>%a</i>\n\n%b"
 min_icon_size = 24
 max_icon_size = 24
 corner_radius = 8
-history_length = 50
-dmenu = "/usr/bin/fuzzel -d --config=$HOME/.config/fuzzel/fuzzel-notifications.ini"
+history_length = 20
+dmenu = "notification_action_menu"
+
+mouse_left_click = do_action, close_current
+mouse_right_click = close_current
+mouse_middle_click = close_all
 
 [urgency_low]
 background = "#1e1e2e"
@@ -27,9 +31,6 @@ foreground = "#cdd6f4"
 background = "#1e1e2e"
 foreground = "#cdd6f4"
 frame_color = "#fab387"
-
-[experimental]
-pause_on_mouse_hover = true
 
 [wp-volume]
 appname = "wp-volume"

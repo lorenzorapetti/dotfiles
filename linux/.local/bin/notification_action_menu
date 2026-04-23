@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+input=$(cat)
+labels=$(printf '%s' "$input" | sed 's/^#\(.*\) ([^)]*) \[.*\]$/\1/')
+chosen_label=$(printf '%s' "$labels" | fuzzel -d --config=$HOME/.config/fuzzel/fuzzel-notifications.ini | tr -d '\n')
+# Map chosen label back to original line by finding matching line index
+while IFS= read -r label && IFS= read -r original <&3; do
+  if [ "$label" = "$chosen_label" ]; then
+    printf '%s' "$original"
+    break
+  fi
+done < <(printf '%s\n' "$labels") 3< <(printf '%s\n' "$input")

@@ -13,6 +13,7 @@ sudo pacman -Sq --needed --noconfirm \
   7zip \
   rustup \
   poppler \
+  bat \
   fd \
   ripgrep \
   jq \
@@ -43,9 +44,11 @@ sudo pacman -Sq --needed --noconfirm \
   hypridle \
   hyprlock \
   dunst \
+  v4l-utils \
   grim \
   slurp \
   satty \
+  gpu-screen-recorder \
   imv \
   mpv \
   xdg-desktop-portal-hyprland \

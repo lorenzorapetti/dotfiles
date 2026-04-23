@@ -59,7 +59,7 @@
     padding: 5px 10px;
     color: @text;
     background-color: @crust;
-    border: 2px;
+    border: 1px;
     border-style: solid;
     border-color: @lavender;
     border-radius: 7px;

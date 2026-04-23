@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-hyprlock --no-fade-in && brightnessctl -sd rgb:kbd_backlight set 0 && hyprctl dispatch dpms off
+hyprlock --no-fade-in &
+kbd_backlight set 0
+hyprctl dispatch dpms off
+sleep 10
+systemctl suspend &

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ghostty --class=com.ghostty.quick_terminal -e "$1"
