@@ -151,7 +151,8 @@ paru -S --needed --noconfirm \
   ticktick \
   evince \
   gnome-calculator \
-  gnome-disk-utility
+  gnome-disk-utility \
+  libreoffice-fresh
 
 # Install SDDM Theme
 # . ./sddm.sh
