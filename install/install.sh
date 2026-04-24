@@ -64,6 +64,7 @@ sudo pacman -Sq --needed --noconfirm \
   brightnessctl \
   bluez \
   bluez-utils \
+  bluetui \
   blueman \
   nm-connection-editor \
   network-manager-applet \
@@ -90,7 +91,8 @@ sudo pacman -Sq --needed --noconfirm \
   gnome-keyring \
   sddm \
   firefox \
-  ghostty
+  ghostty \
+  kitty
 
 # Install Rust
 rustup update stable
@@ -125,7 +127,6 @@ paru -S --needed --noconfirm \
   catppuccin-qt5ct-git \
   catppuccin-cursors-mocha \
   docker-language-server \
-  bluetuith-bin \
   wleave \
   1password \
   1password-cli \

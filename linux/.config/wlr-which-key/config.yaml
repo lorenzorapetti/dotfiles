@@ -41,7 +41,7 @@ menu:
         cmd: quick_terminal btop
       - key: "b"
         desc: Bluetooth
-        cmd: quick_terminal bluetuith
+        cmd: quick_terminal bluetui
       - key: "v"
         desc: Volume
         cmd: quick_terminal wiremix
