@@ -38,6 +38,9 @@ sudo pacman -Sq --needed --noconfirm \
   starship \
   atuin \
   stow \
+  docker \
+  docker-compose \
+  docker-buildx \
   hyprland \
   hyprshutdown \
   hyprpolkitagent \
@@ -136,7 +139,9 @@ paru -S --needed --noconfirm \
   vesktop \
   slack-desktop \
   teams-for-linux \
-  obs-studio
+  obs-studio \
+  thunderbird \
+  bambu-studio
 
 # Install SDDM Theme
 # . ./sddm.sh
