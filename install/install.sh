@@ -152,7 +152,9 @@ paru -S --needed --noconfirm \
   evince \
   gnome-calculator \
   gnome-disk-utility \
-  libreoffice-fresh
+  libreoffice-fresh \
+  nextcloud-client \
+  proton-vpn-gtk-app
 
 # Install SDDM Theme
 # . ./sddm.sh

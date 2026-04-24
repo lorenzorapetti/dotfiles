@@ -136,7 +136,8 @@ window#waybar.empty #window {
     background-color: transparent;
 }
 
-#workspaces button.special {
+#workspaces button.special.active,
+#workspaces button.special.focused {
     color: @peach;
 }
 
