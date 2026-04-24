@@ -22,7 +22,7 @@
     "cpu",
     "memory",
     "temperature",
-    "battery"
+    "group/power"
   ],
   "clock#date": {
     // "on-click": "gnome-calendar",
@@ -224,8 +224,12 @@
   "custom/power": {
     "format": "",
     "tooltip": false,
-    "on-click": "wleave -k",
+    "on-click": "wleave",
     "justify": "center"
+  },
+  "group/power": {
+    "orientation": "inherit",
+    "modules": ["battery", "power-profiles-daemon", "idle_inhibitor", "custom/power"],
   },
   "group/network-group": {
     "orientation": "inherit",

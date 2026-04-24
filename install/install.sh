@@ -126,6 +126,7 @@ paru -S --needed --noconfirm \
   catppuccin-cursors-mocha \
   docker-language-server \
   bluetuith-bin \
+  wleave \
   1password \
   1password-cli \
   vicinae-bin \

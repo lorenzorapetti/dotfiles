@@ -11,16 +11,7 @@ anchor: center
 menu:
   - key: "p"
     desc: Power
-    submenu:
-      - key: "s"
-        desc: Sleep
-        cmd: systemctl suspend
-      - key: "r"
-        desc: Reboot
-        cmd: reboot
-      - key: "o"
-        desc: Off
-        cmd: shutdown now
+    cmd: wleave
   - key: "a"
     desc: Apps
     submenu:

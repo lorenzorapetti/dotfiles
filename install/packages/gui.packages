@@ -1,0 +1,62 @@
+# GUI utils
+wiremix
+bluetui
+v4l-utils
+grim
+slurp
+satty
+gpu-screen-recorder
+brightnessctl
+bluez
+bluez-utils
+qt5ct
+qt6ct
+qt6-svg
+qt6-declarative
+qt5-quickcontrols2
+qt5-wayland
+qt6-wayland
+gnome-keyring
+
+# Fonts
+ttf-jetbrains-mono-nerd
+otf-geist-mono-nerd
+ttf-liberation
+otf-fira-sans
+otf-montserrat
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+noto-fonts-extra
+ttf-opensans
+ttf-roboto
+ttf-roboto-mono
+adobe-source-sans-fonts
+
+# Audio
+pipewire
+pipewire-alsa
+pipewire-pulse
+wireplumber
+
+# Window Manager and related tools
+sddm
+hyprland
+hyprshutdown
+hyprpolkitagent
+hypridle
+hyprlock
+dunst
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+waybar
+awww
+
+# Applications
+blueman
+nm-connection-editor
+network-manager-applet
+imv
+mpv
+firefox
+ghostty

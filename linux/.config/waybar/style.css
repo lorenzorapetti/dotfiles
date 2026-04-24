@@ -42,7 +42,6 @@
 #workspaces,
 #cpu,
 #memory,
-#battery,
 #custom-gpu,
 #custom-storage,
 #custom-storage2,
@@ -53,6 +52,7 @@
 #power,
 #window,
 #network-group,
+#power-group,
 #privacy,
 #submap {
     margin: 0;
@@ -90,6 +90,7 @@
 }
 
 #network-group,
+#power-group,
 #window {
     border-color: @flamingo;
 }
@@ -156,7 +157,8 @@ window#waybar.empty #window {
 }
 
 #battery {
-    color: @lavender;
+  color: @lavender;
+  padding-right: 8pt;
 }
 
 #battery.charging,
@@ -175,14 +177,17 @@ window#waybar.empty #window {
 }
 
 #power-profiles-daemon {
-    padding: 0;
-    padding-right: 15px;
+    padding-right: 12pt;
     font-size: 8pt;
 }
 
 #idle_inhibitor {
-    font-size: 8pt;
-    padding: 0;
+  font-size: 9pt;
+  padding-right: 8pt;
+}
+
+#custom-power {
+  padding-right: 3pt;
 }
 
 label:focus {
