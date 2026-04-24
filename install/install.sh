@@ -19,6 +19,12 @@ sudo pacman -Sq --needed --noconfirm \
   jq \
   fzf \
   zoxide \
+  dust \
+  fastfetch \
+  gvfs-mtp \
+  gvfs-nfs \
+  gvfs-smb \
+  unzip \
   eza \
   direnv \
   resvg \
@@ -34,6 +40,7 @@ sudo pacman -Sq --needed --noconfirm \
   stylua \
   shfmt \
   neovim \
+  tree-sitter-cli \
   fish \
   starship \
   atuin \
@@ -141,7 +148,10 @@ paru -S --needed --noconfirm \
   teams-for-linux \
   obs-studio \
   thunderbird \
-  bambu-studio
+  ticktick \
+  evince \
+  gnome-calculator \
+  gnome-disk-utility
 
 # Install SDDM Theme
 # . ./sddm.sh
