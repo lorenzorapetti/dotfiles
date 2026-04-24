@@ -1,9 +1,14 @@
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  program = "/opt/1Password/op-ssh-sign"
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
 [user]
 	name = Lorenzo Rapetti
 	email = lorenzo.rapetti.94@gmail.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ0iBia+xeEjiuMt8QPQ4g03TVOt66zG69R6oFal6o3M
 [init]
 	defaultBranch = main
 [alias]
@@ -61,6 +66,7 @@
   autocorrect = prompt
 [commit]
   verbose = true
+  gpgsign = true
 [rerere]
   enabled = true
   autoupdate = true

@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-brightnessctl -rd rgb:kbd_backlight && niri msg action power-on-monitors && brightnessctl -r
+kbd_backlight --restore
+hyprctl dispatch dpms on
+brightnessctl -r

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+floating=$(hyprctl activewindow -j | jq '.floating')
+
+if [[ "$floating" == "true" ]]; then
+    hyprctl dispatch pin
+else
+    hyprctl dispatch setfloating
+    hyprctl dispatch pin
+fi

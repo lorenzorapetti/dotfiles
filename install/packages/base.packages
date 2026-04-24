@@ -1,0 +1,42 @@
+# Base utils
+base-devel
+wget
+curl
+git
+ffmpeg
+cairo
+pango
+7zip
+poppler
+resvg
+imagemagick
+chafa
+
+# Terminal utilities and programs
+fish
+bat
+fd
+ripgrep
+jq
+fzf
+zoxide
+eza
+wl-clipboard
+stow
+lazygit
+lazydocker
+atuin
+yazi
+starship
+
+# Development
+rustup
+direnv
+neovim
+
+# Language servers and formatters
+lua-language-server
+bash-language-server
+stylua
+shfmt
+

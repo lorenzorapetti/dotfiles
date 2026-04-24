@@ -15,9 +15,10 @@ button {
 	background-color: #181825;
 	border-style: solid;
 	border-width: 1px;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: 25%;
+}
+
+button label {
+  font-family: "GeistMono Nerd Font Mono";
 }
 
 button:focus, button:active, button:hover {
@@ -26,26 +27,6 @@ button:focus, button:active, button:hover {
 	outline-style: none;
 }
 
-#lock {
-    background-image: url("/home/lorenzo/.config/wleave/icons/lock.svg");
-}
-
-#logout {
-    background-image: url("/home/lorenzo/.config/wleave/icons/logout.svg");
-}
-
-#suspend {
-    background-image: url("/home/lorenzo/.config/wleave/icons/suspend.svg");
-}
-
-#hibernate {
-    background-image: url("/home/lorenzo/.config/wleave/icons/hibernate.svg");
-}
-
-#shutdown {
-    background-image: url("/home/lorenzo/.config/wleave/icons/shutdown.svg");
-}
-
-#reboot {
-    background-image: url("/home/lorenzo/.config/wleave/icons/reboot.svg");
+button picture {
+  transform: scale(0.5);
 }

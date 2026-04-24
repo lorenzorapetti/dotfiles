@@ -1,0 +1,12 @@
+[tools]
+node = "24"
+bun = "1"
+deno = "2"
+python = "3"
+uv = "latest"
+
+[settings]
+python.uv_venv_auto = "source"
+
+[env]
+UV_PYTHON = { value = "{{ tools.python.path }}", tools = true }

@@ -8,3 +8,8 @@ function zn
         echo "No path found."
     end
 end
+
+function mkcd
+	mkdir -p $argv
+	and cd $argv
+end

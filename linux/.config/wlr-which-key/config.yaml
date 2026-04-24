@@ -1,0 +1,74 @@
+font: GeistMono Nerd Font Mono 12
+background: "#1e1e2e"
+color: "#ffffff"
+border: "#b4befe"
+padding: 12
+border_width: 1
+corner_r: 8
+
+anchor: center
+
+menu:
+  - key: "p"
+    desc: Power
+    cmd: wleave
+  - key: "a"
+    desc: Apps
+    submenu:
+      - key: "h"
+        desc: Helium
+        cmd: helium-browser
+      - key: "f"
+        desc: Firefox
+        cmd: firefox
+      - key: "t"
+        desc: Telegram
+        cmd: Telegram
+      - key: "d"
+        desc: Discord
+        cmd: vesktop
+  - key: "e"
+    desc: Execute
+    submenu:
+      - key: "w"
+        desc: Emoji Selector
+        cmd: vicinae vicinae://extensions/vicinae/core/search-emojis
+      - key: "e"
+        desc: File Manager
+        cmd: quick_terminal yazi
+      - key: "p"
+        desc: Task Manager
+        cmd: quick_terminal btop
+      - key: "b"
+        desc: Bluetooth
+        cmd: quick_terminal bluetui
+      - key: "v"
+        desc: Volume
+        cmd: quick_terminal wiremix
+  - key: "s"
+    desc: Screenshot
+    submenu:
+      - key: "f"
+        desc: Full Screen
+        cmd: screenshot fullscreen
+      - key: "r"
+        desc: Region
+        cmd: screenshot region
+      - key: "w"
+        desc: Windows
+        cmd: screenshot windows
+      - key: "s"
+        desc: Smart
+        cmd: screenshot smart
+  - key: "r"
+    desc: Record Screen
+    submenu:
+      - key: "r"
+        desc: Normal Recording
+        cmd: screenrecord
+      - key: "a"
+        desc: With Desktop Audio
+        cmd: screenrecord --with-desktop-audio
+      - key: "f"
+        desc: With Full Audio (Dekstop and Mic)
+        cmd: screenrecord --with-desktop-audio --with-microphone-audio
