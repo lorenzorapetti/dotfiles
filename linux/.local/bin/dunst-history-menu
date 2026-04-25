@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+history=$(dunstctl history)
+
+menu=$(echo "$history" | jq -r '
+  .data[][] |
+  "\(.id.data) - \(.summary.data) - \(.appname.data)"
+')
+
+if [[ -z "$menu" ]]; then
+  exit 0
+fi
+
+selected=$(echo "$menu" | fuzzel -d --config="$HOME/.config/fuzzel/fuzzel-notifications.ini")
+
+if [[ -z "$selected" ]]; then
+  exit 0
+fi
+
+id=$(echo "$selected" | cut -d' ' -f1)
+
+dunstctl history-pop "$id"
