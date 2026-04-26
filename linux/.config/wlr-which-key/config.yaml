@@ -72,3 +72,15 @@ menu:
       - key: "f"
         desc: With Full Audio (Dekstop and Mic)
         cmd: screenrecord --with-desktop-audio --with-microphone-audio
+  - key: "n"
+    desc: Notifications
+    submenu:
+      - key: "c"
+        desc: Clear Oldest
+        cmd: system-action notifications close
+      - key: "q"
+        desc: Clear All
+        cmd: system-action notifications close-all
+      - key: "h"
+        desc: Show History
+        cmd: system-action notifications show-history
