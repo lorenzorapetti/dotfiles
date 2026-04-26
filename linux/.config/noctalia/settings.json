@@ -125,7 +125,7 @@
                     "colorizeIcons": false,
                     "hideMode": "hidden",
                     "id": "ActiveWindow",
-                    "maxWidth": 145,
+                    "maxWidth": 150,
                     "scrollingMode": "hover",
                     "showIcon": true,
                     "showText": true,
@@ -294,10 +294,29 @@
                     "id": "Bluetooth"
                 },
                 {
-                    "id": "WallpaperSelector"
+                    "id": "NoctaliaPerformance"
                 },
                 {
-                    "id": "NoctaliaPerformance"
+                    "enableOnStateLogic": false,
+                    "generalTooltipText": "Screenshot",
+                    "icon": "image-in-picture",
+                    "id": "CustomButton",
+                    "onClicked": "qs -c noctalia-shell ipc call controlCenter toggle && screenshot region",
+                    "onMiddleClicked": "",
+                    "onRightClicked": "qs -c noctalia-shell ipc call controlCenter toggle && screenshot fullscreen",
+                    "showExecTooltip": true,
+                    "stateChecksJson": "[]"
+                },
+                {
+                    "enableOnStateLogic": false,
+                    "generalTooltipText": "Record Screen",
+                    "icon": "video",
+                    "id": "CustomButton",
+                    "onClicked": "qs -c noctalia-shell ipc call controlCenter toggle && screenrecord",
+                    "onMiddleClicked": "",
+                    "onRightClicked": "qs -c noctalia-shell ipc call controlCenter toggle && screenrecord --with-desktop-audio",
+                    "showExecTooltip": true,
+                    "stateChecksJson": "[{\"command\":\"\",\"icon\":\"\"}]"
                 }
             ],
             "right": [
@@ -361,7 +380,7 @@
         "allowPanelsOnScreenWithoutBar": true,
         "allowPasswordWithFprintd": false,
         "animationDisabled": false,
-        "animationSpeed": 1,
+        "animationSpeed": 2,
         "autoStartAuth": false,
         "avatarImage": "/home/lorenzo/.face",
         "boxRadiusRatio": 1,
@@ -531,7 +550,7 @@
         "location": "top_right",
         "monitors": [
         ],
-        "overlayLayer": true
+        "overlayLayer": false
     },
     "plugins": {
         "autoUpdate": false,

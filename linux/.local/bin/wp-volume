@@ -33,11 +33,13 @@ end
 
 set state (wpctl get-volume @DEFAULT_AUDIO_SINK@)
 
-if string match --quiet --entire MUTED $state
-    notify-send --replace-id 9999 --app-name wp-volume --urgency low 'Volume: Muted' &
-    set notify_pid $last_pid
-else
-    set volume (math "$(echo $state | cut -d ' ' -f 2) * 100")
-    notify-send --replace-id 9999 --app-name wp-volume --urgency low -h "int:value:$volume" "Volume: $volume%" &
-    set notify_pid $last_pid
+if pgrep -x dunst > /dev/null 2>&1
+    if string match --quiet --entire MUTED $state
+        notify-send --replace-id 9999 --app-name wp-volume --urgency low 'Volume: Muted' &
+        set notify_pid $last_pid
+    else
+        set volume (math "$(echo $state | cut -d ' ' -f 2) * 100")
+        notify-send --replace-id 9999 --app-name wp-volume --urgency low -h "int:value:$volume" "Volume: $volume%" &
+        set notify_pid $last_pid
+    end
 end
