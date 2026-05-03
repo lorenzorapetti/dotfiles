@@ -53,6 +53,7 @@ sudo pacman -Sq --needed --noconfirm \
   hyprpolkitagent \
   hypridle \
   hyprlock \
+  kanshi \
   dunst \
   v4l-utils \
   grim \
@@ -154,7 +155,8 @@ paru -S --needed --noconfirm \
   gnome-disk-utility \
   libreoffice-fresh \
   nextcloud-client \
-  proton-vpn-gtk-app
+  proton-vpn-gtk-app \
+  noctalia-shell
 
 # Install SDDM Theme
 # . ./sddm.sh

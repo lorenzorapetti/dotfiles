@@ -11,7 +11,7 @@ anchor: center
 menu:
   - key: "p"
     desc: Power
-    cmd: wleave
+    cmd: system-action power menu-toggle
   - key: "a"
     desc: Apps
     submenu:

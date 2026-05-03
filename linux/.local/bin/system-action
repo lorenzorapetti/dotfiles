@@ -4,91 +4,87 @@ SUBCOMMAND="${1}"
 ACTION="${2}"
 
 notifications() {
-    NOCTALIA_RUNNING=false
-    DUNST_RUNNING=false
+  NOCTALIA_RUNNING=false
+  DUNST_RUNNING=false
 
-    pgrep -f "qs -c noctalia-shell" > /dev/null 2>&1 && NOCTALIA_RUNNING=true
-    pgrep -x "dunst" > /dev/null 2>&1 && DUNST_RUNNING=true
+  pgrep -f "qs -c noctalia-shell" >/dev/null 2>&1 && NOCTALIA_RUNNING=true
+  pgrep -x "dunst" >/dev/null 2>&1 && DUNST_RUNNING=true
 
-    if $NOCTALIA_RUNNING && $DUNST_RUNNING; then
-        notify-send -u urgent "system-action" "Both noctalia-shell and dunst are running. Using noctalia-shell."
-        BACKEND="noctalia"
-    elif $NOCTALIA_RUNNING; then
-        BACKEND="noctalia"
-    elif $DUNST_RUNNING; then
-        BACKEND="dunst"
+  if $NOCTALIA_RUNNING && $DUNST_RUNNING; then
+    notify-send -u urgent "system-action" "Both noctalia-shell and dunst are running. Using noctalia-shell."
+    BACKEND="noctalia"
+  elif $NOCTALIA_RUNNING; then
+    BACKEND="noctalia"
+  elif $DUNST_RUNNING; then
+    BACKEND="dunst"
+  else
+    echo "system-action: no supported notification daemon is running" >&2
+    exit 1
+  fi
+
+  case "${ACTION}" in
+  close)
+    if [[ "$BACKEND" == "noctalia" ]]; then
+      qs -c noctalia-shell ipc call notifications dismissOldest
     else
-        echo "system-action: no supported notification daemon is running" >&2
-        exit 1
+      dunstctl close
     fi
-
-    case "${ACTION}" in
-        close)
-            if [[ "$BACKEND" == "noctalia" ]]; then
-                qs -c noctalia-shell ipc call notifications dismissOldest
-            else
-                dunstctl close
-            fi
-            ;;
-        close-all)
-            if [[ "$BACKEND" == "noctalia" ]]; then
-                qs -c noctalia-shell ipc call notifications dismissAll
-            else
-                dunstctl close-all
-            fi
-            ;;
-        show-history)
-            if [[ "$BACKEND" == "noctalia" ]]; then
-                qs -c noctalia-shell ipc call notifications toggleHistory
-            else
-                dunst-history-menu
-            fi
-            ;;
-        *)
-            echo "Usage: system-action notifications <close|close-all|show-history>" >&2
-            exit 1
-            ;;
-    esac
+    ;;
+  close-all)
+    if [[ "$BACKEND" == "noctalia" ]]; then
+      qs -c noctalia-shell ipc call notifications dismissAll
+    else
+      dunstctl close-all
+    fi
+    ;;
+  show-history)
+    if [[ "$BACKEND" == "noctalia" ]]; then
+      qs -c noctalia-shell ipc call notifications toggleHistory
+    else
+      dunst-history-menu
+    fi
+    ;;
+  *)
+    echo "Usage: system-action notifications <close|close-all|show-history>" >&2
+    exit 1
+    ;;
+  esac
 }
 
 power() {
-    if pgrep -f "qs -c noctalia-shell" > /dev/null 2>&1; then
-        BACKEND="noctalia"
-    else
-        BACKEND="other"
-    fi
+  if pgrep -f "qs -c noctalia-shell" >/dev/null 2>&1; then
+    BACKEND="noctalia"
+  else
+    BACKEND="other"
+  fi
 
-    case "${ACTION}" in
-        menu-toggle)
-            if [[ "$BACKEND" == "noctalia" ]]; then
-                qs -c noctalia-shell ipc call sessionMenu toggle
-            else
-                wleave
-            fi
-            ;;
-        lock)
-            if [[ "$BACKEND" == "noctalia" ]]; then
-                qs -c noctalia-shell ipc call sessionMenu toggle && sleep 0.1 && hyprlock
-            else
-                hyprlock
-            fi
-            ;;
-        *)
-            echo "Usage: system-action power <menu-toggle|lock>" >&2
-            exit 1
-            ;;
-    esac
+  case "${ACTION}" in
+  menu-toggle)
+    if [[ "$BACKEND" == "noctalia" ]]; then
+      qs -c noctalia-shell ipc call sessionMenu toggle
+    else
+      wleave
+    fi
+    ;;
+  lock)
+    hyprlock
+    ;;
+  *)
+    echo "Usage: system-action power <menu-toggle|lock>" >&2
+    exit 1
+    ;;
+  esac
 }
 
 case "${SUBCOMMAND}" in
-    notifications)
-        notifications
-        ;;
-    power)
-        power
-        ;;
-    *)
-        echo "Usage: system-action <notifications|power> <action>" >&2
-        exit 1
-        ;;
+notifications)
+  notifications
+  ;;
+power)
+  power
+  ;;
+*)
+  echo "Usage: system-action <notifications|power> <action>" >&2
+  exit 1
+  ;;
 esac
