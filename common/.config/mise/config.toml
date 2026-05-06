@@ -4,9 +4,11 @@ bun = "1"
 deno = "2"
 python = "3"
 uv = "latest"
+aube = "latest"
 
 [settings]
 python.uv_venv_auto = "source"
+idiomatic_version_file_enable_tools = ["node"]
 
 [env]
 UV_PYTHON = { value = "{{ tools.python.path }}", tools = true }
