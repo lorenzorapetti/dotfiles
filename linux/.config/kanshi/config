@@ -6,5 +6,11 @@ profile {
 
 profile {
   output "Sharp Corporation 0x158F Unknown" enable
+  output "Xiaomi Corporation Mi Monitor 0000000000000" enable
+  exec awww-switch
+}
+
+profile {
+  output "Sharp Corporation 0x158F Unknown" enable
   exec awww-switch
 }

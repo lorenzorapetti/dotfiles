@@ -8,7 +8,10 @@ aube = "latest"
 
 [settings]
 python.uv_venv_auto = "source"
-idiomatic_version_file_enable_tools = ["node"]
+idiomatic_version_file_enable_tools = ["node", "ruby"]
+
+[settings.ruby]
+compile = false
 
 [env]
 UV_PYTHON = { value = "{{ tools.python.path }}", tools = true }

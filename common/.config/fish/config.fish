@@ -9,7 +9,7 @@ fish_config theme choose catppuccin-mocha --color-theme=dark
 source $HOME/.config/fish/aliases.fish
 source $HOME/.config/fish/utils.fish
 
-fish_add_path $HOME/.cargo/bin
+fish_add_path -g $HOME/.cargo/bin
 
 $HOME/.local/bin/mise activate fish | source
 
