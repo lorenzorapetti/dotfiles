@@ -6,7 +6,9 @@ padding: 12
 border_width: 1
 corner_r: 8
 
-anchor: center
+anchor: bottom-right
+margin_right: 12
+margin_bottom: 12
 
 menu:
   - key: "p"
@@ -45,6 +47,9 @@ menu:
       - key: "v"
         desc: Volume
         cmd: quick_terminal wiremix
+      - key: "c"
+        desc: Color Picker
+        cmd: hyprpicker | wl-copy
   - key: "s"
     desc: Screenshot
     submenu:
