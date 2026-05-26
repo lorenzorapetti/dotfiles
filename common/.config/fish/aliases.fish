@@ -20,6 +20,14 @@ if type -q dust
     alias du='dust'
 end
 
+if type -q brew
+    alias b="brew"
+    alias bi="brew install"
+    alias bo="brew outdated"
+    alias bu="brew update"
+    alias bup="brew upgrade"
+end
+
 alias la='ls -la'
 alias g='git'
 alias gs='git status'
