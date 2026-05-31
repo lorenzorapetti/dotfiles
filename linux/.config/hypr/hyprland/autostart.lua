@@ -10,22 +10,26 @@ hl.on('hyprland.start', function()
   hl.exec_cmd 'systemctl --user start hyprpolkitagent'
 
   hl.exec_cmd 'hypridle'
-  hl.exec_cmd 'nm-applet'
-  hl.exec_cmd 'blueman-applet'
   hl.exec_cmd 'udiskie'
 
   if bar == 'noctalia' then
     hl.exec_cmd 'qs -c noctalia-shell'
     hl.exec_cmd 'awww-daemon'
+    hl.exec_cmd 'nm-applet'
+    hl.exec_cmd 'blueman-applet'
   elseif bar == 'wayle' then
     hl.exec_cmd 'wayle panel start'
   elseif bar == 'waybar' then
     hl.exec_cmd '$HOME/.config/waybar/waybar-hypr.sh'
     hl.exec_cmd 'dunst'
     hl.exec_cmd 'awww-daemon'
+    hl.exec_cmd 'nm-applet'
+    hl.exec_cmd 'blueman-applet'
   elseif bar == 'ashell' then
     hl.exec_cmd 'ashell'
     hl.exec_cmd 'awww-daemon'
+    hl.exec_cmd 'nm-applet'
+    hl.exec_cmd 'blueman-applet'
   end
 
   hl.exec_cmd 'vicinae server'
