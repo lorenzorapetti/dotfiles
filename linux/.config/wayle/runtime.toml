@@ -1,0 +1,96 @@
+[general]
+font-sans = "Noto Sans"
+font-mono = "GeistMono Nerd Font Mono"
+
+[bar]
+scale = 0.6499999761581421
+inset-edge = 0.699999988079071
+inset-ends = 0.5
+module-gap = 1.0
+background-opacity = 0
+button-variant = "basic"
+button-label-padding = 1.0499999523162842
+button-gap = 1.100000023841858
+button-group-background = "bg-surface-elevated"
+
+[[bar.layout]]
+monitor = "*"
+show = true
+left = [
+    { name = "Time & Weather", modules = [
+    "clock",
+    "weather",
+] },
+    "systray",
+    "window-title",
+]
+center = [
+    "hyprland-workspaces",
+    "keybind-mode",
+]
+right = [
+    { name = "System", modules = [
+    "cpu",
+    "netstat",
+    "ram",
+] },
+    { name = "Connections", modules = [
+    "bluetooth",
+    "network",
+] },
+    { name = "Media", modules = [
+    "microphone",
+    "volume",
+] },
+    "battery",
+    { name = "Dash", modules = [
+    "idle-inhibit",
+    "notifications",
+    "dashboard",
+] },
+]
+
+[styling.palette]
+bg = "#11111b"
+surface = "#181825"
+elevated = "#1e1e2e"
+fg = "#cdd6f4"
+fg-muted = "#bac2de"
+primary = "#b4befe"
+red = "#f38ba8"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+blue = "#74c7ec"
+
+[modules.bluetooth]
+label-show = false
+
+[modules.clock]
+format = "%a %d %b %H:%M"
+
+[modules.hyprland-workspaces]
+app-icons-show = true
+
+[modules.idle-inhibit]
+label-show = false
+
+[modules.keybind-mode]
+auto-hide = true
+
+[modules.network]
+label-show = false
+
+[modules.notifications]
+label-show = false
+popup-layer = "top"
+
+[modules.weather]
+location = "41.46614,12.9043"
+
+[osd]
+enabled = false
+
+[wallpaper]
+cycling-enabled = true
+cycling-directory = "/home/lorenzo/Pictures/Wallpapers"
+cycling-mode = "shuffle"
