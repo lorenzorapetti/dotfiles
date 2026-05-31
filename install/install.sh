@@ -103,7 +103,8 @@ sudo pacman -Sq --needed --noconfirm \
   sddm \
   firefox \
   ghostty \
-  kitty
+  kitty \
+  nautilus
 
 # Install Rust
 rustup update stable
@@ -156,7 +157,11 @@ paru -S --needed --noconfirm \
   libreoffice-fresh \
   nextcloud-client \
   proton-vpn-gtk-app \
-  noctalia-shell
+  noctalia-shell \
+  wlr-which-key \
+  wayle-bin
 
 # Install SDDM Theme
-# . ./sddm.sh
+. ./sddm.sh
+
+xdg-user-dirs-update
