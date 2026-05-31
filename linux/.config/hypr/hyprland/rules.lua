@@ -142,34 +142,3 @@ hl.window_rule {
   },
   float = true,
 }
-
-local function monitor_rules()
-  local monitors = hl.get_monitors()
-  local samsung = nil
-  local xiaomi = nil
-  local xps = nil
-
-  for _, monitor in pairs(monitors) do
-    if monitor.name == 'Samsung Electric Company Odyssey G80SD H1AK500000' then
-      samsung = monitor.name
-    elseif monitor.name == 'Xiaomi Corporation Mi Monitor 0000000000000' then
-      xiaomi = monitor.name
-    elseif monitor.name == 'Sharp Corporation 0x158F' then
-      xps = monitor.name
-    end
-  end
-
-  if samsung or xiaomi or xps then
-    for i = 1, 3 do
-      hl.workspace_rule {
-        workspace = tostring(i),
-        monitor = samsung or xiaomi or xps,
-        default = i == 1,
-      }
-    end
-  end
-end
-
-monitor_rules()
-hl.on('monitor.added', monitor_rules)
-hl.on('monitor.removed', monitor_rules)
