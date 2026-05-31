@@ -3,15 +3,14 @@ font-sans = "Noto Sans"
 font-mono = "GeistMono Nerd Font Mono"
 
 [bar]
-scale = 0.6499999761581421
-inset-edge = 0.699999988079071
-inset-ends = 0.5
-module-gap = 1.0
-background-opacity = 0
+scale = 0.800000011920929
+module-gap = 1.5
+background-opacity = 80
 button-variant = "basic"
-button-label-padding = 1.0499999523162842
+button-bg-opacity = 0
+button-rounding = "md"
 button-gap = 1.100000023841858
-button-group-background = "bg-surface-elevated"
+button-group-background = "transparent"
 
 [[bar.layout]]
 monitor = "*"
@@ -24,10 +23,7 @@ left = [
     "systray",
     "window-title",
 ]
-center = [
-    "hyprland-workspaces",
-    "keybind-mode",
-]
+center = ["hyprland-workspaces"]
 right = [
     { name = "System", modules = [
     "cpu",
@@ -69,7 +65,10 @@ label-show = false
 format = "%a %d %b %H:%M"
 
 [modules.hyprland-workspaces]
+label-use-name = true
+divider = "  "
 app-icons-show = true
+active-indicator = "underline"
 
 [modules.idle-inhibit]
 label-show = false
@@ -80,6 +79,9 @@ auto-hide = true
 [modules.network]
 label-show = false
 
+[modules.niri-workspaces]
+active-indicator = "underline"
+
 [modules.notifications]
 label-show = false
 popup-layer = "top"
@@ -88,7 +90,8 @@ popup-layer = "top"
 location = "41.46614,12.9043"
 
 [osd]
-enabled = false
+duration = 1000
+layer = "top"
 
 [wallpaper]
 cycling-enabled = true
