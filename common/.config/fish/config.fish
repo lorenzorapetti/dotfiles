@@ -3,6 +3,7 @@ set TERM xterm-256color
 set -gx EDITOR nvim
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx MANPAGER "bat -plman"
+set -gx SSH_AUTH_SOCK $XDG_RUNTIME_DIR/ssh-agent.socket
 
 fish_config theme choose catppuccin-mocha --color-theme=dark
 
