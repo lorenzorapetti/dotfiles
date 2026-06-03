@@ -1,0 +1,13 @@
+[Unit]
+Description=Add SSH key to agent
+Wants=ssh-agent.service
+After=ssh-agent.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-add %h/.ssh/id_ed25519
+
+[Install]
+WantedBy=default.target
