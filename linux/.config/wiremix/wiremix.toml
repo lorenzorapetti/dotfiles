@@ -1,0 +1,2 @@
+tab = "output"
+tabs = [ "output", "playback", "input", "recording", "configuration" ]
