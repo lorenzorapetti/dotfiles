@@ -70,3 +70,12 @@ systemctl --user enable wayle.service
 systemctl --user enable vicinae.service
 systemctl --user enable udiskie.service
 systemctl --user enable ssh-add.service
+
+if command -v ufw &>/dev/null; then
+  # Open the necessary ports for KDE Connect
+  sudo ufw allow 1714:1764/udp
+  sudo ufw allow 1714:1764/tcp
+  sudo ufw reload
+else
+  echo "ufw not found, skipping firewall setup..."
+fi
