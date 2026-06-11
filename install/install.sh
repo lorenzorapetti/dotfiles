@@ -2,109 +2,13 @@
 
 trap 'echo "Aborted."; exit 1' INT
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Install the base packages needed to bootstrap paru
 sudo pacman -Sq --needed --noconfirm \
   base-devel \
-  wget \
-  curl \
   git \
-  ffmpeg \
-  cairo \
-  pango \
-  7zip \
-  rustup \
-  poppler \
-  bat \
-  fd \
-  ripgrep \
-  jq \
-  fzf \
-  zoxide \
-  dust \
-  fastfetch \
-  gvfs-mtp \
-  gvfs-nfs \
-  gvfs-smb \
-  unzip \
-  eza \
-  direnv \
-  resvg \
-  imagemagick \
-  wl-clipboard \
-  chafa \
-  btop \
-  lazygit \
-  lazydocker \
-  yazi \
-  lua-language-server \
-  bash-language-server \
-  stylua \
-  shfmt \
-  neovim \
-  tree-sitter-cli \
-  fish \
-  starship \
-  atuin \
-  stow \
-  docker \
-  docker-compose \
-  docker-buildx \
-  hyprland \
-  hyprshutdown \
-  hyprpolkitagent \
-  hypridle \
-  hyprlock \
-  kanshi \
-  dunst \
-  v4l-utils \
-  grim \
-  slurp \
-  satty \
-  gpu-screen-recorder \
-  imv \
-  mpv \
-  xdg-desktop-portal-hyprland \
-  xdg-desktop-portal-gtk \
-  waybar \
-  awww \
-  pipewire \
-  pipewire-alsa \
-  pipewire-pulse \
-  wireplumber \
-  wiremix \
-  pavucontrol \
-  brightnessctl \
-  bluez \
-  bluez-utils \
-  bluetui \
-  blueman \
-  nm-connection-editor \
-  network-manager-applet \
-  ttf-jetbrains-mono-nerd \
-  otf-geist-mono-nerd \
-  ttf-liberation \
-  otf-fira-sans \
-  otf-montserrat \
-  noto-fonts \
-  noto-fonts-cjk \
-  noto-fonts-emoji \
-  noto-fonts-extra \
-  ttf-opensans \
-  ttf-roboto \
-  ttf-roboto-mono \
-  adobe-source-sans-fonts \
-  qt5ct \
-  qt6ct \
-  qt6-svg \
-  qt6-declarative \
-  qt5-quickcontrols2 \
-  qt5-wayland \
-  qt6-wayland \
-  gnome-keyring \
-  sddm \
-  firefox \
-  ghostty \
-  kitty \
-  nautilus
+  rustup
 
 # Install Rust
 rustup update stable
@@ -117,9 +21,31 @@ if ! command -v paru &>/dev/null; then
   makepkg -si -d
   popd
   rm -rf "$PARU_TMP"
-
+else
   echo "paru already installed, skipping..."
 fi
+
+# Install all packages listed in a .packages file with paru.
+# Comments (lines starting with #) and blank lines are ignored.
+install_packages() {
+  local file="$1"
+  local packages
+  mapfile -t packages < <(grep -v '^#' "$file" | grep -v '^$')
+
+  paru -S --needed --noconfirm "${packages[@]}" || exit 1
+
+  for pkg in "${packages[@]}"; do
+    # Secondary check to handle states where paru doesn't actually register an error
+    if ! pacman -Q "$pkg" &>/dev/null; then
+      echo -e "\033[31mError: Package '$pkg' did not install\033[0m" >&2
+      exit 1
+    fi
+  done
+}
+
+install_packages "$SCRIPT_DIR/packages/base.packages"
+install_packages "$SCRIPT_DIR/packages/gui.packages"
+install_packages "$SCRIPT_DIR/packages/aur.packages"
 
 # Install mise
 if ! command -v mise &>/dev/null; then
@@ -127,39 +53,6 @@ if ! command -v mise &>/dev/null; then
 else
   echo "mise already installed, skipping..."
 fi
-
-paru -S --needed --noconfirm \
-  frameworkintegration \
-  gtk-engine-murrine \
-  adwaita-fonts \
-  ttf-mac-fonts \
-  otf-openmoji \
-  ttf-twemoji \
-  darkly \
-  catppuccin-qt5ct-git \
-  catppuccin-cursors-mocha \
-  docker-language-server \
-  wleave \
-  1password \
-  1password-cli \
-  vicinae-bin \
-  helium-browser-bin \
-  telegram-desktop \
-  vesktop \
-  slack-desktop \
-  teams-for-linux \
-  obs-studio \
-  thunderbird \
-  ticktick \
-  evince \
-  gnome-calculator \
-  gnome-disk-utility \
-  libreoffice-fresh \
-  nextcloud-client \
-  proton-vpn-gtk-app \
-  noctalia-shell \
-  wlr-which-key \
-  wayle-bin
 
 # Install SDDM Theme
 . ./sddm.sh

@@ -1,0 +1,39 @@
+# Theming
+gtk-engine-murrine
+darkly
+catppuccin-qt5ct-git
+catppuccin-cursors-mocha
+
+# Fonts and emoji
+ttf-mac-fonts
+otf-openmoji
+ttf-twemoji
+
+# Development
+docker-language-server
+codecrafters-bin
+heroku-cli-bin
+runapp
+
+# Desktop and shell
+noctalia-shell
+wleave
+wlr-which-key
+vicinae-bin
+wayle-bin
+
+# Browsers
+helium-browser-bin
+brave-origin-bin
+
+# Applications
+1password
+1password-cli
+vesktop
+slack-desktop
+teams-for-linux
+ticktick
+sone-bin
+quickemu
+ani-cli-git
+shelly

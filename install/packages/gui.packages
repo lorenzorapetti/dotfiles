@@ -17,6 +17,12 @@ qt5-quickcontrols2
 qt5-wayland
 qt6-wayland
 gnome-keyring
+gvfs-mtp
+gvfs-nfs
+gvfs-smb
+polkit-kde-agent
+fprintd
+xorg-xwayland
 
 # Fonts
 ttf-jetbrains-mono-nerd
@@ -32,12 +38,31 @@ ttf-opensans
 ttf-roboto
 ttf-roboto-mono
 adobe-source-sans-fonts
+adwaita-fonts
+awesome-terminal-fonts
+cantarell-fonts
+ttf-meslo-nerd
 
 # Audio
 pipewire
 pipewire-alsa
 pipewire-pulse
 wireplumber
+alsa-utils
+alsa-plugins
+
+# Media and codecs
+ffmpegthumbnailer
+vlc-plugins-all
+gst-libav
+gst-plugins-bad
+gst-plugins-ugly
+gst-plugin-va
+gst-plugin-pipewire
+libdvdcss
+libgsf
+libopenraw
+unrar
 
 # Window Manager and related tools
 sddm
@@ -46,17 +71,43 @@ hyprshutdown
 hyprpolkitagent
 hypridle
 hyprlock
+kanshi
 dunst
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 waybar
 awww
+weston
+frameworkintegration
 
-# Applications
+# Printing
+cups
+cups-pdf
+system-config-printer
+
+# Networking
 blueman
 nm-connection-editor
 network-manager-applet
+
+# Applications
 imv
 mpv
+pavucontrol
+playerctl
+kdeconnect
 firefox
 ghostty
+kitty
+alacritty
+nautilus
+meld
+telegram-desktop
+obs-studio
+thunderbird
+evince
+gnome-calculator
+gnome-disk-utility
+libreoffice-fresh
+nextcloud-client
+proton-vpn-gtk-app

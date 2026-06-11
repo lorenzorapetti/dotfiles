@@ -1,8 +1,7 @@
 # Base utils
-base-devel
+git
 wget
 curl
-git
 ffmpeg
 cairo
 pango
@@ -11,6 +10,11 @@ poppler
 resvg
 imagemagick
 chafa
+rsync
+xdg-user-dirs
+bash-completion
+plocate
+uwsm
 
 # Terminal utilities and programs
 fish
@@ -28,15 +32,31 @@ lazydocker
 atuin
 yazi
 starship
+btop
+dust
+duf
+glances
+fastfetch
+unzip
+
+# Editors
+neovim
+vim
+nano
+nano-syntax-highlighting
+micro
 
 # Development
-rustup
 direnv
-neovim
+docker
+docker-compose
+docker-buildx
+github-cli
+opencode
+tree-sitter-cli
 
 # Language servers and formatters
 lua-language-server
 bash-language-server
 stylua
 shfmt
-
