@@ -50,6 +50,9 @@ menu:
       - key: "c"
         desc: Color Picker
         cmd: hyprpicker | wl-copy
+      - key: "s"
+        desc: Systemd Services
+        cmd: quick_terminal systemctl-tui -s user
   - key: "s"
     desc: Screenshot
     submenu:
