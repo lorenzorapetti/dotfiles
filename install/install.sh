@@ -69,3 +69,4 @@ systemctl --user enable wayle.service
 
 systemctl --user enable vicinae.service
 systemctl --user enable udiskie.service
+systemctl --user enable ssh-add.service
