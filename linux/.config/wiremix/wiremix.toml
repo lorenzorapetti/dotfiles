@@ -1,2 +1,45 @@
 tab = "output"
 tabs = [ "output", "playback", "input", "recording", "configuration" ]
+
+# Friendly device names.
+#
+# This mirrors the wireplumber rename in
+# wireplumber.conf.d/51-rename-devices.conf, which sets friendly node.nick/
+# node.description on the ALSA nodes. wiremix's defaults don't fully use those:
+#
+#   * The Output/Input Devices tabs (endpoint) default to "{device:device.nick}"
+#     first, which is the raw card name (e.g. "HD-Audio Generic"). We reorder it
+#     to prefer the friendly node name set by wireplumber.
+#   * The Configuration tab (device) uses device.nick/device.description, which
+#     wireplumber never renames, so we add per-device overrides below.
+#
+# Devices are matched by their stable device.name (derived from USB/PCI IDs).
+[names]
+# Prefer the friendly wireplumber node name on the Devices tabs.
+endpoint = [ "{node:node.nick}", "{node:node.description}", "{device:device.nick}" ]
+
+# Friendly names for the Configuration tab, keyed by stable device.name.
+[[names.overrides]]
+types = [ "device" ]
+matches = [ { "device:device.name" = "alsa_card.usb-Schiit_Audio_Schiit_Modi_3_-00" } ]
+templates = [ "Schiit DAC" ]
+
+[[names.overrides]]
+types = [ "device" ]
+matches = [ { "device:device.name" = "alsa_card.usb-Logitech_PRO_X_Wireless_Gaming_Headset-00" } ]
+templates = [ "Logitech G PRO X Headset" ]
+
+[[names.overrides]]
+types = [ "device" ]
+matches = [ { "device:device.name" = "alsa_card.pci-0000_65_00.6" } ]
+templates = [ "Motherboard" ]
+
+[[names.overrides]]
+types = [ "device" ]
+matches = [ { "device:device.name" = "alsa_card.pci-0000_65_00.1" } ]
+templates = [ "Monitor (HDMI)" ]
+
+[[names.overrides]]
+types = [ "device" ]
+matches = [ { "device:device.name" = "alsa_card.usb-Insta360_Insta360_Link_2C-02" } ]
+templates = [ "Webcam" ]
