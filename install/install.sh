@@ -165,3 +165,14 @@ paru -S --needed --noconfirm \
 . ./sddm.sh
 
 xdg-user-dirs-update
+
+git clone https://github.com/lorenzorapetti/nvim ~/.config/nvim
+
+stow --target="$HOME" common
+stow --target="$HOME" linux
+
+# Change this if you're using a different shell
+systemctl --user enable wayle.service
+
+systemctl --user enable vicinae.service
+systemctl --user enable udiskie.service

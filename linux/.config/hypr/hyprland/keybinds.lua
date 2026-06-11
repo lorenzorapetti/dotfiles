@@ -33,6 +33,10 @@ local function exec(cmd)
   return hl.dsp.exec_cmd(cmd)
 end
 
+local function run_app(app)
+  return exec('runapp ' .. app)
+end
+
 local function define_submap(name, callback)
   hl.define_submap(name, function()
     callback()
@@ -50,7 +54,7 @@ local function submap_bind(key, action, description)
 end
 
 --------------------- Programs ---------------------
-bindm('RETURN', exec(terminal), 'Open Terminal')
+bindm('RETURN', run_app(terminal), 'Open Terminal')
 bindm('B', exec(vicinae_app 'helium'), 'Open Browser')
 bindm('E', exec(quick_terminal 'yazi'), 'Open Terminal File Manager')
 bindm('D', exec(quick_terminal 'bluetui'), 'Open Bluetooth Settings')

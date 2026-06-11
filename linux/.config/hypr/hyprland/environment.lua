@@ -1,3 +1,8 @@
+-- Skip setting environment variables if we're running in a UWSM-managed environment, as UWSM will handle that for us.
+if os.getenv 'UWSM_MANAGED' == '1' then
+  return
+end
+
 hl.env('XCURSOR_SIZE', '24')
 hl.env('XCURSOR_THEME', 'catppuccin-mocha-lavender-cursors')
 hl.env('HYPRCURSOR_SIZE', '24')

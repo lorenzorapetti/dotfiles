@@ -64,6 +64,23 @@ hl.window_rule {
 }
 
 hl.window_rule {
+  name = 'picture-in-picture-meet',
+  match = {
+    title = '^Meet.*',
+  },
+  float = true,
+  pin = true,
+  size = {
+    'monitor_w*0.3',
+    'monitor_h*0.4',
+  },
+  move = {
+    'monitor_w-(monitor_w*0.3)-12',
+    'monitor_h-(monitor_h*0.4)-12',
+  },
+}
+
+hl.window_rule {
   name = 'picture-in-picture',
   match = {
     title = '(Picture in picture|Picture in Picture|picture in picture|picture_in_picture|picture-in-picture)',
