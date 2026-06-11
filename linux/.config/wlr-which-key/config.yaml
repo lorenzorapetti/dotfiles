@@ -19,16 +19,16 @@ menu:
     submenu:
       - key: "h"
         desc: Helium
-        cmd: helium-browser
+        cmd: runapp helium-browser
       - key: "f"
         desc: Firefox
-        cmd: firefox
+        cmd: runapp firefox
       - key: "t"
         desc: Telegram
-        cmd: Telegram
+        cmd: runapp Telegram
       - key: "d"
         desc: Discord
-        cmd: vesktop
+        cmd: runapp vesktop
   - key: "e"
     desc: Execute
     submenu:

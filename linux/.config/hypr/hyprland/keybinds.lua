@@ -63,7 +63,7 @@ bindm('SHIFT + E', exec(vicinae_app 'org.gnome.Nautilus'), 'Open File Manager')
 
 --------------------- Launchers ---------------------
 bindm('SPACE', exec 'vicinae toggle', 'Toggle Launcher')
-bindm('SHIFT + SPACE', exec '1password --quick-access', 'Toggle 1Password')
+bindm('SHIFT + SPACE', run_app '1password --quick-access', 'Toggle 1Password')
 bindm('Y', exec 'vicinae vicinae://extensions/vicinae/clipboard/history', 'Toggle Clipboard History')
 bindm('O', exec 'wlr-which-key', 'Which Key')
 
