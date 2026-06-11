@@ -7,6 +7,10 @@ require 'hyprland.input'
 require 'hyprland.style'
 
 hl.config {
+  general = {
+    no_focus_fallback = true,
+  },
+
   ecosystem = {
     no_donation_nag = true,
   },

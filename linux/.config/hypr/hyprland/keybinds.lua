@@ -1,6 +1,5 @@
 hl.config {
   binds = {
-    workspace_back_and_forth = true,
     hide_special_on_workspace_change = true,
     workspace_center_on = 1,
     movefocus_cycles_groupfirst = true,
