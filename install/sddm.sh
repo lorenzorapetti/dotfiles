@@ -25,6 +25,12 @@ if [[ -z "$THEME_DIR" ]]; then
 fi
 
 echo "Installing SDDM theme to $SDDM_THEMES_DIR..."
+THEME_NAME=$(basename "$THEME_DIR")
+DEST="$SDDM_THEMES_DIR/$THEME_NAME"
+if [[ -d "$DEST" ]]; then
+  echo "Removing existing SDDM theme at $DEST..."
+  sudo rm -rf "$DEST"
+fi
 sudo mv "$THEME_DIR" "$SDDM_THEMES_DIR/"
 
 echo "Linking sddm.conf..."

@@ -55,14 +55,17 @@ else
 fi
 
 # Install SDDM Theme
-. ./sddm.sh
+. "$SCRIPT_DIR/sddm.sh"
 
 xdg-user-dirs-update
 
-git clone https://github.com/lorenzorapetti/nvim ~/.config/nvim
+if [ ! -d "$HOME/.config/nvim" ]; then
+  git clone https://github.com/lorenzorapetti/nvim ~/.config/nvim
+else
+  echo "nvim config already present, skipping clone..."
+fi
 
-stow --target="$HOME" common
-stow --target="$HOME" linux
+. "$SCRIPT_DIR/../link.sh"
 
 # Change this if you're using a different shell
 systemctl --user enable wayle.service
@@ -70,6 +73,7 @@ systemctl --user enable wayle.service
 systemctl --user enable vicinae.service
 systemctl --user enable udiskie.service
 systemctl --user enable ssh-add.service
+systemctl --user enable hypridle.service
 
 if command -v ufw &>/dev/null; then
   # Open the necessary ports for KDE Connect
