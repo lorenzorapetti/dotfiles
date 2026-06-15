@@ -52,7 +52,7 @@ notifications() {
 }
 
 power() {
-  if pgrep -f "qs -c noctalia-shell" >/dev/null 2>&1; then
+  if pgrep -f "noctalia" >/dev/null 2>&1; then
     BACKEND="noctalia"
   else
     BACKEND="other"
@@ -61,13 +61,17 @@ power() {
   case "${ACTION}" in
   menu-toggle)
     if [[ "$BACKEND" == "noctalia" ]]; then
-      qs -c noctalia-shell ipc call sessionMenu toggle
+      noctalia msg panel-toggle session
     else
       wleave
     fi
     ;;
   lock)
-    hyprlock
+    if [[ "$BACKEND" == "noctalia" ]]; then
+      noctalia msg session lock
+    else
+      hyprlock
+    fi
     ;;
   *)
     echo "Usage: system-action power <menu-toggle|lock>" >&2
