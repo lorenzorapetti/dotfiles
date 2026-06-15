@@ -48,3 +48,5 @@ alias gld='git log --pretty=format:"%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(
 alias v='nvim'
 
 alias reload='source $HOME/.config/fish/config.fish'
+
+alias notes='cd ~/notes && nvim'
