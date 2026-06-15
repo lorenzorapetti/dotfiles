@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Linear
+Comment=Linear
+Exec=launch-webapp https://linear.app
+Terminal=false
+Type=Application
+Icon=/home/lorenzo/.local/share/applications/icons/Linear.png
+StartupNotify=true

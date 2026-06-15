@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Adapted from omarchy (omarchy-launch-webapp)
+# https://github.com/basecamp/omarchy
+# Launch a URL as a web app in the default supported browser.
+
+browser=$(xdg-settings get default-web-browser)
+
+case $browser in
+google-chrome* | brave* | microsoft-edge* | opera* | vivaldi* | helium*) ;;
+*) browser="chromium.desktop" ;;
+esac
+
+exec setsid runapp $(sed -n 's/^Exec=\([^ ]*\).*/\1/p' {~/.local,~/.nix-profile,/usr}/share/applications/$browser 2>/dev/null | head -1) --app="$1" "${@:2}"
