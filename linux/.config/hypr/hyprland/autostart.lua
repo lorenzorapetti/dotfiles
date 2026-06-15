@@ -1,5 +1,5 @@
 -- Possible values: 'noctalia', 'waybar', 'ashell', 'wayle'
-local bar = 'wayle'
+local bar = 'noctalia'
 
 hl.on('hyprland.start', function()
   hl.exec_cmd 'gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"'
@@ -7,7 +7,12 @@ hl.on('hyprland.start', function()
 
   hl.exec_cmd 'sleep 1 && dbus-update-activation-environment --systemd --all'
   hl.exec_cmd 'gnome-keyring-daemon --start --components=secrets'
-  hl.exec_cmd 'systemctl --user start hyprpolkitagent'
+
+  if bar == 'noctalia' then
+    hl.exec_cmd 'runapp noctalia'
+  else
+    hl.exec_cmd 'systemctl --user start hyprpolkitagent'
+  end
 
   if os.getenv 'UWSM_MANAGED' ~= '1' then
     hl.exec_cmd 'hypridle'
@@ -15,9 +20,6 @@ hl.on('hyprland.start', function()
 
     if bar == 'noctalia' then
       hl.exec_cmd 'qs -c noctalia-shell'
-      hl.exec_cmd 'awww-daemon'
-      hl.exec_cmd 'nm-applet'
-      hl.exec_cmd 'blueman-applet'
     elseif bar == 'wayle' then
       hl.exec_cmd 'wayle panel start'
     elseif bar == 'waybar' then

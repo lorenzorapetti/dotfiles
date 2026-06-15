@@ -16,7 +16,8 @@ heroku-cli-bin
 runapp
 
 # Desktop and shell
-noctalia-shell
+noctalia-git
+noctalia-greeter-git
 wleave
 wlr-which-key
 vicinae-bin

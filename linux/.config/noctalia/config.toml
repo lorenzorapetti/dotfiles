@@ -1,0 +1,128 @@
+[bar.default]
+background_opacity = 0.85
+center = [ "workspaces" ]
+end = [
+    "cpu",
+    "network_rx",
+    "network_tx",
+    "ram",
+    "bluetooth",
+    "network",
+    "volume",
+    "notifications",
+    "battery",
+    "control-center",
+    "session"
+]
+margin_edge = 0
+margin_ends = 0
+radius = 0
+shadow = false
+start = [ "clock", "weather", "tray", "active_window", "media" ]
+thickness = 40
+widget_spacing = 14
+
+[calendar]
+enabled = true
+
+[desktop_widgets]
+enabled = false
+
+[dock]
+auto_hide = true
+enabled = true
+icon_size = 36
+reserve_space = false
+
+[location]
+address = "Latina, Italia"
+
+[lockscreen]
+blurred_desktop = true
+fingerprint = false
+
+[lockscreen_widgets]
+schema_version = 2
+
+[osd.kinds]
+bluetooth = false
+keyboard_layout = false
+media = false
+wifi = false
+
+[plugin_settings."noctalia/screen_recorder"]
+copy_to_clipboard = true
+
+[plugins]
+enabled = [ "noctalia/bongocat", "noctalia/screen_recorder" ]
+
+[shell]
+clipboard_enabled = false
+font_family = "GeistMono NF"
+launch_apps_as_systemd_services = true
+polkit_agent = true
+settings_show_advanced = true
+
+    [shell.panel]
+    session_placement = "centered"
+    wallpaper_placement = "floating"
+
+    [shell.shadow]
+    alpha = 0.2
+
+[theme]
+builtin = "Catppuccin"
+
+    [theme.templates]
+    enable_builtin_templates = false
+    enable_community_templates = false
+
+[wallpaper]
+directory = "~/Pictures/Wallpapers"
+
+    [wallpaper.automation]
+    enabled = true
+
+[widget.active_window]
+max_length = 180
+title_scroll = "on_hover"
+
+[widget.battery]
+display_mode = "graphic"
+
+[widget.cat]
+type = "noctalia/bongocat:cat"
+
+[widget.clock]
+format = "%a %e %b %H:%M"
+
+[widget.cpu]
+show_label = false
+
+[widget.media]
+hide_when_no_media = true
+max_length = 180
+title_scroll = "on_hover"
+
+[widget.network]
+show_label = false
+
+[widget.network_rx]
+show_label = false
+
+[widget.network_tx]
+show_label = false
+
+[widget.ram]
+show_label = false
+stat = "ram_pct"
+
+[widget.weather]
+show_condition = false
+
+[widget.workspaces]
+display = "name"
+empty_color = "primary"
+focused_color = "tertiary"
+hide_when_empty = true
+occupied_color = "primary"
