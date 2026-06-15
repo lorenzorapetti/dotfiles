@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=SONE
-Exec="/usr/bin/sone" %u
 Terminal=false
-MimeType=x-scheme-handler/tidal
 NoDisplay=true
+MimeType=x-scheme-handler/tidal
+Exec="/usr/bin/sone" %u
