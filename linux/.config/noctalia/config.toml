@@ -11,6 +11,8 @@ end = [
     "volume",
     "notifications",
     "battery",
+    "screenshot",
+    "recorder",
     "control-center",
     "session"
 ]
@@ -34,6 +36,36 @@ enabled = true
 icon_size = 36
 reserve_space = false
 
+[idle]
+behavior_order = [ "Reduce Brightness", "Keyboard Brightness", "lock", "screen-off", "lock-and-suspend" ]
+
+    [idle.behavior."Keyboard Brightness"]
+    action = "command"
+    command = "kbd_backlight 0"
+    enabled = true
+    timeout = 180
+
+    [idle.behavior."Reduce Brightness"]
+    action = "command"
+    command = "brightnessctl -s set 10"
+    enabled = true
+    timeout = 180
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 300
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = true
+    timeout = 600
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 400
+
 [location]
 address = "Latina, Italia"
 
@@ -42,6 +74,7 @@ blurred_desktop = true
 fingerprint = false
 
 [lockscreen_widgets]
+enabled = false
 schema_version = 2
 
 [osd.kinds]
@@ -67,8 +100,40 @@ settings_show_advanced = true
     session_placement = "centered"
     wallpaper_placement = "floating"
 
+    [[shell.session.actions]]
+    action = "lock"
+    enabled = true
+    shortcut = "1"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "logout"
+    enabled = true
+    shortcut = "2"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "lock_and_suspend"
+    enabled = true
+    shortcut = "3"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "reboot"
+    command = "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"
+    enabled = true
+    shortcut = "4"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    command = "hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'"
+    enabled = true
+    shortcut = "5"
+    variant = "destructive"
+
     [shell.shadow]
-    alpha = 0.2
+    alpha = 0.20000000000000001
 
 [theme]
 builtin = "Catppuccin"
@@ -116,6 +181,9 @@ show_label = false
 [widget.ram]
 show_label = false
 stat = "ram_pct"
+
+[widget.recorder]
+type = "noctalia/screen_recorder:recorder"
 
 [widget.weather]
 show_condition = false
