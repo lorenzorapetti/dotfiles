@@ -66,10 +66,10 @@ bindm('SHIFT + SPACE', run_app '1password --quick-access', 'Toggle 1Password')
 bindm('Y', exec 'vicinae vicinae://extensions/vicinae/clipboard/history', 'Toggle Clipboard History')
 bindm('O', exec 'wlr-which-key', 'Which Key')
 
-bindm('ESCAPE', exec 'system-action power lock', 'Lock Screen')
-bindm('CAPS_LOCK', exec 'system-action power lock', 'Lock Screen')
-bindm('SHIFT + ESCAPE', exec 'system-action power menu-toggle', 'Power Menu')
-bindm('SHIFT + CAPS_LOCK', exec 'system-action power menu-toggle', 'Power Menu')
+bindm('ESCAPE', exec '/home/lorenzo/.local/bin/system-action power lock', 'Lock Screen')
+bindm('CAPS_LOCK', exec '/home/lorenzo/.local/bin/system-action power lock', 'Lock Screen')
+bindm('SHIFT + ESCAPE', exec '/home/lorenzo/.local/bin/system-action power menu-toggle', 'Power Menu')
+bindm('SHIFT + CAPS_LOCK', exec '/home/lorenzo/.local/bin/system-action power menu-toggle', 'Power Menu')
 
 local exit_hyprland = 'command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch "hl.dsp.exit()"'
 bindm('CTRL + ESCAPE', exec(exit_hyprland), 'Exit Hyprland')
