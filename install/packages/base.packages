@@ -40,6 +40,7 @@ glances
 fastfetch
 unzip
 systemctl-tui
+claude-code
 
 # Editors
 neovim
