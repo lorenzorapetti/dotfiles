@@ -13,6 +13,8 @@ end = [
     "battery",
     "screenshot",
     "recorder",
+    "wallpaper",
+    "caffeine",
     "control-center",
     "session"
 ]
@@ -103,40 +105,44 @@ settings_show_advanced = true
     [[shell.session.actions]]
     action = "lock"
     enabled = true
-    shortcut = "1"
+    shortcut = "l"
     variant = "default"
 
     [[shell.session.actions]]
     action = "logout"
     enabled = true
-    shortcut = "2"
+    shortcut = "o"
     variant = "default"
 
     [[shell.session.actions]]
     action = "lock_and_suspend"
     enabled = true
-    shortcut = "3"
+    shortcut = "u"
     variant = "default"
 
     [[shell.session.actions]]
     action = "reboot"
     command = "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"
     enabled = true
-    shortcut = "4"
+    shortcut = "r"
     variant = "default"
 
     [[shell.session.actions]]
     action = "shutdown"
     command = "hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'"
     enabled = true
-    shortcut = "5"
+    shortcut = "s"
     variant = "destructive"
 
     [shell.shadow]
-    alpha = 0.20000000000000001
+    alpha = 0.19999999552965164
 
 [theme]
 builtin = "Catppuccin"
+community_palette = "Oxocarbon"
+mode = "dark"
+source = "builtin"
+wallpaper_scheme = "m3-content"
 
     [theme.templates]
     enable_builtin_templates = false
