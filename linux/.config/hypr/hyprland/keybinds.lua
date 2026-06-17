@@ -36,6 +36,10 @@ local function run_app(app)
   return exec('runapp ' .. app)
 end
 
+local function system_action(action)
+  return exec('/home/lorenzo/.local/bin/system-action ' .. action)
+end
+
 local function define_submap(name, callback)
   hl.define_submap(name, function()
     callback()
@@ -66,27 +70,27 @@ bindm('SHIFT + SPACE', run_app '1password --quick-access', 'Toggle 1Password')
 bindm('Y', exec 'vicinae vicinae://extensions/vicinae/clipboard/history', 'Toggle Clipboard History')
 bindm('O', exec 'wlr-which-key', 'Which Key')
 
-bindm('ESCAPE', exec '/home/lorenzo/.local/bin/system-action power lock', 'Lock Screen')
-bindm('CAPS_LOCK', exec '/home/lorenzo/.local/bin/system-action power lock', 'Lock Screen')
-bindm('SHIFT + ESCAPE', exec '/home/lorenzo/.local/bin/system-action power menu-toggle', 'Power Menu')
-bindm('SHIFT + CAPS_LOCK', exec '/home/lorenzo/.local/bin/system-action power menu-toggle', 'Power Menu')
+bindm('ESCAPE', system_action 'session lock', 'Lock Screen')
+bindm('CAPS_LOCK', system_action 'session lock', 'Lock Screen')
+bindm('SHIFT + ESCAPE', system_action 'session menu-toggle', 'Power Menu')
+bindm('SHIFT + CAPS_LOCK', system_action 'session menu-toggle', 'Power Menu')
 
 local exit_hyprland = 'command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch "hl.dsp.exit()"'
 bindm('CTRL + ESCAPE', exec(exit_hyprland), 'Exit Hyprland')
 bindm('CTRL + CAPS_LOCK', exec(exit_hyprland), 'Exit Hyprland')
 
 --------------------- Screenshot ---------------------
-bind('PRINT', exec 'screenshot region', 'Screenshot of region')
+bind('PRINT', system_action 'screenshot region', 'Screenshot of region')
 bind('SHIFT + PRINT', exec 'screenshot window', 'Screenshot of window')
 bind('CTRL + PRINT', exec 'screenshot output', 'Screenshot of display')
 
 bindm('PRINT', hl.dsp.submap 'screenshot', 'Screenshot Submap')
 
 define_submap('screenshot', function()
-  submap_bind('S', exec 'screenshot region', 'Screenshot of region')
+  submap_bind('S', system_action 'screenshot region', 'Screenshot of region')
   submap_bind('W', exec 'screenshot window', 'Screenshot of window')
-  submap_bind('R', exec 'screenrecord', 'Screenrecord')
-  submap_bind('SHIFT + R', exec 'screenrecord --stop-recording', 'Stop Screenrecord')
+  submap_bind('R', system_action 'screenrecord start', 'Screenrecord')
+  submap_bind('SHIFT + R', system_action 'screenrecord stop', 'Stop Screenrecord')
 end)
 
 --------------------- Apps ---------------------
@@ -200,18 +204,18 @@ bindm('CTRL + COMMA', hl.dsp.workspace.move { monitor = '-1' }, 'Move Workspace 
 
 --------------------- Media ---------------------
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind('XF86AudioRaiseVolume', hl.dsp.exec_cmd 'wp-volume 5%+', { locked = true, repeating = true })
-hl.bind('XF86AudioLowerVolume', hl.dsp.exec_cmd 'wp-volume 5%-', { locked = true, repeating = true })
-hl.bind('XF86AudioMute', hl.dsp.exec_cmd 'wp-volume toggle-mute', { locked = true, repeating = true })
-hl.bind('XF86AudioMicMute', hl.dsp.exec_cmd 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle', { locked = true, repeating = true })
-hl.bind('XF86MonBrightnessUp', hl.dsp.exec_cmd 'brightnessctl -e4 -n2 set 5%+', { locked = true, repeating = true })
-hl.bind('XF86MonBrightnessDown', hl.dsp.exec_cmd 'brightnessctl -e4 -n2 set 5%-', { locked = true, repeating = true })
+hl.bind('XF86AudioRaiseVolume', system_action 'volume up', { locked = true, repeating = true })
+hl.bind('XF86AudioLowerVolume', system_action 'volume down', { locked = true, repeating = true })
+hl.bind('XF86AudioMute', system_action 'volume mute', { locked = true, repeating = true })
+hl.bind('XF86AudioMicMute', system_action 'mic mute', { locked = true, repeating = true })
+hl.bind('XF86MonBrightnessUp', system_action 'brightness up', { locked = true, repeating = true })
+hl.bind('XF86MonBrightnessDown', system_action 'brightness down', { locked = true, repeating = true })
 
 -- Requires playerctl
-hl.bind('XF86AudioNext', hl.dsp.exec_cmd 'playerctl next', { locked = true })
-hl.bind('XF86AudioPause', hl.dsp.exec_cmd 'playerctl play-pause', { locked = true })
-hl.bind('XF86AudioPlay', hl.dsp.exec_cmd 'playerctl play-pause', { locked = true })
-hl.bind('XF86AudioPrev', hl.dsp.exec_cmd 'playerctl previous', { locked = true })
+hl.bind('XF86AudioNext', system_action 'media next', { locked = true })
+hl.bind('XF86AudioPause', system_action 'media toggle', { locked = true })
+hl.bind('XF86AudioPlay', system_action 'media toggle', { locked = true })
+hl.bind('XF86AudioPrev', system_action 'media previous', { locked = true })
 
 -- # ------------------- Groups -------------------
 -- bindd = $mainMod SHIFT, G, Toggle Window into Group, togglegroup

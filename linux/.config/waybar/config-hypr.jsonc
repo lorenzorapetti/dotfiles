@@ -47,9 +47,9 @@
   },
   "wireplumber": {
     "on-click": "pavucontrol",
-    "on-click-right": "amixer sset Master toggle 1>/dev/null",
-    "on-scroll-down": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.05-",
-    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.05+",
+    "on-click-right": "system-action volume mute",
+    "on-scroll-down": "system-action volume down",
+    "on-scroll-up": "system-action volume up",
     "format": "{icon} {volume}%",
     "format-source": " ",
     "format-source-muted": " ",
@@ -163,8 +163,8 @@
       "󰃟 ",
       "󰃠 "
     ],
-    "on-scroll-down": "brightnessctl s 5%-",
-    "on-scroll-up": "brightnessctl s +5%",
+    "on-scroll-down": "system-action brightness down",
+    "on-scroll-up": "system-action brightness up",
     "justify": "center",
     "tooltip": false
   },
@@ -224,7 +224,7 @@
   "custom/power": {
     "format": "",
     "tooltip": false,
-    "on-click": "wleave",
+    "on-click": "system-action session menu-toggle",
     "justify": "center"
   },
   "group/power": {

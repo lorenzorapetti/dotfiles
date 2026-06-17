@@ -13,7 +13,7 @@ margin_bottom: 12
 menu:
   - key: "p"
     desc: Power
-    cmd: system-action power menu-toggle
+    cmd: system-action session menu-toggle
   - key: "a"
     desc: Apps
     submenu:
@@ -58,10 +58,10 @@ menu:
     submenu:
       - key: "f"
         desc: Full Screen
-        cmd: screenshot fullscreen
+        cmd: system-action screenshot fullscreen
       - key: "r"
         desc: Region
-        cmd: screenshot region
+        cmd: system-action screenshot region
       - key: "w"
         desc: Windows
         cmd: screenshot windows
@@ -73,7 +73,7 @@ menu:
     submenu:
       - key: "r"
         desc: Normal Recording
-        cmd: screenrecord
+        cmd: system-action screenrecord start
       - key: "a"
         desc: With Desktop Audio
         cmd: screenrecord --with-desktop-audio
@@ -82,16 +82,19 @@ menu:
         cmd: screenrecord --with-desktop-audio --with-microphone-audio
       - key: "s"
         desc: Stop Recording
-        cmd: screenrecord --stop-recording
+        cmd: system-action screenrecord stop
   - key: "n"
     desc: Notifications
     submenu:
       - key: "c"
-        desc: Clear Oldest
-        cmd: system-action notifications close
-      - key: "q"
-        desc: Clear All
-        cmd: system-action notifications close-all
+        desc: Clear Active
+        cmd: system-action notifications clear-active
+      - key: "x"
+        desc: Clear History
+        cmd: system-action notifications clear-history
       - key: "h"
         desc: Show History
         cmd: system-action notifications show-history
+      - key: "d"
+        desc: Toggle Do Not Disturb
+        cmd: system-action notifications toggle-dnd
