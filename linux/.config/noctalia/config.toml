@@ -40,6 +40,7 @@ reserve_space = false
 
 [idle]
 behavior_order = [ "Reduce Brightness", "Keyboard Brightness", "lock", "screen-off", "lock-and-suspend" ]
+pre_action_fade_seconds = 0
 
     [idle.behavior."Keyboard Brightness"]
     action = "command"
@@ -76,8 +77,58 @@ blurred_desktop = true
 fingerprint = false
 
 [lockscreen_widgets]
-enabled = false
+enabled = true
 schema_version = 2
+widget_order = [ "lockscreen-widget-0000000000000001", "lockscreen-login-box@HDMI-A-1", "lockscreen-widget-0000000000000002" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 1600.0
+    cy = 900.0
+    output = "HDMI-A-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.70000000000000007
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 8.0
+        show_login_button = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 192.0
+    box_width = 416.0
+    cx = 1600.0
+    cy = 596.0
+    output = "HDMI-A-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        background = false
+        clock_style = "digital"
+        shadow = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
+    box_height = 48.0
+    box_width = 496.0
+    cx = 1600.0
+    cy = 708.0
+    output = "HDMI-A-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
+        background = false
+        format = "%A %e %B"
 
 [osd.kinds]
 bluetooth = false
@@ -86,6 +137,7 @@ media = false
 wifi = false
 
 [plugin_settings."noctalia/screen_recorder"]
+color_range = "full"
 copy_to_clipboard = true
 
 [plugins]
@@ -101,6 +153,13 @@ settings_show_advanced = true
     [shell.panel]
     session_placement = "centered"
     wallpaper_placement = "floating"
+
+    [shell.screenshot]
+    copy_to_clipboard = false
+    directory = "~/Pictures/Screenshots"
+    pipe_command = "satty -f -"
+    pipe_to_command = true
+    save_to_file = false
 
     [[shell.session.actions]]
     action = "lock"
@@ -153,6 +212,31 @@ directory = "~/Pictures/Wallpapers"
 
     [wallpaper.automation]
     enabled = true
+
+    [wallpaper.default]
+    path = "/home/lorenzo/Pictures/Wallpapers/tyler-durden-zm.jpg"
+
+    [wallpaper.last]
+    path = "/home/lorenzo/Pictures/Wallpapers/tyler-durden-zm.jpg"
+
+    [wallpaper.monitors.HDMI-A-1]
+    path = "/home/lorenzo/Pictures/Wallpapers/tyler-durden-zm.jpg"
+
+    [[wallpaper.favorite]]
+    builtin_palette = "Catppuccin"
+    palette_source = "builtin"
+    path = "/home/lorenzo/Pictures/Wallpapers/0078.jpg"
+    theme_mode = "dark"
+
+    [[wallpaper.favorite]]
+    path = "/home/lorenzo/Pictures/Wallpapers/1123121.png"
+    theme_mode = "auto"
+
+    [[wallpaper.favorite]]
+    builtin_palette = "Catppuccin"
+    palette_source = "builtin"
+    path = "/home/lorenzo/Pictures/Wallpapers/2897748.jpg"
+    theme_mode = "dark"
 
 [widget.active_window]
 max_length = 180
