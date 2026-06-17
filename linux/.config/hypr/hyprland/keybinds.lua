@@ -37,7 +37,7 @@ local function run_app(app)
 end
 
 local function system_action(action)
-  return exec('/home/lorenzo/.local/bin/system-action ' .. action)
+  return exec('system-action ' .. action)
 end
 
 local function define_submap(name, callback)
@@ -201,6 +201,7 @@ bindm('CTRL + PERIOD', hl.dsp.workspace.move { monitor = '+1' }, 'Move Workspace
 bindm('CTRL + COMMA', hl.dsp.workspace.move { monitor = '-1' }, 'Move Workspace to Previous Monitor')
 
 --------------------- Notifications ---------------------
+bindm('N', exec 'wlr-which-key --initial-keys n', 'Notifications')
 
 --------------------- Media ---------------------
 -- Laptop multimedia keys for volume and LCD brightness
@@ -230,19 +231,3 @@ hl.bind('XF86AudioPrev', system_action 'media previous', { locked = true })
 -- bindd = $mainMod SHIFT CTRL, l, Move Window into Right Group, moveintogroup, r
 -- bindd = $mainMod SHIFT CTRL, k, Move Window into Above Group, moveintogroup, u
 -- bindd = $mainMod SHIFT CTRL, j, Move Window into Below Group, moveintogroup, d
---
--- # ------------------- Notifications -------------------
---
--- bindd = $mainMod, N, Notifications Submap, submap, notifications
---
--- submap = notifications
---
--- bindd = , A, Notifications Actions, exec, dunstctl context; hyprctl dispatch submap reset
--- bindd = , C, Close Topmost Notification, exec, dunstctl close; hyprctl dispatch submap reset
--- bindd = , Q, Close All Notifications, exec, dunstctl close-all; hyprctl dispatch submap reset
--- bindd = , H, Notification History, exec, system-action notifications show-history; hyprctl dispatch submap reset
--- bindd = , escape, Exit Submap, submap, reset
--- bindd = , caps_lock, Exit Submap, submap, reset
---
--- submap = reset
---
