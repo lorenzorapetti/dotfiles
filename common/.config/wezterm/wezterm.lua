@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local workspace_manager = wezterm.plugin.require("https://github.com/ryanmsnyder/workspace-manager.wezterm")
 
 local function is_vim(pane)
 	-- this is set by the plugin, and unset on ExitPre in Neovim
@@ -36,7 +37,7 @@ local act = wezterm.action
 
 -- Style
 config.font = wezterm.font("GeistMono Nerd Font Mono")
-config.font_size = 11
+config.font_size = 12
 config.color_scheme = "Catppuccin Mocha"
 
 -- Tabs
@@ -148,6 +149,11 @@ config.key_tables = {
 		{ key = "Escape", action = "PopKeyTable" },
 	},
 }
+
+workspace_manager.session_enabled = true
+workspace_manager.session_restore_on_startup = true
+
+workspace_manager.apply_to_config(config)
 
 -- Finally, return the configuration to wezterm:
 return config
