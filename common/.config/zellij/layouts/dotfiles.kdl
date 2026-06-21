@@ -1,0 +1,17 @@
+layout {
+  default_tab_template {
+      pane size=1 borderless=true {
+          plugin location="zellij:tab-bar"
+      }
+      children
+      pane size=1 borderless=true {
+          plugin location="zellij:status-bar"
+      }
+  }
+  tab name="Dotfiles" cwd="$HOME/dotfiles" {
+    pane command="nvim"
+  }
+  tab name="Neovim" cwd="$HOME/nvim" {
+    pane command="nvim"
+  }
+}

@@ -1,0 +1,31 @@
+[metadata]
+name = "zellij-layouts"
+description = "List zellij layouts and open/attach a session per layout"
+requirements = ["zellij"]
+
+[source]
+command = "find ~/.config/zellij/layouts -maxdepth 1 -name '*.kdl' -exec basename {} .kdl \\;"
+
+[preview]
+command = "cat ~/.config/zellij/layouts/'{}'.kdl"
+
+[keybindings]
+enter = "actions:open"
+
+[actions.open]
+description = "Open layout (attach if session exists, else launch + name it)"
+mode = "execute"
+command = """\
+sh -c '
+  layout="$1"
+  if zellij list-sessions -ns 2>/dev/null | grep -qx "$layout"; then
+    if [ -n "$ZELLIJ" ]; then
+      zellij action switch-session "$layout"
+    else
+      zellij attach "$layout"
+    fi
+  else
+    zellij -n "$layout" -s "$layout"
+  fi
+' _ '{}'
+"""

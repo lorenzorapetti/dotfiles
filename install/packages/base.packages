@@ -41,6 +41,8 @@ fastfetch
 unzip
 systemctl-tui
 claude-code
+zellij
+television
 
 # Editors
 neovim
