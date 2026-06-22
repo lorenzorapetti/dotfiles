@@ -274,11 +274,19 @@ keybinds clear-defaults=true {
         }
 
         bind "Alt r" {
-            Run "tv" "zellij-layouts" {
+            Run "tv" "zellij" {
                 floating true
                 width "60%"
                 height "80%"
                 close_on_exit true
+            }
+            SwitchToMode "locked"
+        }
+
+        bind "Alt w" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                move_to_focused_tab true
             }
             SwitchToMode "locked"
         }

@@ -11,7 +11,7 @@ layout {
   tab name="1 - Dotfiles" cwd="$HOME/dotfiles" {
     pane command="nvim"
   }
-  tab name="2 - Neovim" cwd="$HOME/nvim" {
+  tab name="2 - Neovim" cwd="$HOME/.config/nvim" {
     pane command="nvim"
   }
   tab name="3 - Private dotfiles" cwd="$HOME/dotfiles-private" {

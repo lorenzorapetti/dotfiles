@@ -1,0 +1,19 @@
+[metadata]
+name = "zellij"
+description = "List zellij sessions, layouts, and zoxide paths"
+requirements = ["zellij"]
+
+[source]
+command = "zellij-sesh"
+no_sort = true
+
+[preview]
+command = "zellij-sesh preview '{}'"
+
+[keybindings]
+enter = "actions:open"
+
+[actions.open]
+description = "Open entry: switch if inside zellij, else attach/launch (session, layout, or zoxide path)"
+mode = "execute"
+command = "zellij-sesh open {}"
