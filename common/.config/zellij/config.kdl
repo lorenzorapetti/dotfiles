@@ -31,6 +31,7 @@ keybinds clear-defaults=true {
         bind "z" { TogglePaneFrames; SwitchToMode "locked"; }
         bind "tab" { SwitchFocus; }
     }
+
     tab {
         bind "left" { GoToPreviousTab; }
         bind "down" { GoToNextTab; }
@@ -172,7 +173,7 @@ keybinds clear-defaults=true {
 
         bind "Ctrl h" {
             MessagePlugin "navigator" {
-                name "move_focus_or_tab";
+                name "move_focus";
                 payload "left";
             }
         }
@@ -193,7 +194,7 @@ keybinds clear-defaults=true {
 
         bind "Ctrl l" {
             MessagePlugin "navigator" {
-                name "move_focus_or_tab";
+                name "move_focus";
                 payload "right";
             }
         }
@@ -245,11 +246,13 @@ keybinds clear-defaults=true {
         bind "Alt 9" { GoToTab 9; }
 
         bind "Alt e" { EditScrollback; SwitchToMode "locked"; }
-        bind "Alt s" { SwitchToMode "entersearch"; SearchInput 0; }
+        bind "Alt v" { NewPane "down"; SwitchToMode "locked"; }
+        bind "Alt s" { NewPane "right"; SwitchToMode "locked"; }
+        bind "Alt /" { SwitchToMode "entersearch"; SearchInput 0; }
         bind "Alt f" { ToggleFloatingPanes; }
 
-        bind "Alt h" { GoToNextTab; }
-        bind "Alt l" { GoToPreviousTab; }
+        bind "Alt h" { GoToPreviousTab; }
+        bind "Alt l" { GoToNextTab; }
         bind "Alt i" { MoveTab "left"; }
         bind "Alt o" { MoveTab "right"; }
 
