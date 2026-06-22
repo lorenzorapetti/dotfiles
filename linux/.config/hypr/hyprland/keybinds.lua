@@ -8,12 +8,12 @@ hl.config {
 }
 
 local browser = 'helium-browser'
-local terminal = 'kitty'
+local terminal = 'alacritty'
 local file_manager = 'nautilus'
 local main_mod = 'SUPER'
 
 local function quick_terminal(command)
-  return string.format('kitty --class=quick_terminal "%s"', command)
+  return string.format('quick_terminal "%s"', command)
 end
 
 local function vicinae_app(app)
