@@ -8,10 +8,16 @@ layout {
           plugin location="zellij:status-bar"
       }
   }
-  tab name="Dotfiles" cwd="$HOME/dotfiles" {
+  tab name="1 - Dotfiles" cwd="$HOME/dotfiles" {
     pane command="nvim"
   }
-  tab name="Neovim" cwd="$HOME/nvim" {
+  tab name="2 - Neovim" cwd="$HOME/nvim" {
     pane command="nvim"
+  }
+  tab name="3 - Private dotfiles" cwd="$HOME/dotfiles-private" {
+    pane command="nvim"
+  }
+  tab name="4 - Processes" {
+    pane command="btop"
   }
 }
