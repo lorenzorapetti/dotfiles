@@ -27,4 +27,10 @@ atuin init fish | source
 bind \cr _atuin_search
 bind -M insert \cr _atuin_search
 
+function zellij_layouts
+    tv zellij-layouts
+end
+
+bind alt-r zellij_layouts
+
 starship init fish | source
