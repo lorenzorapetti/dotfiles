@@ -25,6 +25,9 @@ sh -c '
       zellij attach "$layout"
     fi
   else
+    if [ -n "$ZELLIJ" ]; then
+      zellij action detach
+    fi
     zellij -n "$layout" -s "$layout"
   fi
 ' _ '{}'
