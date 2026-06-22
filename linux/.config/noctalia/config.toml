@@ -1,30 +1,35 @@
 [bar.default]
-background_opacity = 0.85
+background_opacity = 0.84999999999999998
 center = [ "workspaces" ]
-end = [
-    "cpu",
-    "network_rx",
-    "network_tx",
-    "ram",
-    "bluetooth",
-    "network",
-    "volume",
-    "notifications",
-    "battery",
-    "screenshot",
-    "recorder",
-    "wallpaper",
-    "caffeine",
-    "control-center",
-    "session"
-]
+end = [ "group:g2", "group:g3", "volume", "battery", "group:g1", "session" ]
 margin_edge = 0
 margin_ends = 0
 radius = 0
 shadow = false
-start = [ "clock", "weather", "tray", "active_window", "media" ]
+start = [ "clock", "weather", "tray", "active_window", "privacy" ]
 thickness = 40
 widget_spacing = 14
+
+    [[bar.default.capsule_group]]
+    fill = "surface_variant"
+    id = "g2"
+    members = [ "network_rx", "cpu", "network_tx", "ram" ]
+    opacity = 0.0
+    padding = 0.0
+
+    [[bar.default.capsule_group]]
+    fill = "surface_variant"
+    id = "g3"
+    members = [ "network", "bluetooth" ]
+    opacity = 0.0
+    padding = 20.0
+
+    [[bar.default.capsule_group]]
+    fill = "surface_variant"
+    id = "g1"
+    members = [ "notifications", "screenshot", "recorder", "wallpaper", "caffeine", "control-center" ]
+    opacity = 0.0
+    padding = 20.0
 
 [calendar]
 enabled = true
@@ -79,17 +84,41 @@ fingerprint = false
 [lockscreen_widgets]
 enabled = true
 schema_version = 2
-widget_order = [ "lockscreen-widget-0000000000000001", "lockscreen-login-box@HDMI-A-1", "lockscreen-widget-0000000000000002" ]
+widget_order = [
+    "lockscreen-login-box@DP-1",
+    "lockscreen-widget-0000000000000001",
+    "lockscreen-login-box@HDMI-A-1",
+    "lockscreen-widget-0000000000000002",
+    "lockscreen-widget-0000000000000003",
+    "lockscreen-widget-0000000000000004"
+]
 
     [lockscreen_widgets.grid]
     cell_size = 16
     major_interval = 4
     visible = true
 
-    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
-    box_height = 0.0
-    box_width = 0.0
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+    box_height = 70.0
+    box_width = 400.0
     cx = 1600.0
+    cy = 900.0
+    output = "DP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_login_button = false
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 1440.0
     cy = 900.0
     output = "HDMI-A-1"
     rotation = 0.0
@@ -106,8 +135,8 @@ widget_order = [ "lockscreen-widget-0000000000000001", "lockscreen-login-box@HDM
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
     box_height = 192.0
     box_width = 416.0
-    cx = 1600.0
-    cy = 596.0
+    cx = 1440.0
+    cy = 692.0
     output = "HDMI-A-1"
     rotation = 0.0
     type = "clock"
@@ -120,8 +149,8 @@ widget_order = [ "lockscreen-widget-0000000000000001", "lockscreen-login-box@HDM
     [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
     box_height = 48.0
     box_width = 496.0
-    cx = 1600.0
-    cy = 708.0
+    cx = 1440.0
+    cy = 796.0
     output = "HDMI-A-1"
     rotation = 0.0
     type = "clock"
@@ -129,6 +158,36 @@ widget_order = [ "lockscreen-widget-0000000000000001", "lockscreen-login-box@HDM
         [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
         background = false
         format = "%A %e %B"
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
+    box_height = 208.0
+    box_width = 352.0
+    cx = 1600.0
+    cy = 724.0
+    output = "DP-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000003.settings]
+        background = true
+        background_opacity = 0.0
+        format = "{:%H:%M}"
+        shadow = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000004]
+    box_height = 64.0
+    box_width = 384.0
+    cx = 1600.0
+    cy = 820.0
+    output = "DP-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000004.settings]
+        background = true
+        background_opacity = 0.0
+        format = "%A %e %B"
+        shadow = false
 
 [osd.kinds]
 bluetooth = false
@@ -214,19 +273,16 @@ directory = "~/Pictures/Wallpapers"
     enabled = true
 
     [wallpaper.default]
-    path = "/home/lorenzo/Pictures/Wallpapers/tyler-durden-zm.jpg"
+    path = "/home/lorenzo/Pictures/Wallpapers/Landscapes/0047.jpg"
 
     [wallpaper.last]
-    path = "/home/lorenzo/Pictures/Wallpapers/tyler-durden-zm.jpg"
+    path = "/home/lorenzo/Pictures/Wallpapers/Landscapes/0047.jpg"
+
+    [wallpaper.monitors.DP-1]
+    path = "/home/lorenzo/Pictures/Wallpapers/Landscapes/0047.jpg"
 
     [wallpaper.monitors.HDMI-A-1]
-    path = "/home/lorenzo/Pictures/Wallpapers/tyler-durden-zm.jpg"
-
-    [[wallpaper.favorite]]
-    builtin_palette = "Catppuccin"
-    palette_source = "builtin"
-    path = "/home/lorenzo/Pictures/Wallpapers/0078.jpg"
-    theme_mode = "dark"
+    path = "/home/lorenzo/Pictures/Wallpapers/Landscapes/0047.jpg"
 
     [[wallpaper.favorite]]
     path = "/home/lorenzo/Pictures/Wallpapers/1123121.png"
@@ -236,6 +292,12 @@ directory = "~/Pictures/Wallpapers"
     builtin_palette = "Catppuccin"
     palette_source = "builtin"
     path = "/home/lorenzo/Pictures/Wallpapers/2897748.jpg"
+    theme_mode = "dark"
+
+    [[wallpaper.favorite]]
+    builtin_palette = "Catppuccin"
+    palette_source = "builtin"
+    path = "/home/lorenzo/Pictures/Wallpapers/1348042.jpg"
     theme_mode = "dark"
 
 [widget.active_window]
@@ -268,6 +330,11 @@ show_label = false
 [widget.network_tx]
 show_label = false
 
+[widget.privacy]
+capsule = true
+capsule_opacity = 0.0
+capsule_padding = 20.0
+
 [widget.ram]
 show_label = false
 stat = "ram_pct"
@@ -275,10 +342,16 @@ stat = "ram_pct"
 [widget.recorder]
 type = "noctalia/screen_recorder:recorder"
 
+[widget.tray]
+capsule = true
+capsule_opacity = 0.0
+capsule_padding = 20.0
+
 [widget.weather]
 show_condition = false
 
 [widget.workspaces]
+active_pill_size = 2.0
 display = "name"
 empty_color = "primary"
 focused_color = "tertiary"
