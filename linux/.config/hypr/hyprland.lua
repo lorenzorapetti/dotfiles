@@ -1,4 +1,3 @@
--- require 'hyprland.monitors'
 require 'hyprland.autostart'
 require 'hyprland.environment'
 require 'hyprland.keybinds'
