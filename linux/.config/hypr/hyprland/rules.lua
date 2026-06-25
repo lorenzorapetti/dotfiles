@@ -100,7 +100,7 @@ hl.window_rule {
 hl.window_rule {
   name = 'screen-share-popup',
   match = {
-    title = 'hyprland-share-picker',
+    class = 'hyprland-share-picker',
   },
   float = true,
   no_anim = true,
