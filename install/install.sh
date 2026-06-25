@@ -74,6 +74,7 @@ systemctl --user enable vicinae.service
 systemctl --user enable udiskie.service
 systemctl --user enable ssh-add.service
 systemctl --user enable hypridle.service
+systemctl --user enable hyprmoncfgd.service
 
 if command -v ufw &>/dev/null; then
   # Open the necessary ports for KDE Connect
