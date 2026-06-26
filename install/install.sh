@@ -57,6 +57,9 @@ fi
 # Install SDDM Theme
 . "$SCRIPT_DIR/sddm.sh"
 
+# Disable Bluetooth radio USB autosuspend (fixes random A2DP dropouts)
+. "$SCRIPT_DIR/btusb.sh"
+
 xdg-user-dirs-update
 
 if [ ! -d "$HOME/.config/nvim" ]; then
