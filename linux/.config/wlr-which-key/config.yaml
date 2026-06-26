@@ -17,18 +17,33 @@ menu:
   - key: "a"
     desc: Apps
     submenu:
-      - key: "h"
-        desc: Helium
-        cmd: runapp helium-browser
+      - key: "b"
+        desc: Default Browser - Helium
+        cmd: vicinae vicinae://launch/applications/helium
       - key: "f"
         desc: Firefox
-        cmd: runapp firefox
+        cmd: vicinae vicinae://launch/applications/firefox
       - key: "t"
         desc: Telegram
-        cmd: runapp Telegram
+        cmd: vicinae vicinae://launch/applications/org.telegram
       - key: "d"
         desc: Discord
-        cmd: runapp vesktop
+        cmd: vicinae vicinae://launch/applications/vesktop
+      - key: "l"
+        desc: Linear
+        cmd: vicinae vicinae://launch/applications/chrome-bgdbmehlmdmddlgneophbcddadgknlpm-Profile_1
+      - key: "s"
+        desc: Slack
+        cmd: vicinae vicinae://launch/applications/slack
+      - key: "w"
+        desc: Microsoft Teams
+        cmd: vicinae vicinae://launch/applications/teams-for-linux
+      - key: "m"
+        desc: SONE
+        cmd: vicinae vicinae://launch/applications/SONE
+      - key: "e"
+        desc: Google Meet
+        cmd: vicinae vicinae://launch/applications/chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Profile_1
   - key: "e"
     desc: Execute
     submenu:
