@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Linear
+Exec=/opt/helium-browser-bin/helium-wrapper "--profile-directory=Profile 1" --app-id=bgdbmehlmdmddlgneophbcddadgknlpm
+Icon=chrome-bgdbmehlmdmddlgneophbcddadgknlpm-Profile_1
+StartupWMClass=crx_bgdbmehlmdmddlgneophbcddadgknlpm

@@ -1,6 +1,6 @@
 *
 !.gitignore
 !imv.desktop
-!Linear.desktop
+!chrome-*.desktop
 !icons/
 !icons/Linear.png
