@@ -1,7 +1,24 @@
 [bar.default]
 background_opacity = 0.84999999999999998
+capsule_group = []
 center = [ "taskbar" ]
-end = [ "group:g2", "group:g3", "volume", "battery", "group:g1", "session" ]
+end = [
+    "network_rx",
+    "cpu",
+    "network_tx",
+    "ram",
+    "network",
+    "bluetooth",
+    "notifications",
+    "screenshot",
+    "recorder",
+    "wallpaper",
+    "caffeine",
+    "volume",
+    "battery",
+    "control-center",
+    "session"
+]
 margin_edge = 0
 margin_ends = 0
 radius = 0
@@ -9,27 +26,6 @@ shadow = false
 start = [ "clock", "weather", "tray", "active_window", "privacy" ]
 thickness = 40
 widget_spacing = 14
-
-    [[bar.default.capsule_group]]
-    fill = "surface_variant"
-    id = "g2"
-    members = [ "network_rx", "cpu", "network_tx", "ram" ]
-    opacity = 0.0
-    padding = 0.0
-
-    [[bar.default.capsule_group]]
-    fill = "surface_variant"
-    id = "g3"
-    members = [ "network", "bluetooth" ]
-    opacity = 0.0
-    padding = 20.0
-
-    [[bar.default.capsule_group]]
-    fill = "surface_variant"
-    id = "g1"
-    members = [ "notifications", "screenshot", "recorder", "wallpaper", "caffeine", "control-center" ]
-    opacity = 0.0
-    padding = 20.0
 
 [calendar]
 enabled = true
@@ -246,9 +242,11 @@ show_active_indicator = false
 workspace_label_placement = "inside"
 
 [widget.tray]
-capsule = true
+capsule = false
 capsule_opacity = 0.0
-capsule_padding = 20.0
+capsule_padding = 15.0
+drawer = true
+match_adjacent_spacing = true
 
 [widget.weather]
 show_condition = false
