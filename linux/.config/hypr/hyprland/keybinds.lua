@@ -62,6 +62,7 @@ bindm('B', exec(vicinae_app 'helium'), 'Open Browser')
 bindm('E', exec(quick_terminal 'yazi'), 'Open Terminal File Manager')
 bindm('D', exec(quick_terminal 'bluetui'), 'Open Bluetooth Settings')
 bindm('V', exec(quick_terminal 'wiremix'), 'OpenVolume Control')
+bindm('GRAVE', exec 'vicinae vicinae://launch/@nino-mau/store.vicinae.hypr/windows', 'Switch Windows')
 bindm('SHIFT + E', exec(vicinae_app 'org.gnome.Nautilus'), 'Open File Manager')
 
 --------------------- Launchers ---------------------
