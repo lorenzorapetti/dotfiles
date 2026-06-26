@@ -15,3 +15,4 @@ export SDL_VIDEODRIVER=wayland
 export CLUTTER_BACKEND=wayland
 
 export UWSM_MANAGED=1
+export TODO_DIR="$HOME/notes"
