@@ -98,6 +98,19 @@ hl.window_rule {
 }
 
 hl.window_rule {
+  name = 'floating-large',
+  match = {
+    class = 'dev.noctalia.Noctalia.Settings',
+  },
+  float = true,
+  size = {
+    'monitor_w*0.7',
+    'monitor_h*0.6',
+  },
+  center = true,
+}
+
+hl.window_rule {
   name = 'screen-share-popup',
   match = {
     class = 'hyprland-share-picker',
