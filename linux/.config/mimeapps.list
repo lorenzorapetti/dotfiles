@@ -51,3 +51,4 @@ x-scheme-handler/discord=vesktop.desktop
 x-scheme-handler/slack=slack.desktop
 x-scheme-handler/tidal=sone-handler.desktop
 x-scheme-handler/claude=claude.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop

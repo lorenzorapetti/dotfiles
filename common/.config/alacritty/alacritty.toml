@@ -13,3 +13,8 @@ option_as_alt = "OnlyLeft"
 
 [font]
 normal = { family = "GeistMono Nerd Font Mono", style = "Regular"}
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
