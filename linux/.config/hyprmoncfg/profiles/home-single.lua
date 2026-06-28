@@ -4,13 +4,8 @@ hl.monitor({
   output = "desc:Samsung Electric Company Odyssey G80SD H1AK500000",
   mode = "3840x2160@119.88",
   position = "0x0",
-  scale = 1.33,
+  scale = 1.25,
   bitdepth = 10,
   sdr_min_luminance = 0.2,
   sdr_max_luminance = 80,
-})
-
-hl.monitor({
-  output = "desc:Audio Processing Technology  Ltd HDMI 0x00000055",
-  disabled = true,
 })

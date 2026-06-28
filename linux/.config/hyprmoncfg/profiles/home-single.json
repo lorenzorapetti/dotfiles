@@ -1,7 +1,7 @@
 {
   "name": "home-single",
   "created_at": "2026-06-23T15:36:15.043900607Z",
-  "updated_at": "2026-06-23T15:36:15.044308664Z",
+  "updated_at": "2026-06-28T15:02:52.802016064Z",
   "outputs": [
     {
       "key": "samsung electric company|odyssey g80sd|h1ak500000",
@@ -18,34 +18,9 @@
       "refresh": 119.88,
       "x": 0,
       "y": 0,
-      "scale": 1.33,
+      "scale": 1.25,
       "transform": 0,
       "bitdepth": 10,
-      "cm": "srgb",
-      "sdr_brightness": 1,
-      "sdr_saturation": 1,
-      "sdr_min_luminance": 0.2,
-      "sdr_max_luminance": 80,
-      "min_luminance": 0
-    },
-    {
-      "key": "audio processing technology ltd|hdmi|0x00000055",
-      "match_key": "audio processing technology ltd|hdmi|0x00000055",
-      "name": "HDMI-A-1",
-      "description": "Audio Processing Technology  Ltd HDMI 0x00000055",
-      "make": "Audio Processing Technology  Ltd",
-      "model": "HDMI",
-      "serial": "0x00000055",
-      "enabled": false,
-      "mode": "2880x1800@100.00Hz",
-      "width": 2880,
-      "height": 1800,
-      "refresh": 100,
-      "x": 563,
-      "y": 1620,
-      "scale": 1.6,
-      "transform": 0,
-      "bitdepth": 8,
       "cm": "srgb",
       "sdr_brightness": 1,
       "sdr_saturation": 1,
@@ -60,8 +35,7 @@
     "max_workspaces": 9,
     "group_size": 3,
     "monitor_order": [
-      "samsung electric company|odyssey g80sd|h1ak500000",
-      "audio processing technology ltd|hdmi|0x00000055"
+      "samsung electric company|odyssey g80sd|h1ak500000"
     ]
   },
   "exec": ""
