@@ -27,9 +27,6 @@ source $HOME/.config/fish/utils.fish
 
 fish_add_path -g $HOME/.cargo/bin
 
-set -Ux SUDO_ASKPASS ~/.local/bin/notify-askpass
-alias sudo="sudo -A"
-
 $HOME/.local/bin/mise activate fish | source
 
 fzf --fish | source
