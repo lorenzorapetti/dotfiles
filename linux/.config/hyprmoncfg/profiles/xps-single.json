@@ -1,0 +1,65 @@
+{
+  "name": "xps-single",
+  "created_at": "2026-06-25T16:13:15.331896668Z",
+  "updated_at": "2026-06-30T12:48:35.066497391Z",
+  "outputs": [
+    {
+      "key": "sharp corporation|0x158f",
+      "match_key": "sharp corporation|0x158f",
+      "name": "eDP-1",
+      "description": "Sharp Corporation 0x158F",
+      "make": "Sharp Corporation",
+      "model": "0x158F",
+      "enabled": true,
+      "mode": "2560x1600@120.00Hz",
+      "width": 2560,
+      "height": 1600,
+      "refresh": 120,
+      "x": 3440,
+      "y": 1008,
+      "scale": 1.25,
+      "transform": 0,
+      "bitdepth": 8,
+      "cm": "srgb",
+      "sdr_brightness": 1,
+      "sdr_saturation": 1,
+      "sdr_min_luminance": 0.2,
+      "sdr_max_luminance": 80,
+      "min_luminance": 0
+    }
+  ],
+  "workspaces": {
+    "enabled": false,
+    "strategy": "manual",
+    "max_workspaces": 9,
+    "group_size": 3,
+    "monitor_order": [
+      "sharp corporation|0x158f"
+    ],
+    "rules": [
+      {
+        "workspace": "6",
+        "output_key": "sharp corporation|0x158f",
+        "output_name": "eDP-1",
+        "default": true,
+        "persistent": true
+      },
+      {
+        "workspace": "7",
+        "output_key": "sharp corporation|0x158f",
+        "output_name": "eDP-1"
+      },
+      {
+        "workspace": "8",
+        "output_key": "sharp corporation|0x158f",
+        "output_name": "eDP-1"
+      },
+      {
+        "workspace": "9",
+        "output_key": "sharp corporation|0x158f",
+        "output_name": "eDP-1"
+      }
+    ]
+  },
+  "exec": ""
+}

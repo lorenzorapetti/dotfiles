@@ -1,0 +1,118 @@
+{
+  "name": "xps-office-xiaomi",
+  "created_at": "2026-06-25T07:23:18.856574731Z",
+  "updated_at": "2026-06-25T11:29:10.194179013Z",
+  "outputs": [
+    {
+      "key": "sharp corporation|0x158f",
+      "match_key": "sharp corporation|0x158f",
+      "name": "eDP-1",
+      "description": "Sharp Corporation 0x158F",
+      "make": "Sharp Corporation",
+      "model": "0x158F",
+      "enabled": true,
+      "mode": "2560x1600@60.00Hz",
+      "width": 2560,
+      "height": 1600,
+      "refresh": 60,
+      "x": 3440,
+      "y": 1008,
+      "scale": 1.25,
+      "transform": 0,
+      "bitdepth": 8,
+      "cm": "srgb",
+      "sdr_brightness": 1,
+      "sdr_saturation": 1,
+      "sdr_min_luminance": 0.2,
+      "sdr_max_luminance": 80,
+      "min_luminance": 0
+    },
+    {
+      "key": "xiaomi corporation|mi monitor|0000000000000",
+      "match_key": "xiaomi corporation|mi monitor|0000000000000",
+      "name": "DP-4",
+      "description": "Xiaomi Corporation Mi Monitor 0000000000000",
+      "make": "Xiaomi Corporation",
+      "model": "Mi Monitor",
+      "serial": "0000000000000",
+      "enabled": true,
+      "mode": "3440x1440@99.99Hz",
+      "width": 3440,
+      "height": 1440,
+      "refresh": 99.99,
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "transform": 0,
+      "bitdepth": 8,
+      "cm": "srgb",
+      "sdr_brightness": 1,
+      "sdr_saturation": 1,
+      "sdr_min_luminance": 0.2,
+      "sdr_max_luminance": 80,
+      "min_luminance": 0
+    }
+  ],
+  "workspaces": {
+    "enabled": true,
+    "strategy": "sequential",
+    "max_workspaces": 9,
+    "group_size": 5,
+    "monitor_order": [
+      "xiaomi corporation|mi monitor|0000000000000",
+      "sharp corporation|0x158f"
+    ],
+    "rules": [
+      {
+        "workspace": "1",
+        "output_key": "xiaomi corporation|mi monitor|0000000000000",
+        "output_name": "DP-4",
+        "default": true,
+        "persistent": true
+      },
+      {
+        "workspace": "2",
+        "output_key": "xiaomi corporation|mi monitor|0000000000000",
+        "output_name": "DP-4"
+      },
+      {
+        "workspace": "3",
+        "output_key": "xiaomi corporation|mi monitor|0000000000000",
+        "output_name": "DP-4"
+      },
+      {
+        "workspace": "4",
+        "output_key": "xiaomi corporation|mi monitor|0000000000000",
+        "output_name": "DP-4"
+      },
+      {
+        "workspace": "5",
+        "output_key": "xiaomi corporation|mi monitor|0000000000000",
+        "output_name": "DP-4"
+      },
+      {
+        "workspace": "6",
+        "output_key": "sharp corporation|0x158f",
+        "output_name": "eDP-1",
+        "default": true,
+        "persistent": true
+      },
+      {
+        "workspace": "7",
+        "output_key": "sharp corporation|0x158f",
+        "output_name": "eDP-1"
+      },
+      {
+        "workspace": "8",
+        "output_key": "sharp corporation|0x158f",
+        "output_name": "eDP-1"
+      },
+      {
+        "workspace": "9",
+        "output_key": "sharp corporation|0x158f",
+        "output_name": "eDP-1"
+      }
+    ]
+  },
+  "exec": ""
+}
