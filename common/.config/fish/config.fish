@@ -10,7 +10,7 @@ set -q THEME[1]; or set -gx THEME catppuccin-mocha
 
 # Map theme -> color mode. Listed themes pass --color-theme; others omit it.
 switch $THEME
-    case catppuccin-mocha everforest-soft-dark
+    case catppuccin-mocha everforest
         set -f _mode dark
     case '*'
         set -f _mode ''
@@ -35,10 +35,6 @@ zoxide init fish | source
 
 direnv hook fish | source
 
-set -gx ATUIN_NOBIND true
-atuin init fish | source
-
-# Bind to ctrl-r in normal and insert mode, add any other bindings you want here too
 tv init fish | source
 
 function zellij_layouts

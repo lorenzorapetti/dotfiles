@@ -1,8 +1,8 @@
-# name: 'Everforest Soft Dark'
+# name: 'Everforest'
 # url: 'https://github.com/sainnhe/everforest'
 
 [dark]
-# preferred_background: 293136
+# preferred_background: 272E33
 fish_color_normal D3C6AA
 fish_color_command A7C080
 fish_color_param D3C6AA
@@ -13,8 +13,8 @@ fish_color_end E69875
 fish_color_comment 859289
 fish_color_error E67E80
 fish_color_gray 7A8478
-fish_color_selection --background=5C3F4F
-fish_color_search_match --background=5C3F4F
+fish_color_selection --background=4C3743
+fish_color_search_match --background=4C3743
 fish_color_option A7C080
 fish_color_operator 83C092
 fish_color_escape D699B6

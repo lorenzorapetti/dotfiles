@@ -6,7 +6,7 @@ common/.config/fish
 !common/.config/fish/utils.fish
 !common/.config/fish/fish_plugins
 !common/.config/fish/themes
-!common/.config/fish/themes/everforest-soft-dark.theme
+!common/.config/fish/themes/everforest.theme
 !common/.gitignore
 
 common/.config/nushell

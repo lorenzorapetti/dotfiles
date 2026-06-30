@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+
+# theme-switch — switch the desktop theme (currently fish + Alacritty).
+#
+#   theme-switch list
+#   theme-switch apply <theme> [--permanent]
+
+set -euo pipefail
+
+# Theme registry: theme name -> fish `--color-theme` mode (empty = no flag).
+declare -A THEMES=(
+  [catppuccin-mocha]=dark
+  [everforest]=dark
+)
+
+ENV_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/uwsm/env"
+ALACRITTY_THEMES_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/themes"
+
+usage() {
+  cat >&2 <<'EOF'
+Usage:
+  theme-switch list
+  theme-switch apply <theme> [--permanent]
+
+Commands:
+  list                       List available themes.
+  apply <theme>              Apply <theme> for the current session (fish, Alacritty).
+  apply <theme> --permanent  Also persist THEME to uwsm/env (login default).
+EOF
+}
+
+cmd_list() {
+  printf '%s\n' "${!THEMES[@]}" | sort
+}
+
+cmd_apply() {
+  local theme="" permanent=0
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --permanent) permanent=1 ;;
+      -h | --help)
+        usage
+        return 0
+        ;;
+      -*)
+        echo "theme-switch: unknown option '$1'" >&2
+        usage
+        return 1
+        ;;
+      *)
+        if [ -n "$theme" ]; then
+          echo "theme-switch: unexpected argument '$1'" >&2
+          usage
+          return 1
+        fi
+        theme="$1"
+        ;;
+    esac
+    shift
+  done
+
+  if [ -z "$theme" ]; then
+    echo "theme-switch: apply requires a <theme>" >&2
+    usage
+    return 1
+  fi
+
+  if [ -z "${THEMES[$theme]+set}" ]; then
+    echo "theme-switch: unknown theme '$theme'" >&2
+    echo "Available themes:" >&2
+    cmd_list >&2
+    return 1
+  fi
+
+  # Apply to fish: set the universal exported THEME var (propagates to all running
+  # and future fish sessions) and load the matching fish theme.
+  local mode="${THEMES[$theme]}"
+  local choose="fish_config theme choose $theme"
+  if [ -n "$mode" ]; then
+    choose="$choose --color-theme=$mode"
+  fi
+  fish -c "set -Ux THEME $theme; $choose"
+
+  apply_alacritty "$theme"
+
+  if [ "$permanent" -eq 1 ]; then
+    persist_env "$theme"
+  fi
+
+  echo "Applied theme '$theme'."
+}
+
+apply_alacritty() {
+  local theme="$1"
+  local src="$ALACRITTY_THEMES_DIR/$theme.toml"
+  local dest="$ALACRITTY_THEMES_DIR/current.toml"
+
+  if [ ! -f "$src" ]; then
+    echo "theme-switch: no Alacritty theme '$src'; skipping Alacritty" >&2
+    return 0
+  fi
+
+  # Copy the selected theme's contents into current.toml (the imported file Alacritty
+  # live-reloads). current.toml is the stow symlink into the repo, so cp writes through
+  # it — updating the repo's themes/current.toml while preserving the symlink.
+  cp -- "$src" "$dest"
+}
+
+persist_env() {
+  local theme="$1"
+
+  if [ ! -f "$ENV_FILE" ]; then
+    echo "theme-switch: $ENV_FILE not found; cannot persist THEME" >&2
+    return 1
+  fi
+
+  if grep -qE '^export THEME=' "$ENV_FILE"; then
+    sed -i -E "s|^export THEME=.*|export THEME=$theme|" "$ENV_FILE"
+  else
+    printf 'export THEME=%s\n' "$theme" >>"$ENV_FILE"
+  fi
+
+  echo "Persisted THEME=$theme to $ENV_FILE."
+}
+
+main() {
+  if [ $# -eq 0 ]; then
+    usage
+    return 1
+  fi
+
+  local cmd="$1"
+  shift
+
+  case "$cmd" in
+    list) cmd_list ;;
+    apply) cmd_apply "$@" ;;
+    -h | --help) usage ;;
+    *)
+      echo "theme-switch: unknown command '$cmd'" >&2
+      usage
+      return 1
+      ;;
+  esac
+}
+
+main "$@"
